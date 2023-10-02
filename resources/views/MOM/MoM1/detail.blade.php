@@ -55,8 +55,8 @@
                                         
                                     </td>
                                     <td>
-                                        <a href="#">Edit</a>
-                                        <a href="{{route('detail')}}">Hapus</a>
+                                        <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
+                                        <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
                                     </td>
                                 </tr>
                             </tbody>

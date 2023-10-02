@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>SPUT</title>
 
         <!-- Styles -->
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
@@ -32,20 +32,22 @@
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0" 
         style="
-               background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ asset('assets/img/bg-login.jpg') }}');
+                background: url('{{ asset('assets/img/bg-login.jpg') }}');
                 background-size: cover;
                 background-repeat: no-repeat;
         ">
-            <div>
-                <a href="/" class="flex items-center"> <!-- Tambah class flex dan items-center -->
-                    <img src="{{url('assets/img/kpp-logo.png')}}" width="100" alt="">
-                    <img src="{{url('assets/img/astra-logo.png')}}" width="150" alt="">
-                </a>
-            </div>
     
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="/" class="d-flex align-items-center"> <!-- Tambah class d-flex, flex-column, dan align-items-center -->
+                        <img src="{{ url('assets/img/kpp-logo.png') }}" width="100" alt="">
+                        <img src="{{ url('assets/img/astra-logo.png') }}" width="150" alt="">
+                    </a>
+                    
+                </div>
                 {{ $slot }}
             </div>
+            
         </div>
     </body>
     

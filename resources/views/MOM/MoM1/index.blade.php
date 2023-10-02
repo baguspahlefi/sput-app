@@ -132,54 +132,54 @@
             </div>
             <div class="row">
                 <div class="card-body" style="overflow-x: auto;">
-                    <table id="datatablesSimple">
+                    <table class="table" id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Judul</th>
-                                <th>Tanggal</th>
-                                <th>Daftar Hadir</th>
-                                <th>Aksi</th>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Judul</th>
+                                <th class="text-center">Tanggal</th>
+                                <th class="text-center">Daftar Hadir</th>
+                                <th class="text-center">Aksi</th>
                             </tr>
                         </thead> 
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>Contoh Judul Meeting 1</td>
-                                <td>30 September 2023</td>
-                                <td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">Contoh Judul Meeting 1</td>
+                                <td class="text-center">30 September 2023</td>
+                                <td class="text-center">
                                     <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir">Lihat Daftar Hadir</button>
                                 </td>
-                                <td>
-                                    <a  href="#"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{route('detail')}}">Detail</a>
-                                    <a href="detail.html">Hapus</a>
+                                <td class="text-center">
+                                    <a href="{{route('detail')}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
+                                    <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
+                                    <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
                                 </td>
                             </tr>
                             <tr>
-                                <td>1</td>
-                                <td>Contoh Judul Meeting 1</td>
-                                <td>30 September 2023</td>
-                                <td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">Contoh Judul Meeting 1</td>
+                                <td class="text-center">30 September 2023</td>
+                                <td class="text-center">
                                     <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir">Lihat Daftar Hadir</button>
                                 </td>
-                                <td>
-                                    <a href="#">Edit</a>
-                                    <a href="{{route('detail')}}">Detail</a>
-                                    <a href="detail.html">Hapus</a>
+                                <td class="text-center">
+                                    <a href="{{route('detail')}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
+                                    <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
+                                    <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
                                 </td>
                             </tr>
                             <tr>
-                                <td>1</td>
-                                <td>Contoh Judul Meeting 1</td>
-                                <td>30 September 2023</td>
-                                <td>
+                                <td class="text-center">1</td>
+                                <td class="text-center">Contoh Judul Meeting 1</td>
+                                <td class="text-center">30 September 2023</td>
+                                <td class="text-center">
                                     <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir">Lihat Daftar Hadir</button>
                                 </td>
-                                <td>
-                                    <a href="#">Edit</a>
-                                    <a href="{{route('detail')}}">Detail</a>
-                                    <a href="detail.html">Hapus</a>
+                                <td class="text-center">
+                                    <a href="{{route('detail')}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
+                                    <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
+                                    <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
                                 </td>
                             </tr>
                         </tbody>

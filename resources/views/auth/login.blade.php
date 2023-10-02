@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <p class="fs-2 my-4 text-center">Login member area</p>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 

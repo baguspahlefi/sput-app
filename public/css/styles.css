@@ -11705,19 +11705,20 @@ body {
   border-collapse: collapse;
 }
 #datatablesSimple td, #tabel th {
-  border: 1px solid white;
+  border: 1px solid #B9B9B9;
   padding: 8px;
+  text-align: center;
 }
+
 #datatablesSimple th {
+  border: 1px solid #B9B9B9;
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: #30923A;
   color: white;
 }
-#datatablesSimple tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
+
 #datatablesSimple tr:hover {
   background-color: #ddd;
 }

@@ -38,10 +38,9 @@
                     {{ __('Forgot your password?') }}
                 </a>
             @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <button class="btn btn-success ml-3">
+                Log in
+            </button>
         </div>
     </form>
 </x-guest-layout>

@@ -148,7 +148,33 @@
                                 <td>Contoh Judul Meeting 1</td>
                                 <td>30 September 2023</td>
                                 <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalHadir">Lihat Daftar Hadir</a>
+                                    <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir">Lihat Daftar Hadir</button>
+                                </td>
+                                <td>
+                                    <a  href="#"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{route('detail')}}">Detail</a>
+                                    <a href="detail.html">Hapus</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Contoh Judul Meeting 1</td>
+                                <td>30 September 2023</td>
+                                <td>
+                                    <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir">Lihat Daftar Hadir</button>
+                                </td>
+                                <td>
+                                    <a href="#">Edit</a>
+                                    <a href="{{route('detail')}}">Detail</a>
+                                    <a href="detail.html">Hapus</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Contoh Judul Meeting 1</td>
+                                <td>30 September 2023</td>
+                                <td>
+                                    <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir">Lihat Daftar Hadir</button>
                                 </td>
                                 <td>
                                     <a href="#">Edit</a>

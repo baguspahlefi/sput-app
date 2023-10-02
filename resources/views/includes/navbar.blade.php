@@ -1,7 +1,7 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #30923A;">
             <!-- Navbar Brand-->
             <a class="navbar-brand m-4" href="index.html">
-                <img src="{{url('assets/img/KPP_logo.png')}}" alt="" style="width: 60px; margin-right: 10px;">
+                <img src="{{url('assets/img/kpp-logo.png')}}" alt="" style="width: 60px; margin-right: 10px;">
                 <span style="vertical-align: middle;">S P U T</span>
             </a>
             <!-- Sidebar Toggle-->

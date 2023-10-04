@@ -12,6 +12,7 @@
                 </div>
             </div>
             <div class="row">
+                @role('admin')
                 <div class="col-12 float-end">
                     <button type="button" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Tambah Meeting
@@ -48,8 +49,10 @@
                             </div>
                         </div>
                     </div>
+                    @endrole
 
-                    <!-- Modal Daftar Hadir-->
+                    @role('admin')
+                    <!-- Modal Daftar Hadir Admin-->
                     <div class="modal fade" id="exampleModalHadir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -128,7 +131,57 @@
                             </div>
                         </div>
                     </div>
+
+                    @else
+                    <!-- Modal Daftar Hadir User-->
+                    <div class="modal fade" id="exampleModalHadir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Rincian Daftar Hadir Pegawai</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container" style="margin-top: 50px;">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" scope="col">No</th>
+                                                    <th class="text-center" scope="col">Nama</th>
+                                                    <th class="text-center" scope="col">NIP</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center" class="text-center" scope="col">1</td>
+                                                    <td class="text-center" scope="col">Jordan Al muttadlo</td>
+                                                    <td class="text-center" scope="col">231124121231</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center" class="text-center" scope="col">1</td>
+                                                    <td class="text-center" scope="col">Jordan Al muttadlo</td>
+                                                    <td class="text-center" scope="col">231124121231</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-center" class="text-center" scope="col">1</td>
+                                                    <td class="text-center" scope="col">Jordan Al muttadlo</td>
+                                                    <td class="text-center" scope="col">231124121231</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>      
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endrole
+                    
                 </div>
+          
+           
             </div>
             <div class="row">
                 <div class="card-body" style="overflow-x: auto;">
@@ -152,8 +205,10 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="{{route('detail')}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
+                                    @role('admin')
                                     <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
+                                    @endrole
                                 </td>
                             </tr>
                             <tr>
@@ -165,8 +220,10 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="{{route('detail')}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
+                                    @role('admin')
                                     <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
+                                    @endrole
                                 </td>
                             </tr>
                             <tr>
@@ -178,10 +235,13 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="{{route('detail')}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
+                                    @role('admin')
                                     <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
+                                    @endrole
                                 </td>
                             </tr>
+                      
                         </tbody>
                     </table>
                 </div>

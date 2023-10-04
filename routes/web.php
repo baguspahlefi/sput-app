@@ -16,14 +16,20 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-
-
 Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/MoM1', [MoM1Controller::class,'index'])->name('MoM1');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/MoM1', [MoM1Controller::class,'index'])
+->middleware(['auth', 'verified'])
+->name('MoM1');
+
 Route::get('/MoM1/detail', [MoM1Controller::class,'show'])
+->middleware(['auth', 'verified'])
 ->name('detail');
 
 Route::middleware('auth')->group(function () {

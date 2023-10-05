@@ -27,7 +27,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            <h3>ADMIN</h3>
+            <h3>{{ Auth::user()->roles->map->name->implode(', ') }}</h3>
         </div>
     </nav>
 </div>

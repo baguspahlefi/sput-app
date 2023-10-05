@@ -17,8 +17,16 @@ class UserTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'NIP' => '12345678901',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('qwerty123'),
         ]);
-        $admin->assignRole('admin');
+        $admin->assignRole('ADMIN');
+
+        $user = User::create([
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'NIP' => '12345678910',
+            'password' => bcrypt('qwerty123'),
+        ]);
+        $user->assignRole('USER');
     }
 }

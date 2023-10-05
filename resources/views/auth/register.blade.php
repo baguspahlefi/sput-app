@@ -24,6 +24,20 @@
             <x-input-error :messages="$errors->get('NIP')" class="mt-2" />
         </div>
 
+        <!-- PIC -->
+        <div class="mt-4">
+            <x-input-label for="PIC" :value="__('PIC')" />
+            <div class="input-group mb-3">
+                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02">
+                    <option selected>Pilih PIC</option>    
+                    @foreach($pic as $pic)
+                    <option value="{{$pic->PIC}}">{{$pic->PIC}}</option>
+                    @endforeach  
+                </select>
+            </div>
+
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

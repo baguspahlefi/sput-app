@@ -19,10 +19,12 @@
                     <a class="nav-link text-white" href="layout-sidenav-light.html">MoM 3 : Meeting Koordinasi</a>
                 </nav>
                 </div>
-            <a class="nav-link text-white" href="index.html">
-                <div class="sb-nav-link-icon"><i class="fas fa-user-alt"></i></div>
-                Pengaturan Akun
-            </a>
+                @role('admin')
+                <a class="nav-link text-white" href="index.html">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user-alt"></i></div>
+                    Pengaturan Akun
+                </a>
+                @endrole
             </div>
         </div>
         <div class="sb-sidenav-footer">

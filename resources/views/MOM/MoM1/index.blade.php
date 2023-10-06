@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="row">
-                @role('admin')
+                @role('ADMIN')
                 <div class="col-12 float-end">
                     <button type="button" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Tambah Meeting
@@ -51,7 +51,7 @@
                     </div>
                     @endrole
 
-                    @role('admin')
+                    @role('ADMIN')
                     <!-- Modal Daftar Hadir Admin-->
                     <div class="modal fade" id="exampleModalHadir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -205,7 +205,7 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="{{route('detail')}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
-                                    @role('admin')
+                                    @role('ADMIN')
                                     <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
                                     @endrole
@@ -220,7 +220,7 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="{{route('detail')}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
-                                    @role('admin')
+                                    @role('ADMIN')
                                     <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
                                     @endrole
@@ -235,7 +235,7 @@
                                 </td>
                                 <td class="text-center">
                                     <a href="{{route('detail')}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
-                                    @role('admin')
+                                    @role('ADMIN')
                                     <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
                                     @endrole

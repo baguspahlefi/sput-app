@@ -36,14 +36,20 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'NIP' => ['required', 'numeric' , 'unique:'.User::class],
+            'PIC' => ['required'],
+            'NRP' => ['required', 'numeric' , 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ],
+        [
+            'PIC.required' => 'PIC harus dipilih',
+            'NRP.unique:'.User::class => 'NRP sudah dipakai',
+            'NRP.required' => 'NRP haris diisi'
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'NIP' => $request->NIP,
+            'NRP' => $request->NRP,
             'password' => Hash::make($request->password),
         ]);
 

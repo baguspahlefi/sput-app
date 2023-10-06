@@ -19,22 +19,27 @@
         
         <!-- NIP -->
         <div class="mt-4">
-            <x-input-label for="NIP" :value="__('NIP')" />
-            <x-text-input id="NIP" class="block mt-1 w-full" type="text" name="NIP" :value="old('NIP')" required autofocus autocomplete="NIP" />
-            <x-input-error :messages="$errors->get('NIP')" class="mt-2" />
+            <x-input-label for="NRP" :value="__('NRP')" />
+            <x-text-input id="NRP" class="block mt-1 w-full" type="text" name="NRP" :value="old('NRP')" required autofocus autocomplete="NRP" />
+            @error('NRP')
+                <div class="text-danger mt-2">{{$message}}</div>
+            @enderror
         </div>
 
         <!-- PIC -->
         <div class="mt-4">
             <x-input-label for="PIC" :value="__('PIC')" />
             <div class="input-group mb-3">
-                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02">
+                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="PIC">
                     <option selected>Pilih PIC</option>    
                     @foreach($pic as $pic)
                     <option value="{{$pic->PIC}}">{{$pic->PIC}}</option>
                     @endforeach  
                 </select>
             </div>
+            @error('PIC')
+                <div class="text-danger mt-2">{{$message}}</div>
+            @enderror
 
         </div>
 

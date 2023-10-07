@@ -31,7 +31,7 @@
 <script>
 document.querySelectorAll("table.table-striped tbody tr td:nth-child(2),table.table-striped tbody tr td:nth-child(3)").forEach(function(node){
     node.ondblclick=function(){
-        var val="Jordan";
+        var val = this.textContent || this.innerText;
         var input=document.createElement("input");
         input.value=val;
         input.onblur=function(){

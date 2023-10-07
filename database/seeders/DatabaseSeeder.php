@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(PICTableSeeder::class);
+        $this->call(MeetingLevel1TableSeeder::class);
     }
 }

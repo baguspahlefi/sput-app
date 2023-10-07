@@ -24,9 +24,21 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::post('daftar_hadir/store',[MoM1Controller::class,'modal_store'])
+->middleware(['auth'])
+->name('daftarHadir1.store');
+
+Route::post('MoM1/store',[MoM1Controller::class,'store'])
+->middleware(['auth'])
+->name('MoM1.store');
+
+
 Route::get('/MoM1', [MoM1Controller::class,'index'])
 ->middleware(['auth', 'verified'])
 ->name('MoM1');
+Route::get('/MoM1/{id}', [MoM1Controller::class,'modal_show'])
+->middleware(['auth', 'verified'])
+->name('daftarHadir1.show');
 
 Route::get('/MoM1/detail', [MoM1Controller::class,'show'])
 ->middleware(['auth', 'verified'])

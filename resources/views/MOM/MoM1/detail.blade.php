@@ -2,6 +2,22 @@
 @section('title')
     SPUT - MoM 1 Detail
 @endsection
+<style>
+    /* CSS untuk menambahkan nomor urutan hanya pada baris yang memiliki data */
+    /* CSS untuk menambahkan nomor urutan hanya pada baris yang memiliki data */
+    table {
+        counter-reset: rowNumber;
+    }
+    
+    table tbody tr {
+        counter-increment: rowNumber;
+    }
+    
+    table tbody tr td:first-child::before {
+        content: counter(rowNumber);
+    }
+    
+</style>
 @section('content')
 <div id="layoutSidenav_content">
     <main>
@@ -11,10 +27,10 @@
                 <div class="row">
                     <div class="col my-4">
                         <h2 class="text-dark">
-                            Judul dari MoM
+                            {{$items->judul}}
                         </h2><br>
                         <h4 class="text-dark">
-                            30 September 2023
+                            {{ \Carbon\Carbon::parse($items->date)->format('d F Y') }}
                         </h4>
                     </div>
                 </div>
@@ -42,23 +58,34 @@
                             </thead>
                           
                             <tbody>
+                                @if(count($details) > 0)
+                                @foreach($details as $key => $detail)
+                                    @if($detail->id_meeting_level_1 == $items->id)
+                                    <tr>
+                                        <td class="text-center"></td>
+                                        <td class="text-center">{{$detail->point_of_meeting}}</td>
+                                        <td class="text-center">{{$detail->pic}}</td>
+                                        <td class="text-center">{{ \Carbon\Carbon::parse($detail->due)->format('d F Y') }}</td>
+                                        <td class="text-center">{{$detail->status}} </td>
+                                        <td>
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEvidance">
+                                                <img src="https://media.istockphoto.com/id/499775926/id/foto/produksi-batubara-di-salah-satu-lapangan-terbuka.webp?s=1024x1024&w=is&k=20&c=Ymb8XaVLVyQHjJ8Yt5NaQASkvzb7tWSqluhc9sf9kb0=" alt="" width="200" class="img-thumbnail">
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
+                                            <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
+                                        </td>
+                                    </tr>
+                                    @endif
+                                @endforeach
+                            @else
                                 <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">Review SOP refuelling dan observasi debit pompa fuel</td>
-                                    <td class="text-center">PLANT</td>
-                                    <td class="text-center">2/09/2023</td>
-                                    <td class="text-center">Close </td>
-                                    <td>
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEvidance">
-                                            <img src="https://media.istockphoto.com/id/499775926/id/foto/produksi-batubara-di-salah-satu-lapangan-terbuka.webp?s=1024x1024&w=is&k=20&c=Ymb8XaVLVyQHjJ8Yt5NaQASkvzb7tWSqluhc9sf9kb0=" alt="" width="200" class="img-thumbnail">
-                                        </a>
-                                        
-                                    </td>
-                                    <td>
-                                        <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
-                                        <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
-                                    </td>
+                                    <td class="colspan-7"> Kosong </td>
                                 </tr>
+                            @endif
+                            
+                                
                             </tbody>
                         </table>
                     </div>

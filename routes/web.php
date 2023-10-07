@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MoM1Controller;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetailLvl1Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,13 +37,14 @@ Route::post('MoM1/store',[MoM1Controller::class,'store'])
 Route::get('/MoM1', [MoM1Controller::class,'index'])
 ->middleware(['auth', 'verified'])
 ->name('MoM1');
-Route::get('/MoM1/{id}', [MoM1Controller::class,'modal_show'])
-->middleware(['auth', 'verified'])
-->name('daftarHadir1.show');
 
-Route::get('/MoM1/detail', [MoM1Controller::class,'show'])
+Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
+->middleware(['auth'])
+->name('daftarHadir1.edit');
+
+Route::get('/MoM1/detail/{id}', [DetailLvl1Controller::class,'index'])
 ->middleware(['auth', 'verified'])
-->name('detail');
+->name('detail.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

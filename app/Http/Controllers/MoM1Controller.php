@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MeetingLevel1;
 use App\Models\DaftarHadir;
+use App\Models\Detaillvl1;
 
 class MoM1Controller extends Controller
 {
@@ -17,9 +18,11 @@ class MoM1Controller extends Controller
         // $meetingLevel1Id = 3; // Ganti dengan ID yang sesuai
         
         $level1 = MeetingLevel1::all();
+        $item = MeetingLevel1::findOrFail(1);
         return view('MOM.MoM1.index',
         [   
             'level1' => $level1,
+            'item' => $item
         ]);
     }
 
@@ -30,13 +33,14 @@ class MoM1Controller extends Controller
         $item->nama = $request->nama;
         $item->NRP = $request->NRP;
         $item->save();
-        return response()->json(['success'=>'Form Submitted successfully.']);
+        return redirect()->route('MoM1');
     }
 
-    public function modal_show($edit){
-        $items = MeetingLevel1::findOrFail($id);
+    public function modal_show($id){
+        $item = MeetingLevel1::findOrFail($id);
         return view('MOM.MoM1.index',
-        [   'items' => $items,
+        [   
+            'item' => $item,
         ]);
     }
 
@@ -61,9 +65,13 @@ class MoM1Controller extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($id)
     {
-        return view ('MOM.MoM1.detail');
+        $item = MeetingLevel1::findOrFail($id);
+        return view ('MOM.MoM1.detail',
+        [
+            'show'=>$item,
+        ]);
     }
 
     /**

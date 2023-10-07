@@ -47,7 +47,6 @@
                                         </div>
                                     </form>
                                 </div>
-                          
                             </div>
                         </div>
                     </div>
@@ -55,7 +54,7 @@
 
                     @role('ADMIN')
                     <!-- Modal Daftar Hadir Admin-->
-                    <div class="modal fade" id="exampleModalHadir{{$items->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModalHadir{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -65,6 +64,12 @@
                                 <div class="modal-body">
                                 <form action="{{route('daftarHadir1.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
                                         @csrf
+                                        <div class="col-6">
+                                            <p class="fs-5 my-auto mx-auto">Id Daftar Hadir</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <input class="form-control" id="id_daftar_hadir" name="id_daftar_hadir" type="text" value="{{$item->id}}" placeholder="Default input" readonly>
+                                        </div>
                                 
                                         <div class="col-6">
                                             <p class="fs-5 my-auto mx-auto">Nama</p>
@@ -80,10 +85,7 @@
                                         </div>
                                         <div class="col align-self-end">
                                             <button type="submit" class="btn btn-success float-end savebtn">Submit</button>
-                                        </div>
-
-                                        
-                                                    
+                                        </div>               
                                     </form>
                                     <div class="container" style="margin-top: 50px;">
                                         <table class="table table-striped">
@@ -95,16 +97,13 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($items as $item)
+                                            @foreach($item->daftar_hadir as $item)
                                                 <tr>
-                                                    <td class="text-center" class="text-center" scope="col">1</td>
+                                                    <td class="text-center" class="text-center" scope="col">{{$loop->iteration}}</td>
                                                     <td class="text-center" scope="col">{{$item->nama}}<span><i class="fa fa-pencil pull-right"></i></span></td>
-                                                    <td class="text-center" scope="col">NRP <span><i class="fa fa-pencil pull-right"></i></span></td>
+                                                    <td class="text-center" scope="col">{{$item->NRP}} <span><i class="fa fa-pencil pull-right"></i></span></td>
                                                 </tr>
                                             @endforeach
-                                              
-                                           
-                                
                                             </tbody>
                                         </table>
                                         <div id="result"></div>
@@ -138,13 +137,13 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($items->daftar_hadir as $item)
+                                                @foreach($item->daftar_hadir as $item)
                                                 <tr>
                                                     <td class="text-center" class="text-center" scope="col">{{$loop->iteration}}</td>
-                                                    <td class="text-center" scope="col">{{$item->nama}}</td>
-                                                    <td class="text-center" scope="col">{{$item->NRP}}</td>
+                                                    <td class="text-center" scope="col">{{$item->nama}}<span><i class="fa fa-pencil pull-right"></i></span></td>
+                                                    <td class="text-center" scope="col">{{$item->NRP}} <span><i class="fa fa-pencil pull-right"></i></span></td>
                                                 </tr>
-                                                @endforeach
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>      
@@ -180,12 +179,12 @@
                             <tr>
                                 <td class="text-center">{{$loop->iteration}}</td>
                                 <td class="text-center">{{$item->judul}}</td>
-                                <td class="text-center">{{$item->tanggal}}</td>
+                                <td class="text-center">{{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir{{$item->id}}">Lihat Daftar Hadir {{$item->id}}</button>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('detail')}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
+                                    <a href="{{route('detail.show',$item->id)}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
                                     @role('ADMIN')
                                     <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>

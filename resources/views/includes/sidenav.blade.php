@@ -20,7 +20,7 @@
                 </nav>
                 </div>
                 @role('ADMIN')
-                <a class="nav-link text-white" href="index.html">
+                <a class="nav-link text-white" href="{{route('pengaturanAkun.index')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-user-alt"></i></div>
                     Pengaturan Akun
                 </a>

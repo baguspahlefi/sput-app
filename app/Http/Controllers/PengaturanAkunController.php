@@ -3,21 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DetailLevel1;
-use App\Models\MeetingLevel1;
+use App\Models\User;
 
-class DetailLvl1Controller extends Controller
+class PengaturanAkunController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index($id)
+    public function index()
     {
-        $item = MeetingLevel1::findOrFail($id);
-        return view ('MoM.MoM1.detail',
+        $items = User::all();
+        return view('pengaturanAkun.index',
         [
-            'items' => $item,
-            'details' => DetailLevel1::get(),
+            'items' =>$items
         ]);
     }
 

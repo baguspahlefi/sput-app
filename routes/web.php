@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MoM1Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailLvl1Controller;
+use App\Http\Controllers\PengaturanAkunController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,15 @@ Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::
 Route::get('/MoM1/detail/{id}', [DetailLvl1Controller::class,'index'])
 ->middleware(['auth'])
 ->name('detail.show');
+
+Route::get('/pengaturan-akun', [PengaturanAkunController::class,'index'])
+->middleware(['auth'])
+->name('pengaturanAkun.index');
+
+
+Route::match(['get','post'],'/pengaturan-akun/{id}', [App\Http\Controllers\Admin\PengaturanAkunController::class, 'edit'])
+->middleware(['auth'])
+->name('pengaturanAkun.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

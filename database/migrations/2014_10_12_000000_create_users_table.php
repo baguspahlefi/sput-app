@@ -18,6 +18,9 @@ return new class extends Migration
             $table->char('NRP')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('level1')->default('1');;
+            $table->boolean('level2')->default('1');;
+            $table->boolean('level3')->default('1');;
             $table->rememberToken();
             $table->timestamps();
         });

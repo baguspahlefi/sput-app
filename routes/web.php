@@ -43,7 +43,7 @@ Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::
 ->name('daftarHadir1.edit');
 
 Route::get('/MoM1/detail/{id}', [DetailLvl1Controller::class,'index'])
-->middleware(['auth', 'verified'])
+->middleware(['auth'])
 ->name('detail.show');
 
 Route::middleware('auth')->group(function () {

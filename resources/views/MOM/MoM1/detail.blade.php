@@ -30,7 +30,7 @@
                             {{$items->judul}}
                         </h2><br>
                         <h4 class="text-dark">
-                            {{ \Carbon\Carbon::parse($items->date)->format('d F Y') }}
+                            {{ \Carbon\Carbon::parse($items->tanggal)->format('d F Y') }}
                         </h4>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                                         <td class="text-center"></td>
                                         <td class="text-center">{{$detail->point_of_meeting}}</td>
                                         <td class="text-center">{{$detail->pic}}</td>
-                                        <td class="text-center">{{ \Carbon\Carbon::parse($detail->due)->format('d F Y') }}</td>
+                                        <td class="text-center">{{$detail->due}}</td>
                                         <td class="text-center">{{$detail->status}} </td>
                                         <td>
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEvidance">
@@ -78,14 +78,8 @@
                                         </td>
                                     </tr>
                                     @endif
-                                @endforeach
-                            @else
-                                <tr>
-                                    <td class="colspan-7"> Kosong </td>
-                                </tr>
-                            @endif
-                            
-                                
+                                @endforeach     
+                                @endif   
                             </tbody>
                         </table>
                     </div>

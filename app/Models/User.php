@@ -23,6 +23,9 @@ class User extends Authenticatable
         'email',
         'NRP',
         'password',
+        'level1',
+        'level2',
+        'level3',
     ];
 
     /**
@@ -44,4 +47,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function accessLevel1()
+    {
+        return $this->level1 == '1';
+    }
 }

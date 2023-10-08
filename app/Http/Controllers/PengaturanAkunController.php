@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\PIC;
 
 class PengaturanAkunController extends Controller
 {
@@ -13,9 +14,11 @@ class PengaturanAkunController extends Controller
     public function index()
     {
         $items = User::all();
+        $pic = PIC::all();
         return view('pengaturanAkun.index',
         [
-            'items' =>$items
+            'items' => $items,
+            'pic' => $pic
         ]);
     }
 
@@ -56,7 +59,12 @@ class PengaturanAkunController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $data = $request->all();
+
+        $user->syncRoles($request->PIC);
+        $user->update($data);
+        return redirect()->route('pengaturanAkun.index')->with('flash_message_success','Update Berhasil');
     }
 
     /**

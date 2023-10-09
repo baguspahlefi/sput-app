@@ -87,22 +87,24 @@
                                                             <p class="fs-5 my-auto mx-auto">Akses MoM level 1</p>
                                                         </div>
                                                         <div class="col-6 mb-3 form-check form-switch">
-                                                            <input id="toggle_value-{{$item->id}}" type="hidden" name="level1"  value="{{$item->level1}}">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault-{{$item->id}}" {{ $item->level1 == 1 ? 'checked' : '' }}>
+                                                            <input id="toggle_value-level1-{{$item->id}}" type="hidden" name="level1"  value="{{$item->level1}}">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckLevel1-{{$item->id}}" {{ $item->level1 == 1 ? 'checked' : '' }}>
                                                         </div>
                                                         <div class="col-6">
                                                             <p class="fs-5 my-auto mx-auto">Akses MoM level 2</p>
                                                         </div>
                                                         <div class="col-6 mb-3 form-check form-switch">
-                                                            <input id="toggle_value-{{$item->id}}" type="hidden" name="level2"  value="{{$item->level2}}">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault-{{$item->id}}" {{ $item->level1 == 1 ? 'checked' : '' }}>
+                                                            <input id="toggle_value-level2-{{$item->id}}" type="hidden" name="level2"  value="{{$item->level2}}">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckLevel2-{{$item->id}}" {{ $item->level2 == 1 ? 'checked' : '' }}>
                                                         </div>
                                                         <div class="col-6">
                                                             <p class="fs-5 my-auto mx-auto">Akses MoM level 3</p>
                                                         </div>
                                                         <div class="col-6 mb-3 form-check form-switch">
-                                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="1">
+                                                            <input id="toggle_value-level3-{{$item->id}}" type="hidden" name="level3"  value="{{$item->level3}}">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckLevel3-{{$item->id}}" {{ $item->level3 == 1 ? 'checked' : '' }}>
                                                         </div>
+                                                        
                                                     </div>
                                                    
                                             </div>
@@ -116,16 +118,28 @@
                                 </div>
                                 <script type="text/javascript">
                                     document.addEventListener('DOMContentLoaded', function() {
-                                        const toggleSwitch = document.getElementById('flexSwitchCheckDefault-{{$item->id}}');
-                                        const hiddenInput = document.getElementById('toggle_value-{{$item->id}}');
+                                        const toggleSwitchLevel1 = document.getElementById('flexSwitchCheckLevel1-{{$item->id}}');
+                                        const hiddenInputLevel1 = document.getElementById('toggle_value-level1-{{$item->id}}');
 
-                                        toggleSwitch.addEventListener('change', function() {
-                                            if (this.checked) {
-                                                hiddenInput.value = 1;
-                                            } else {
-                                                hiddenInput.value = 0;
-                                            }
-                                            console.log('Nilai toggle_value:', hiddenInput.value);
+                                        const toggleSwitchLevel2 = document.getElementById('flexSwitchCheckLevel2-{{$item->id}}');
+                                        const hiddenInputLevel2 = document.getElementById('toggle_value-level2-{{$item->id}}');
+
+                                        const toggleSwitchLevel3 = document.getElementById('flexSwitchCheckLevel3-{{$item->id}}');
+                                        const hiddenInputLevel3 = document.getElementById('toggle_value-level3-{{$item->id}}');
+
+                                        toggleSwitchLevel1.addEventListener('change', function() {
+                                            hiddenInputLevel1.value = this.checked ? 1 : 0;
+                                            console.log('Nilai toggle_value-level1-{{$item->id}}:', hiddenInputLevel1.value);
+                                        });
+
+                                        toggleSwitchLevel2.addEventListener('change', function() {
+                                            hiddenInputLevel2.value = this.checked ? 1 : 0;
+                                            console.log('Nilai toggle_value-level2-{{$item->id}}:', hiddenInputLevel2.value);
+                                        });
+
+                                        toggleSwitchLevel3.addEventListener('change', function() {
+                                            hiddenInputLevel3.value = this.checked ? 1 : 0;
+                                            console.log('Nilai toggle_value-level3-{{$item->id}}:', hiddenInputLevel3.value);
                                         });
                                     });
                                 </script>

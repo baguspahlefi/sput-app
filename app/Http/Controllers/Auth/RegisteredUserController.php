@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-use App\Models\PIC;
+use App\Models\pic;
 
 class RegisteredUserController extends Controller
 {
@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        $pic = PIC::all();
+        $pic = pic::all();
         return view('auth.register',
         ['pic' => $pic]);
     }
@@ -36,24 +36,24 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'PIC' => ['required'],
-            'NRP' => ['required', 'numeric' , 'unique:'.User::class],
+            'pic' => ['required'],
+            'nrp' => ['required', 'numeric' , 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ],
         [
-            'PIC.required' => 'PIC harus dipilih',
-            'NRP.unique:'.User::class => 'NRP sudah dipakai',
-            'NRP.required' => 'NRP haris diisi'
+            'pic.required' => 'pic harus dipilih',
+            'nrp.unique:'.User::class => 'nrp sudah dipakai',
+            'nrp.required' => 'nrp haris diisi'
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'NRP' => $request->NRP,
+            'nrp' => $request->nrp,
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole($request->PIC);
+        $user->assignRole($request->pic);
 
         event(new Registered($user));
 

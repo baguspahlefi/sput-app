@@ -4,19 +4,22 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\PIC;
+use App\Models\pic;
 
-class PICTableSeeder extends Seeder
+class picTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        PIC::create(['PIC' => 'PLANT']);
-        PIC::create(['PIC' => 'SM']);
-        PIC::create(['PIC' => 'OPRENG']);
-        PIC::create(['PIC' => 'SHE']);
-        PIC::create(['PIC' => 'HCGS']);
+        pic::create(['pic' => 'HCGS']);
+        pic::create(['pic' => 'FAT']);
+        pic::create(['pic' => 'Engineering Road']);
+        pic::create(['pic' => 'Port Operation']);
+        pic::create(['pic' => 'SM']);
+        pic::create(['pic' => 'PLANT']);
+        pic::create(['pic' => 'SHE']);
+        pic::create(['pic' => 'Project Management']);
     }
 }

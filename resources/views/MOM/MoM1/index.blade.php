@@ -78,10 +78,10 @@
                                             <input class="form-control" id="nama" name="nama" type="text" placeholder="Default input">
                                         </div>
                                         <div class="col-6">
-                                            <p class="fs-5 my-auto mx-auto">NRP</p>
+                                            <p class="fs-5 my-auto mx-auto">nrp</p>
                                         </div>
                                         <div class="col-6">
-                                            <input class="form-control" id="NRP" name="NRP" placeholder="Masukan NRP" type="text"/>
+                                            <input class="form-control" id="nrp" name="nrp" placeholder="Masukan nrp" type="text"/>
                                         </div>
                                         <div class="col align-self-end">
                                             <button type="submit" class="btn btn-success float-end savebtn">Submit</button>
@@ -101,7 +101,7 @@
                                                 <tr>
                                                     <td class="text-center" class="text-center" scope="col">{{$loop->iteration}}</td>
                                                     <td class="text-center" scope="col">{{$item->nama}}<span><i class="fa fa-pencil pull-right"></i></span></td>
-                                                    <td class="text-center" scope="col">{{$item->NRP}} <span><i class="fa fa-pencil pull-right"></i></span></td>
+                                                    <td class="text-center" scope="col">{{$item->nrp}} <span><i class="fa fa-pencil pull-right"></i></span></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -141,7 +141,7 @@
                                                 <tr>
                                                     <td class="text-center" class="text-center" scope="col">{{$loop->iteration}}</td>
                                                     <td class="text-center" scope="col">{{$item->nama}}<span><i class="fa fa-pencil pull-right"></i></span></td>
-                                                    <td class="text-center" scope="col">{{$item->NRP}} <span><i class="fa fa-pencil pull-right"></i></span></td>
+                                                    <td class="text-center" scope="col">{{$item->nrp}} <span><i class="fa fa-pencil pull-right"></i></span></td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
@@ -199,6 +199,7 @@
         </div>
     </main>
 </div>
+
 @endsection
 
 
@@ -216,7 +217,7 @@
 
 	            	$('#nama').val('');
 
-	                $('#NRP').val('');
+	                $('#nrp').val('');
 
 	            }else{
 

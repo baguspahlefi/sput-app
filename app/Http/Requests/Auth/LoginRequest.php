@@ -27,7 +27,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'NRP' => ['required', 'string', 'string'],
+            'nrp' => ['required', 'string', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -41,7 +41,7 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('NRP', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only('nrp', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

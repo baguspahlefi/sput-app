@@ -44,3 +44,5 @@ document.querySelectorAll("table.table-striped tbody tr td:nth-child(2),table.ta
     }
 });
 </script>
+
+    

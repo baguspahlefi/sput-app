@@ -17,7 +17,7 @@
         </div>
 
         
-        <!-- NIP -->
+        <!-- NRP -->
         <div class="mt-4">
             <x-input-label for="nrp" :value="__('nrp')" />
             <x-text-input id="nrp" class="block mt-1 w-full" type="text" name="nrp" :value="old('nrp')" required autofocus autocomplete="nrp" />

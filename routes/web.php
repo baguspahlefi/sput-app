@@ -51,6 +51,10 @@ Route::get('/pengaturan-akun', [PengaturanAkunController::class,'index'])
 ->middleware(['auth'])
 ->name('pengaturanAkun.index');
 
+Route::post('/pengaturan-akun/store', [PengaturanAkunController::class,'storeAkun'])
+->middleware(['auth'])
+->name('pengaturanAkun.store');
+
 Route::put('/pengaturan-akun/update/{id}', [PengaturanAkunController::class,'update'])
 ->middleware(['auth'])
 ->name('pengaturanAkun.update');

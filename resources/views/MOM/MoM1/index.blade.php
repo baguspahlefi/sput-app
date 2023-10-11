@@ -99,53 +99,75 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                        <form action="{{route('daftarHadir1.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
-                                                @csrf
-                                                <div class="col-6">
-                                                    <p class="fs-5 my-auto mx-auto">Id Daftar Hadir</p>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <form action="{{route('daftarHadir1.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
+                                                        @csrf
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <p class="fs-5 my-auto mx-auto">Id Daftar Hadir</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <input class="form-control" id="id_daftar_hadir" name="id_daftar_hadir" type="text" value="{{$item->id}}" placeholder="Default input" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-6">
+                                                                <p class="fs-5 my-auto mx-auto">Nama</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <input class="form-control" id="nama" name="nama" type="text" placeholder="Default input">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-6">
+                                                                    <p class="fs-5 my-auto mx-auto">nrp</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                    <input class="form-control" id="nrp" name="nrp" placeholder="Masukan nrp" type="text"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col align-self-end">
+                                                                <button type="submit" class="btn btn-success float-end savebtn">Submit</button>
+                                                            </div> 
+                                                        </div>
+                                                        
+                                                        
+                                                                    
+                                                    </form>
                                                 </div>
-                                                <div class="col-6">
-                                                    <input class="form-control" id="id_daftar_hadir" name="id_daftar_hadir" type="text" value="{{$item->id}}" placeholder="Default input" readonly>
-                                                </div>
-                                        
-                                                <div class="col-6">
-                                                    <p class="fs-5 my-auto mx-auto">Nama</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <input class="form-control" id="nama" name="nama" type="text" placeholder="Default input">
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="fs-5 my-auto mx-auto">nrp</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <input class="form-control" id="nrp" name="nrp" placeholder="Masukan nrp" type="text"/>
-                                                </div>
-                                                <div class="col align-self-end">
-                                                    <button type="submit" class="btn btn-success float-end savebtn">Submit</button>
-                                                </div>               
-                                            </form>
-                                            <div class="container" style="margin-top: 50px;">
-                                                <!-- <table class="table table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="text-center" scope="col">No</th>
-                                                            <th class="text-center" scope="col">Nama</th>
-                                                            <th class="text-center" scope="col">NIP</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    @foreach($item->daftar_hadir as $item)
-                                                        <tr>
-                                                            <td class="text-center" class="text-center" scope="col">{{$loop->iteration}}</td>
-                                                            <td class="text-center" scope="col">{{$item->nama}}<span><i class="fa fa-pencil pull-right"></i></span></td>
-                                                            <td class="text-center" scope="col">{{$item->nrp}} <span><i class="fa fa-pencil pull-right"></i></span></td>
-                                                        </tr>
-                                                    @endforeach
-                                                    </tbody>
-                                                </table> -->
-                                                <div id="result"></div>
                                             </div>
-                                            
+                                            <div class="row mt-4">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h5 class="text-center">No</h5>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <h5 class="text-center">Nama</h5>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <h5 class="text-center">NRP</h5>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    @foreach($item->daftar_hadir as $item)
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <p class="text-center">{{$loop->iteration}}</p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <p class="text-center">{{$item->nama}}</p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <p class="text-center">{{$item->nrp}}</p>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                        
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -164,25 +186,74 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="container" style="margin-top: 50px;">
-                                                <!-- <table class="table table-striped">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="text-center" scope="col">No</th>
-                                                            <th class="text-center" scope="col">Nama</th>
-                                                            <th class="text-center" scope="col">NIP</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($item->daftar_hadir as $item)
-                                                        <tr>
-                                                            <td class="text-center" class="text-center" scope="col">{{$loop->iteration}}</td>
-                                                            <td class="text-center" scope="col">{{$item->nama}}<span><i class="fa fa-pencil pull-right"></i></span></td>
-                                                            <td class="text-center" scope="col">{{$item->nrp}} <span><i class="fa fa-pencil pull-right"></i></span></td>
-                                                        </tr>
+                                        <div class="row">
+                                                <div class="col-12">
+                                                    <form action="{{route('daftarHadir1.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
+                                                        @csrf
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <p class="fs-5 my-auto mx-auto">Id Daftar Hadir</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <input class="form-control" id="id_daftar_hadir" name="id_daftar_hadir" type="text" value="{{$item->id}}" placeholder="Default input" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-6">
+                                                                <p class="fs-5 my-auto mx-auto">Nama</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <input class="form-control" id="nama" name="nama" type="text" placeholder="Default input">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-2">
+                                                            <div class="col-6">
+                                                                    <p class="fs-5 my-auto mx-auto">nrp</p>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                    <input class="form-control" id="nrp" name="nrp" placeholder="Masukan nrp" type="text"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mt-3">
+                                                            <div class="col align-self-end">
+                                                                <button type="submit" class="btn btn-success float-end savebtn">Submit</button>
+                                                            </div> 
+                                                        </div>
+                                                        
+                                                        
+                                                                    
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <div class="col-12">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <h5 class="text-center">No</h5>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <h5 class="text-center">Nama</h5>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <h5 class="text-center">NRP</h5>
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    @foreach($item->daftar_hadir as $item)
+                                                        <div class="row">
+                                                            <div class="col-4">
+                                                                <p class="text-center">{{$loop->iteration}}</p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <p class="text-center">{{$item->nama}}</p>
+                                                            </div>
+                                                            <div class="col-4">
+                                                                <p class="text-center">{{$item->nrp}}</p>
+                                                            </div>
+                                                        </div>
                                                     @endforeach
-                                                    </tbody>
-                                                </table> -->
+                                                        
+                                                </div>
                                             </div>      
                                         </div>
                                         <div class="modal-footer">
@@ -203,61 +274,3 @@
 
 @endsection
 
-
-<script type="text/javascript">
-
-    $(document).ready(function(){
-
-        var options = { 
-
-            complete: function(response) 
-
-            {    
-
-	            if($.isEmptyObject(response.responseJSON.error)){
-
-	            	$('#nama').val('');
-
-	                $('#nrp').val('');
-
-	            }else{
-
-	                printErrorMsg(response.responseJSON.error);
-
-	            }
-
-            },
-
-            error:function(response){
-
-            	console.log(response);
-
-            }
-
-        };
-
-        $('.savebtn').click(function(e) {
-
-            e.preventDefault(); 
-
-            $(this).parents("form").ajaxSubmit(options);
-
-        });
-
-        function printErrorMsg(msg) {
-
-            $('.error-msg').find('ul').html('');
-
-            $('.error-msg').css('display','block');
-
-            $.each( msg, function( key, value ) {
-
-                $(".error-msg").find("ul").append('<li>'+value+'</li>');
-
-            });
-
-        }
-
-    });
-
-</script>

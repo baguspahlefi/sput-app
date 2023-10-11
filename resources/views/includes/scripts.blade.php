@@ -29,20 +29,40 @@
 </script>
 
 <script>
-document.querySelectorAll("table.table-striped tbody tr td:nth-child(2),table.table-striped tbody tr td:nth-child(3)").forEach(function(node){
-    node.ondblclick=function(){
-        var val = this.textContent || this.innerText;
-        var input=document.createElement("input");
-        input.value=val;
-        input.onblur=function(){
-            var val=this.value;
-            this.parentNode.innerHTML=val;
-        }
-        this.innerHTML="";
-        this.appendChild(input);
-        input.focus();
-    }
-});
-</script>
+function editInPlaceNama(element) {
+    var span = element;
+    var input = document.createElement("input");
+    var originalText = span.textContent || span.innerText;
 
-    
+    input.value = originalText;
+    input.className = "form-control"; // Optionally, add Bootstrap input style
+    input.name = "name";
+
+    input.onblur = function () {
+        var newValue = this.value;
+        span.textContent = newValue;
+    }
+
+    span.innerHTML = "";
+    span.appendChild(input);
+    input.focus();
+}
+function editInPlaceNrp(element) {
+    var span = element;
+    var input = document.createElement("input");
+    var originalText = span.textContent || span.innerText;
+
+    input.value = originalText;
+    input.className = "form-control"; // Optionally, add Bootstrap input style
+    input.name = "nrp";
+
+    input.onblur = function () {
+        var newValue = this.value;
+        span.textContent = newValue;
+    }
+
+    span.innerHTML = "";
+    span.appendChild(input);
+    input.focus();
+}
+</script>

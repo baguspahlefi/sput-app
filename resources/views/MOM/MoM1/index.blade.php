@@ -152,16 +152,20 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    @foreach($item->daftar_hadir as $item)
+                                                    @foreach($item->daftar_hadir as $daftar_hadir)
                                                         <div class="row">
                                                             <div class="col-4">
                                                                 <p class="text-center">{{$loop->iteration}}</p>
                                                             </div>
                                                             <div class="col-4">
-                                                                <p class="text-center">{{$item->nama}}</p>
+                                                                <p class="text-center">
+                                                                    <span class="editable" ondblclick="editInPlaceNama(this)">{{$daftar_hadir->nama}} <i class="ml-2 fa fa-pencil pull-right"></i></span>
+                                                                </p>
                                                             </div>
                                                             <div class="col-4">
-                                                                <p class="text-center">{{$item->nrp}}</p>
+                                                                <p class="text-center">
+                                                                    <span class="editable" ondblclick="editInPlaceNrp(this)">{{$daftar_hadir->nrp}} <i class="ml-2 fa fa-pencil pull-right"></i></span>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     @endforeach

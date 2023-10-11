@@ -52,4 +52,12 @@ class User extends Authenticatable
     {
         return $this->level1 == '1';
     }
+    public function accessLevel2()
+    {
+        return $this->level2 == '1';
+    }
+    public function accessLevel3()
+    {
+        return $this->level3 == '1';
+    }
 }

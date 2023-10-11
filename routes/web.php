@@ -39,9 +39,9 @@ Route::get('/MoM1', [MoM1Controller::class,'index'])
 ->middleware(['auth','level1'])
 ->name('MoM1');
 
-Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
-->middleware(['auth'])
-->name('daftarHadir1.edit');
+// Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
+// ->middleware(['auth'])
+// ->name('daftarHadir1.edit');
 
 Route::get('/MoM1/detail/{id}', [DetailLvl1Controller::class,'index'])
 ->middleware(['auth','level1'])
@@ -58,7 +58,6 @@ Route::post('/pengaturan-akun/store', [PengaturanAkunController::class,'storeAku
 Route::put('/pengaturan-akun/update/{id}', [PengaturanAkunController::class,'update'])
 ->middleware(['auth'])
 ->name('pengaturanAkun.update');
-
 
 
 Route::match(['get','post'],'/pengaturan-akun/{id}', [App\Http\Controllers\Admin\PengaturanAkunController::class, 'edit'])

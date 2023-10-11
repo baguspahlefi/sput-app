@@ -36,13 +36,13 @@ class MoM1Controller extends Controller
         return redirect()->route('MoM1');
     }
 
-    public function modal_show($id){
-        $item = MeetingLevel1::findOrFail($id);
-        return view('MOM.MoM1.index',
-        [   
-            'item' => $item,
-        ]);
-    }
+    // public function modal_show($id){
+    //     $item = MeetingLevel1::findOrFail($id);
+    //     return view('MOM.MoM1.index',
+    //     [   
+    //         'item' => $item,
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.

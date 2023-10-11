@@ -51,6 +51,10 @@ Route::post('MoM1/detail',[DetailLvl1Controller::class,'store'])
 ->middleware(['auth'])
 ->name('detail1.store');
 
+Route::post('MoM1/detail/evidance',[DetailLvl1Controller::class,'store_evidance'])
+->middleware(['auth'])
+->name('detail1.store_evidance');
+
 Route::get('/pengaturan-akun', [PengaturanAkunController::class,'index'])
 ->middleware(['auth'])
 ->name('pengaturanAkun.index');

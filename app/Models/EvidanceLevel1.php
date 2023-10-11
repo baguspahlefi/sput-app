@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\DetailLevel1;
 
-class Evidancelvl1 extends Model
+class EvidanceLevel1 extends Model
 {
     use HasFactory;
     protected $table = 'evidance_level1';
@@ -19,7 +19,7 @@ class Evidancelvl1 extends Model
 
     public function detaillevel1()
     {
-        return $this->belongsTo(DetailLevel1::class, 'id_detail_level_1','id');
+        return $this->belongsTo(DetailLevel1::class, 'id_detaillvl1','id');
     }
     
 }

@@ -8,6 +8,7 @@ use App\Models\DaftarHadir;
 use App\Models\DetailLevel1;
 use App\Models\PIC;
 use App\Models\Status;
+use App\Models\EvidanceLevel1;
 
 class MoM1Controller extends Controller
 {
@@ -69,12 +70,14 @@ class MoM1Controller extends Controller
     {
         $pic = PIC::all();
         $status = Status::all();
+        $evidance = DetailLevel1::findOrFail($id);
         $item = MeetingLevel1::findOrFail($id);
         return view ('MOM.MoM1.detail',
         [
             'item'=>$item,
             'pic' => $pic,
             'status' => $status,
+            'evidance' => $evidance,
             'details' => DetailLevel1::get()
         ]);
     }

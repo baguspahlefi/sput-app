@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\MeetingLevel1;
 use App\Models\DetailLevel1;
+use App\Models\EvidanceLevel1;
 
 class DetailLevel1 extends Model
 {
@@ -25,9 +26,9 @@ class DetailLevel1 extends Model
 		return $this->belongsTo(MeetingLevel1::class, 'id_meeting_level_1','id');
 	}
 
-    public function evidancelvl1()
+    public function evidance_level_1()
     {
-        return $this->belongsTo(DetailLevel1::class, 'id_detail_level_1','id');
+        return $this->hasMany(EvidanceLevel1::class, 'id_detaillvl1','id');
     }
 
  

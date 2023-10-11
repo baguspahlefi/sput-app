@@ -8,7 +8,7 @@
         <div class="container-fluid bg-light ">
             <div class="row">
                 <div class="col">
-                    <h3 class="mt-4 text-success">Daily Meeting Lv 1</h3>
+                    <h3 class="mt-4 text-success">Daily Meeting Lv 2</h3>
                 </div>
             </div>
             <div class="row">
@@ -27,7 +27,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                <form action="{{route('MoM1.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
+                                <form action="{{route('MoM2.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
                                     @csrf
                                         <div class="col-6">
                                             <p class="fs-5 my-auto mx-auto">Judul</p>
@@ -73,16 +73,16 @@
                         
                         </thead> 
                         <tbody>
-                            @foreach($level1 as $item)
+                            @foreach($level as $item)
                             <tr>
                                 <td class="text-center">{{$loop->iteration}}</td>
                                 <td class="text-center">{{$item->judul}}</td>
                                 <td class="text-center">{{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir{{$item->id}}">Lihat Daftar Hadir {{$item->id}}</button>
+                                    <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir{{$item->id}}">Lihat Daftar Hadir</button>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('detail1.show',$item->id)}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
+                                    <a href="{{route('detail2.show',$item->id)}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
                                     @role('ADMIN')
                                     <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
@@ -101,7 +101,7 @@
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <form action="{{route('daftarHadir1.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
+                                                    <form action="{{route('daftarHadir2.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
                                                         @csrf
                                                         <div class="row">
                                                             <div class="col-6">
@@ -192,7 +192,7 @@
                                         <div class="modal-body">
                                         <div class="row">
                                                 <div class="col-12">
-                                                    <form action="{{route('daftarHadir1.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
+                                                    <form action="{{route('daftarHadir2.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
                                                         @csrf
                                                         <div class="row">
                                                             <div class="col-6">

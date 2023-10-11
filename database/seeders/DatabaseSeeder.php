@@ -22,5 +22,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(picTableSeeder::class);
         $this->call(MeetingLevel1TableSeeder::class);
+        $this->call(DetailLevel1TableSeeder::class);
+        $this->call(MeetingLevel2TableSeeder::class);
+        $this->call(DetailLevel2TableSeeder::class);
     }
 }

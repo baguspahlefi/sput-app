@@ -3,35 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\MeetingLevel1;
-use App\Models\DaftarHadir;
-use App\Models\Detaillvl1;
+use App\Models\MeetingLevel2;
+use App\Models\DaftarHadir2;
+use App\Models\Detaillvl2;
 
-class MoM1Controller extends Controller
+class MoM2Controller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         // $items = MeetingLevel1::with(['daftar_hadir'])->firstOrFail();
         // $meetingLevel1Id = 3; // Ganti dengan ID yang sesuai
         
-        $level1 = MeetingLevel1::all();
-        return view('MOM.MoM1.index',
+        $level2 = MeetingLevel2::all();
+        return view('MOM.MoM2.index',
         [   
-            'level1' => $level1,
+            'level' => $level2,
         ]);
     }
 
     // Show modal daftar hadir
     public function modal_store(Request $request){
-        $item = new DaftarHadir();
+        $item = new DaftarHadir2();
         $item->id_daftar_hadir = $request->id_daftar_hadir;
         $item->nama = $request->nama;
         $item->nrp = $request->nrp;
         $item->save();
-        return redirect()->route('MoM1');
+        return redirect()->route('MoM2');
     }
 
     // public function modal_show($id){
@@ -56,8 +53,8 @@ class MoM1Controller extends Controller
     public function store(Request $request)
     {
         $item = $request->all();
-        MeetingLevel1::create($item);
-        return redirect()->route('MoM1');
+        MeetingLevel2::create($item);
+        return redirect()->route('MoM2');
     }
 
     /**
@@ -65,8 +62,8 @@ class MoM1Controller extends Controller
      */
     public function show($id)
     {
-        $item = MeetingLevel1::findOrFail($id);
-        return view ('MOM.MoM1.detail',
+        $item = MeetingLevel2::findOrFail($id);
+        return view ('MOM.MoM2.detail',
         [
             'show'=>$item,
         ]);

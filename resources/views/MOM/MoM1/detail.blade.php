@@ -136,7 +136,7 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    @foreach($evidance->evidance_level_1 as $evidance)
+                                                    @foreach($detail->evidance_level_1 as $evidance)
                                                     <div class="row">
                                                         <div class="col-4">
                                                             <p>{{$evidance->nama_gambar}}</p>
@@ -167,7 +167,7 @@
                                                 <div class="modal-body">
                                                     <div id="carouselExample" class="carousel slide">
                                                         <div class="carousel-inner">
-                                                        @foreach($evidance->evidance_level_1 as $eg)
+                                                        @foreach($detail->evidance_level_1 as $eg)
                                                         <div class="carousel-item active">
                                                             <img src="{{Storage::url($eg->path_gambar)}}" class="d-block w-100" alt="...">
                                                         </div>

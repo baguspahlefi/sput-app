@@ -82,7 +82,7 @@
                                     <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir{{$item->id}}">Lihat Daftar Hadir {{$item->id}}</button>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('detail.show',$item->id)}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
+                                    <a href="{{route('detail.index',$item->id)}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
                                     @role('ADMIN')
                                     <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>

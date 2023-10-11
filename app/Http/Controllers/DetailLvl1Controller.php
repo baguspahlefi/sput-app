@@ -7,6 +7,7 @@ use App\Models\DetailLevel1;
 use App\Models\MeetingLevel1;
 use App\Models\EvidanceLevel1;
 use App\Models\PIC;
+use App\Models\Status;
 
 class DetailLvl1Controller extends Controller
 {
@@ -15,14 +16,16 @@ class DetailLvl1Controller extends Controller
      */
     public function index($id)
     {
-        // $pic = PIC::all();
-        // // $item = MeetingLevel1::findOrFail($id);
-        // return view ('MoM.MoM1.detail',
-        // [
-        //     'pic' => $pic,
-        //     'items' => $item,
-        //     'details' => DetailLevel1::all(),
-        // ]);
+        $pic = PIC::all();
+        $status = Status::all();
+        $item = MeetingLevel1::findOrFail($id);
+        return view ('MOM.MoM1.detail',
+        [
+            'item'=>$item,
+            'pic' => $pic,
+            'status' => $status,
+            'details' => DetailLevel1::get()
+        ]);
 
 
     }
@@ -47,12 +50,12 @@ class DetailLvl1Controller extends Controller
         $item->due = $request->due;
         $item->status = $request->status;
         $item->save();
-        return redirect(route('detail.show', $item->id_meeting_level_1));
+        return redirect(route('detail.index', $item->id_meeting_level_1));
     }
 
     public function store_evidance(Request $request)
     {
-        $detailLevel = DetailLevel1::get();
+        $meetingLevel1 = MeetingLevel1::first();
         $item = new EvidanceLevel1();
         $item->id_detaillvl1 = $request->id_detaillvl1;
         $item->nama_gambar = $request->nama_gambar;
@@ -63,7 +66,7 @@ class DetailLvl1Controller extends Controller
             'assets/gallery','public'
         );
         $item->save();
-        return redirect(route('detail.show', $detailLevel->id_meeting_level_1))->with('flash_message_success','Berhasil menambahkan user');
+        return redirect(route('detail.index', $meetingLevel1->id))->with('flash_message_success','Berhasil menambahkan user');
     }
 
     /**

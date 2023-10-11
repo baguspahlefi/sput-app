@@ -68,18 +68,7 @@ class MoM1Controller extends Controller
      */
     public function show($id)
     {
-        $pic = PIC::all();
-        $status = Status::all();
-        $evidance = DetailLevel1::findOrFail($id);
-        $item = MeetingLevel1::findOrFail($id);
-        return view ('MOM.MoM1.detail',
-        [
-            'item'=>$item,
-            'pic' => $pic,
-            'status' => $status,
-            'evidance' => $evidance,
-            'details' => DetailLevel1::get()
-        ]);
+        //
     }
 
     /**

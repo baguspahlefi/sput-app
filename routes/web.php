@@ -26,34 +26,32 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('daftar_hadir/store',[MoM1Controller::class,'modal_store'])
-->middleware(['auth'])
-->name('daftarHadir1.store');
-
+Route::get('/MoM1', [MoM1Controller::class,'index'])
+->middleware(['auth','level1'])
+->name('MoM1');
 Route::post('MoM1/store',[MoM1Controller::class,'store'])
 ->middleware(['auth'])
 ->name('MoM1.store');
 
-
-Route::get('/MoM1', [MoM1Controller::class,'index'])
+Route::get('/MoM1/detail/{id}', [DetailLvl1Controller::class,'index'])
 ->middleware(['auth','level1'])
-->name('MoM1');
+->name('detail.index');
+Route::post('MoM1/detail/store',[DetailLvl1Controller::class,'store'])
+->middleware(['auth'])
+->name('detail1.store');
+Route::post('MoM1/detail/evidance',[DetailLvl1Controller::class,'store_evidance'])
+->middleware(['auth'])
+->name('detail1.store_evidance');
+
+Route::post('daftar_hadir/store',[MoM1Controller::class,'modal_store'])
+->middleware(['auth'])
+->name('daftarHadir1.store');
 
 // Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
 // ->middleware(['auth'])
 // ->name('daftarHadir1.edit');
 
-Route::get('/MoM1/detail/{id}', [MoM1Controller::class,'show'])
-->middleware(['auth','level1'])
-->name('detail.show');
 
-Route::post('MoM1/detail',[DetailLvl1Controller::class,'store'])
-->middleware(['auth'])
-->name('detail1.store');
-
-Route::post('MoM1/detail/evidance',[DetailLvl1Controller::class,'store_evidance'])
-->middleware(['auth'])
-->name('detail1.store_evidance');
 
 Route::get('/pengaturan-akun', [PengaturanAkunController::class,'index'])
 ->middleware(['auth'])

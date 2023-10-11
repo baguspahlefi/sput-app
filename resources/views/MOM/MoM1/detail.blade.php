@@ -137,17 +137,18 @@
                                                     </div>
                                                     <hr>
                                                     @foreach($detail->evidance_level_1 as $evidance)
-                                                    <div class="row">
+                                                    <div class="row mt-4">
                                                         <div class="col-4">
                                                             <p>{{$evidance->nama_gambar}}</p>
                                                         </div>
                                                         <div class="col-4">
-                                                            <p>{{$evidance->path_gambar}}</p>
+                                                            <img src="{{Storage::url($evidance->path_gambar)}}" class="d-block w-100" alt="...">
                                                         </div>
-                                                        <div class="col-4">
+                                                        <div class="col-4 text-end">
                                                             <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
                                                         </div>
                                                     </div>
+                                                    <hr>
                                                     @endforeach
                                                 </div>
                                                 <div class="modal-footer">
@@ -167,10 +168,10 @@
                                                 <div class="modal-body">
                                                     <div id="carouselExample" class="carousel slide">
                                                         <div class="carousel-inner">
-                                                        @foreach($detail->evidance_level_1 as $eg)
-                                                        <div class="carousel-item active">
-                                                            <img src="{{Storage::url($eg->path_gambar)}}" class="d-block w-100" alt="...">
-                                                        </div>
+                                                        @foreach($detail->evidance_level_1 as $key => $eg)
+                                                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                                                <img src="{{ Storage::url($eg->path_gambar) }}" class="d-block w-100" alt="...">
+                                                            </div>
                                                         @endforeach
                                                         </div>
                                                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

@@ -116,9 +116,17 @@
                                     <td class="text-center">{{$item->nrp}}</td>
                                     <td class="text-center">{{$item->name}}</td>
                                     <td class="text-center">{{$item->roles->map->name->implode(', ')}}</td>
-                                    <td class="text-center">
-                                        <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#ModalAksesMenu-{{$item->id}}"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
-                                        <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
+                                    <td class="text-center" style="display: flex; align-items: center;">
+                                        <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#ModalAksesMenu-{{$item->id}}">
+                                            <img src="{{url('assets/icon/edit.png')}}" width="32" alt="">
+                                        </a>  
+                                        <form action="{{route('pengaturanAkun.destroy',$item->id)}}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" style="border: none; background: none">
+                                                <img src="{{url('assets/icon/delete.png')}}" width="32" alt="">
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                   <!-- Modal Akses Menu-->

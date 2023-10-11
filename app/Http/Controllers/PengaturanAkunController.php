@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\pic;
+use DB;
 
 class PengaturanAkunController extends Controller
 {
@@ -81,6 +82,10 @@ class PengaturanAkunController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item = User::findOrFail($id);
+        DB::delete('delete from model_has_roles where model_id = ?', [$id]);
+        $item->delete();
+        sleep(1);
+        return redirect()->route('pengaturanAkun.index')->with('flash_message_success','Hapus Data Berhasil');
     }
 }

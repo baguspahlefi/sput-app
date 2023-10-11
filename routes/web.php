@@ -59,6 +59,10 @@ Route::put('/pengaturan-akun/update/{id}', [PengaturanAkunController::class,'upd
 ->middleware(['auth'])
 ->name('pengaturanAkun.update');
 
+Route::delete('/pengaturan-akun/update/{id}', [PengaturanAkunController::class,'destroy'])
+->middleware(['auth'])
+->name('pengaturanAkun.destroy');
+
 
 Route::match(['get','post'],'/pengaturan-akun/{id}', [App\Http\Controllers\Admin\PengaturanAkunController::class, 'edit'])
 ->middleware(['auth'])

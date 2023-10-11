@@ -17,27 +17,27 @@
         </div>
 
         
-        <!-- NIP -->
+        <!-- NRP -->
         <div class="mt-4">
-            <x-input-label for="NRP" :value="__('NRP')" />
-            <x-text-input id="NRP" class="block mt-1 w-full" type="text" name="NRP" :value="old('NRP')" required autofocus autocomplete="NRP" />
-            @error('NRP')
+            <x-input-label for="nrp" :value="__('nrp')" />
+            <x-text-input id="nrp" class="block mt-1 w-full" type="text" name="nrp" :value="old('nrp')" required autofocus autocomplete="nrp" />
+            @error('nrp')
                 <div class="text-danger mt-2">{{$message}}</div>
             @enderror
         </div>
 
-        <!-- PIC -->
+        <!-- pic -->
         <div class="mt-4">
-            <x-input-label for="PIC" :value="__('PIC')" />
+            <x-input-label for="pic" :value="__('pic')" />
             <div class="input-group mb-3">
-                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="PIC">
-                    <option selected>Pilih PIC</option>    
+                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="pic">
+                    <option selected>Pilih pic</option>    
                     @foreach($pic as $pic)
-                    <option value="{{$pic->PIC}}">{{$pic->PIC}}</option>
+                    <option value="{{$pic->pic}}">{{$pic->pic}}</option>
                     @endforeach  
                 </select>
             </div>
-            @error('PIC')
+            @error('pic')
                 <div class="text-danger mt-2">{{$message}}</div>
             @enderror
 

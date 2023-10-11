@@ -14,7 +14,6 @@ class DetailLvl1Controller extends Controller
     public function index($id)
     {
         $item = MeetingLevel1::findOrFail($id);
-        $detail = DetailLevel1::findOrFail($id);
         return view ('MoM.MoM1.detail',
         [
             'items' => $item,

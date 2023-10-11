@@ -8,8 +8,8 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="nrp" :value="__('NRP')" />
-            <x-text-input id="NRP" class="block mt-1 w-full" type="text" name="NRP" :value="old('NRP')" required autofocus autocomplete="username" />
+            <x-input-label for="nrp" :value="__('nrp')" />
+            <x-text-input id="nrp" class="block mt-1 w-full" type="text" name="nrp" :value="old('nrp')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 

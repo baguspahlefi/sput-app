@@ -31,18 +31,18 @@ class MoM1Controller extends Controller
         $item = new DaftarHadir();
         $item->id_daftar_hadir = $request->id_daftar_hadir;
         $item->nama = $request->nama;
-        $item->NRP = $request->NRP;
+        $item->nrp = $request->nrp;
         $item->save();
         return redirect()->route('MoM1');
     }
 
-    public function modal_show($id){
-        $item = MeetingLevel1::findOrFail($id);
-        return view('MOM.MoM1.index',
-        [   
-            'item' => $item,
-        ]);
-    }
+    // public function modal_show($id){
+    //     $item = MeetingLevel1::findOrFail($id);
+    //     return view('MOM.MoM1.index',
+    //     [   
+    //         'item' => $item,
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.

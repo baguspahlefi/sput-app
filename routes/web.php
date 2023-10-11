@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MoM1Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailLvl1Controller;
+use App\Http\Controllers\PengaturanAkunController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,16 +36,37 @@ Route::post('MoM1/store',[MoM1Controller::class,'store'])
 
 
 Route::get('/MoM1', [MoM1Controller::class,'index'])
-->middleware(['auth', 'verified'])
+->middleware(['auth','level1'])
 ->name('MoM1');
 
-Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
-->middleware(['auth'])
-->name('daftarHadir1.edit');
+// Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
+// ->middleware(['auth'])
+// ->name('daftarHadir1.edit');
 
 Route::get('/MoM1/detail/{id}', [DetailLvl1Controller::class,'index'])
-->middleware(['auth'])
+->middleware(['auth','level1'])
 ->name('detail.show');
+
+Route::get('/pengaturan-akun', [PengaturanAkunController::class,'index'])
+->middleware(['auth'])
+->name('pengaturanAkun.index');
+
+Route::post('/pengaturan-akun/store', [PengaturanAkunController::class,'storeAkun'])
+->middleware(['auth'])
+->name('pengaturanAkun.store');
+
+Route::put('/pengaturan-akun/update/{id}', [PengaturanAkunController::class,'update'])
+->middleware(['auth'])
+->name('pengaturanAkun.update');
+
+Route::delete('/pengaturan-akun/update/{id}', [PengaturanAkunController::class,'destroy'])
+->middleware(['auth'])
+->name('pengaturanAkun.destroy');
+
+
+Route::match(['get','post'],'/pengaturan-akun/{id}', [App\Http\Controllers\Admin\PengaturanAkunController::class, 'edit'])
+->middleware(['auth'])
+->name('pengaturanAkun.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

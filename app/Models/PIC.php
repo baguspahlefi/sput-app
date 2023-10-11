@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PIC extends Model
+class pic extends Model
 {
     use HasFactory;
     
     protected $table = 'pic';
 
     protected $fillable = [
-        'PIC'
+        'pic'
     ];
 }

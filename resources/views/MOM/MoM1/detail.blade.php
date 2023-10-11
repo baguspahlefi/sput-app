@@ -49,7 +49,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th class="col text-center">Point Of Meeting</th>
-                                    <th class="col text-center">PIC</th>
+                                    <th class="col text-center">pic</th>
                                     <th class="col text-center">DUE</th>
                                     <th class="col text-center">Status</th>
                                     <th class="col text-center">Evidence</th>
@@ -102,7 +102,7 @@
                                     <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
                                 </div>
                                 <div class="col-6">
-                                    <p class="fs-5 my-auto mx-auto">PIC</p>
+                                    <p class="fs-5 my-auto mx-auto">pic</p>
                                 </div>
                                 <div class="col-6">
                                     <select class="form-select" aria-label="Default select example">

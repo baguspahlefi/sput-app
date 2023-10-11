@@ -27,10 +27,10 @@
                 <div class="row">
                     <div class="col my-4">
                         <h2 class="text-dark">
-                            {{$items->judul}}
+                            {{$item->judul}}
                         </h2><br>
                         <h4 class="text-dark">
-                            {{ \Carbon\Carbon::parse($items->tanggal)->format('d F Y') }}
+                            {{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}
                         </h4>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                             <tbody>
                                 @if(count($details) > 0)
                                 @foreach($details as $key => $detail)
-                                    @if($detail->id_meeting_level_1 == $items->id)
+                                    @if($detail->id_meeting_level_1 == $item->id)
                                     <tr>
                                         <td class="text-center"></td>
                                         <td class="text-center">{{$detail->point_of_meeting}}</td>
@@ -94,47 +94,52 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="row g-3">
+                            <form action="{{route('detail1.store')}}" method="post" class="row g-3" >
+                                @csrf 
+                                <div class="col-6 d-none">
+                                    <input class="form-control" type="text" id="id" name="id" value="{{$item->id}}" placeholder="Default input" aria-label="default input example">
+                                </div>
                                 <div class="col-6">
                                     <p class="fs-5 my-auto mx-auto">Point Of Meeting</p>
                                 </div>
                                 <div class="col-6">
-                                    <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                                    <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" placeholder="Default input" aria-label="default input example">
                                 </div>
                                 <div class="col-6">
                                     <p class="fs-5 my-auto mx-auto">pic</p>
                                 </div>
                                 <div class="col-6">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select id="pic" name="pic" class="form-select" aria-label="Default select example">
                                         <option selected>Open this select menu</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        @foreach($pic as $pic)
+                                        <option value="{{$pic->pic}}">{{$pic->pic}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-6">
                                     <p class="fs-5 my-auto mx-auto">DUE</p>
                                 </div>
                                 <div class="col-6">
-                                    <input placeholder="Select date" type="date" id="example" class="form-control">
+                                    <input placeholder="Select date" id="due" name="due" type="date" id="example" class="form-control">
                                 </div>
                                 <div class="col-6">
                                     <p class="fs-5 my-auto mx-auto">Status</p>
                                 </div>
                                 <div class="col-6">
-                                    <select class="form-select" aria-label="Default select example">
+                                    <select id="status" name="status" class="form-select" aria-label="Default select example">
                                         <option selected>Open this select menu</option>
                                         <option value="1">One</option>
                                         <option value="2">Two</option>
                                         <option value="3">Three</option>
                                     </select>
                                 </div>
-                            </form>
+                            
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Simpan</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
                         </div>
+                        </form>
                     </div>
                 </div>
                 </div>

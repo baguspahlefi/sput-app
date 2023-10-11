@@ -43,9 +43,13 @@ Route::get('/MoM1', [MoM1Controller::class,'index'])
 // ->middleware(['auth'])
 // ->name('daftarHadir1.edit');
 
-Route::get('/MoM1/detail/{id}', [DetailLvl1Controller::class,'index'])
+Route::get('/MoM1/detail/{id}', [MoM1Controller::class,'show'])
 ->middleware(['auth','level1'])
 ->name('detail.show');
+
+Route::post('MoM1/detail',[DetailLvl1Controller::class,'store'])
+->middleware(['auth'])
+->name('detail1.store');
 
 Route::get('/pengaturan-akun', [PengaturanAkunController::class,'index'])
 ->middleware(['auth'])

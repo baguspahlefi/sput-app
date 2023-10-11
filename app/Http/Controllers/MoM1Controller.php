@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MeetingLevel1;
 use App\Models\DaftarHadir;
-use App\Models\Detaillvl1;
+use App\Models\DetailLevel1;
+use App\Models\PIC;
 
 class MoM1Controller extends Controller
 {
@@ -18,11 +19,9 @@ class MoM1Controller extends Controller
         // $meetingLevel1Id = 3; // Ganti dengan ID yang sesuai
         
         $level1 = MeetingLevel1::all();
-        $item = MeetingLevel1::findOrFail(1);
         return view('MOM.MoM1.index',
         [   
-            'level1' => $level1,
-            'item' => $item
+            'level1' => $level1
         ]);
     }
 
@@ -67,10 +66,13 @@ class MoM1Controller extends Controller
      */
     public function show($id)
     {
+        $pic = PIC::all();
         $item = MeetingLevel1::findOrFail($id);
         return view ('MOM.MoM1.detail',
         [
-            'show'=>$item,
+            'item'=>$item,
+            'pic' => $pic,
+            'details' => DetailLevel1::get()
         ]);
     }
 
@@ -93,8 +95,8 @@ class MoM1Controller extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+
     }
 }

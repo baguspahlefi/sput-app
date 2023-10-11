@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DetailLevel1;
 use App\Models\MeetingLevel1;
+use App\Models\PIC;
 
 class DetailLvl1Controller extends Controller
 {
@@ -13,12 +14,14 @@ class DetailLvl1Controller extends Controller
      */
     public function index($id)
     {
-        $item = MeetingLevel1::findOrFail($id);
-        return view ('MoM.MoM1.detail',
-        [
-            'items' => $item,
-            'details' => DetailLevel1::get(),
-        ]);
+        // $pic = PIC::all();
+        // // $item = MeetingLevel1::findOrFail($id);
+        // return view ('MoM.MoM1.detail',
+        // [
+        //     'pic' => $pic,
+        //     'items' => $item,
+        //     'details' => DetailLevel1::all(),
+        // ]);
     }
 
     /**
@@ -26,7 +29,7 @@ class DetailLvl1Controller extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +37,14 @@ class DetailLvl1Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new DetailLevel1();
+        $item->id_meeting_level_1 = $request->id;
+        $item->point_of_meeting = $request->point_of_meeting;
+        $item->pic = $request->pic;
+        $item->due = $request->due;
+        $item->status = $request->status;
+        $item->save();
+        return redirect(route('detail.show', $item->id_meeting_level_1));
     }
 
     /**

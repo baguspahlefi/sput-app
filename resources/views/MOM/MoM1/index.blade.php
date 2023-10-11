@@ -103,7 +103,7 @@
                                                 <div class="col-12">
                                                     <form action="{{route('daftarHadir1.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
                                                         @csrf
-                                                        <div class="row">
+                                                        <div class="row" hidden>
                                                             <div class="col-6">
                                                                 <p class="fs-5 my-auto mx-auto">Id Daftar Hadir</p>
                                                             </div>
@@ -111,7 +111,7 @@
                                                                 <input class="form-control" id="id_daftar_hadir" name="id_daftar_hadir" type="text" value="{{$item->id}}" placeholder="Default input" readonly>
                                                             </div>
                                                         </div>
-                                                        <div class="row mt-2">
+                                                        <div class="row">
                                                             <div class="col-6">
                                                                 <p class="fs-5 my-auto mx-auto">Nama</p>
                                                             </div>

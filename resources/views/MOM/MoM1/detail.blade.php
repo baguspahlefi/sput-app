@@ -54,6 +54,7 @@
                                     <th class="col text-center">Status</th>
                                     <th class="col text-center">Evidence</th>
                                     <th class="col text-center">Action</th>
+                                    <th class="col text-center">Action</th>
                                 </tr>
                             </thead>
                           
@@ -67,6 +68,7 @@
                                         <td class="text-center">{{$detail->pic}}</td>
                                         <td class="text-center">{{$detail->due}}</td>
                                         <td class="text-center">{{$detail->status}}</td>
+                                        <td class="text-center">{{$key}}</td>
                                         <td>
                                             <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEvidance{{$detail->id}}">
                                                 <img src="https://media.istockphoto.com/id/499775926/id/foto/produksi-batubara-di-salah-satu-lapangan-terbuka.webp?s=1024x1024&w=is&k=20&c=Ymb8XaVLVyQHjJ8Yt5NaQASkvzb7tWSqluhc9sf9kb0=" alt="" width="200" class="img-thumbnail">
@@ -75,7 +77,13 @@
                                         <td>
                                             <a class="" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                             <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalGambar{{$detail->id}}"><img src="{{url('assets/icon/gallery.png')}}" width="32" alt=""></a>
-                                            <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
+                                            <form action="{{route('detail1.destroy',$detail->id)}}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" style="border: none; background: none">
+                                                    <img src="{{url('assets/icon/delete.png')}}" width="32" alt="">
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endif
@@ -145,7 +153,14 @@
                                                             <img src="{{Storage::url($evidance->path_gambar)}}" class="d-block w-100" alt="...">
                                                         </div>
                                                         <div class="col-4 text-end">
-                                                            <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
+                                                            <form action="{{route('evidance1.destroy',$evidance->id)}}" method="POST">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button type="submit" style="border: none; background: none">
+                                                                    <img src="{{url('assets/icon/delete.png')}}" width="32" alt="">
+                                                                </button>
+                                                            </form>
+                                                            
                                                         </div>
                                                     </div>
                                                     <hr>
@@ -166,27 +181,28 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div id="carouselExample" class="carousel slide">
-                                                        <div class="carousel-inner">
-                                                        @foreach($detail->evidance_level_1 as $key => $eg)
-                                                            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                                                <img src="{{ Storage::url($eg->path_gambar) }}" class="d-block w-100" alt="...">
-                                                            </div>
-                                                        @endforeach
-                                                        </div>
-                                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                                <div id="carouselExample" class="carousel slide">
+                                                <div class="carousel-inner">
+                                                        
+                                                    <div class="carousel-item active">
+                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/The_death.png" class="d-block w-100" alt="...">
+                                                 
+                                                    </div>
+                                                    @foreach($detail->evidance_level_1 as $img)
+                                                    <div class="carousel-item">
+                                                        <img src="{{ Storage::url($img->path_gambar) }}" class="d-block w-100" alt="...">
+                                                    </div>
+                                                    @endforeach
+                                                    </div>
+                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                         <span class="visually-hidden">Previous</span>
-                                                        </button>
-                                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                                    </button>
+                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                         <span class="visually-hidden">Next</span>
-                                                        </button>
+                                                    </button>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-success">Simpan</button>
                                                 </div>
                                             </div>
                                         </div>

@@ -8,6 +8,7 @@ use App\Models\MeetingLevel1;
 use App\Models\EvidanceLevel1;
 use App\Models\PIC;
 use App\Models\Status;
+use DB;
 
 class DetailLvl1Controller extends Controller
 {
@@ -96,8 +97,14 @@ class DetailLvl1Controller extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(DetailLevel1 $id)
     {
-        //
+        $meetingLevel1 = MeetingLevel1::first();
+        DB::delete('DELETE FROM evidance_level1 WHERE id_detaillvl1 = ?', [$id]);
+        $id->delete();
+        sleep(1);
+        return redirect(route('detail.index', $meetingLevel1->id));
     }
+    
+        
 }

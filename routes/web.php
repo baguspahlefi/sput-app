@@ -6,6 +6,7 @@ use App\Http\Controllers\MoM1Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailLvl1Controller;
 use App\Http\Controllers\PengaturanAkunController;
+use App\Http\Controllers\EvidanceLevel1Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,12 @@ Route::post('MoM1/detail/store',[DetailLvl1Controller::class,'store'])
 Route::post('MoM1/detail/evidance',[DetailLvl1Controller::class,'store_evidance'])
 ->middleware(['auth'])
 ->name('detail1.store_evidance');
+Route::delete('/MoM1/detail/{id}', [DetailLvl1Controller::class, 'destroy'])
+->middleware(['auth'])
+->name('detail1.destroy');
+Route::delete('/MoM1/detail/evidance/{id}', [EvidanceLevel1Controller::class,'destroy'])
+->middleware(['auth'])
+->name('evidance1.destroy');
 
 Route::post('daftar_hadir/store',[MoM1Controller::class,'modal_store'])
 ->middleware(['auth'])

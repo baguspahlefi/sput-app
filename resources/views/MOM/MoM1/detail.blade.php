@@ -54,7 +54,7 @@
                                     <th class="col text-center">Status</th>
                                     <th class="col text-center">Evidence</th>
                                     <th class="col text-center">Action</th>
-                                    <th class="col text-center">Action</th>
+                    
                                 </tr>
                             </thead>
                           
@@ -68,11 +68,14 @@
                                         <td class="text-center">{{$detail->pic}}</td>
                                         <td class="text-center">{{$detail->due}}</td>
                                         <td class="text-center">{{$detail->status}}</td>
-                                        <td class="text-center">{{$key}}</td>
                                         <td>
-                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEvidance{{$detail->id}}">
-                                                <img src="https://media.istockphoto.com/id/499775926/id/foto/produksi-batubara-di-salah-satu-lapangan-terbuka.webp?s=1024x1024&w=is&k=20&c=Ymb8XaVLVyQHjJ8Yt5NaQASkvzb7tWSqluhc9sf9kb0=" alt="" width="200" class="img-thumbnail">
-                                            </a>
+                                            @foreach($detail->evidance_level_1 as $gambarTabel)
+                                            @if($loop->first)
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEvidance{{$detail->id}}">
+                                                    <img src="{{ Storage::url($gambarTabel->path_gambar) }}" alt="" width="200" class="img-thumbnail">
+                                                </a>
+                                            @endif
+                                            @endforeach
                                         </td>
                                         <td>
                                             <a class="" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
@@ -174,35 +177,26 @@
                                     </div>
                                     <!-- Modal Evidance -->
                                     <div class="modal fade" id="exampleModalEvidance{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
+                                        <div class="modal-dialog modal-fullscreen">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Gambar Evidence {{$detail->id}} </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                <div id="carouselExample" class="carousel slide">
-                                                <div class="carousel-inner">
-                                                        
-                                                    <div class="carousel-item active">
-                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/92/The_death.png" class="d-block w-100" alt="...">
-                                                 
-                                                    </div>
-                                                    @foreach($detail->evidance_level_1 as $img)
-                                                    <div class="carousel-item">
-                                                        <img src="{{ Storage::url($img->path_gambar) }}" class="d-block w-100" alt="...">
-                                                    </div>
-                                                    @endforeach
-                                                    </div>
-                                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                        <span class="visually-hidden">Previous</span>
-                                                    </button>
-                                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                        <span class="visually-hidden">Next</span>
-                                                    </button>
-                                                    </div>
+                                                    <section aria-label="Newest Photos">
+                                                        <div class="carousel" data-carousel>
+                                                        <button class="carousel-button prev" data-carousel-button="prev">&#8656;</button>
+                                                        <button class="carousel-button next" data-carousel-button="next">&#8658;</button>
+                                                            <ul data-slides>
+                                                            @foreach($detail->evidance_level_1 as $img)
+                                                                <li class="slide" {{ $key == 0 ? 'data-active' : '' }}>
+                                                                        <img src="{{Storage::url($img->path_gambar)}}" alt="Nature Image #1">
+                                                                </li>
+                                                            @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    </section>
                                                 </div>
                                             </div>
                                         </div>

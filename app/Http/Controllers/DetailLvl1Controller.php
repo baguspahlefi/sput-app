@@ -56,7 +56,6 @@ class DetailLvl1Controller extends Controller
 
     public function store_evidance(Request $request)
     {
-        $meetingLevel1 = MeetingLevel1::first();
         $item = new EvidanceLevel1();
         $item->id_detaillvl1 = $request->id_detaillvl1;
         $item->nama_gambar = $request->nama_gambar;
@@ -67,7 +66,7 @@ class DetailLvl1Controller extends Controller
             'assets/gallery','public'
         );
         $item->save();
-        return redirect(route('detail.index', $meetingLevel1->id))->with('flash_message_success','Berhasil menambahkan user');
+        return redirect()->back()->with('flash_message_success', 'Berhasil menambahkan gambar evidance');
     }
 
     /**
@@ -99,11 +98,10 @@ class DetailLvl1Controller extends Controller
      */
     public function destroy(DetailLevel1 $id)
     {
-        $meetingLevel1 = MeetingLevel1::first();
         DB::delete('DELETE FROM evidance_level1 WHERE id_detaillvl1 = ?', [$id]);
         $id->delete();
         sleep(1);
-        return redirect(route('detail.index', $meetingLevel1->id));
+        return redirect()->back()->with('flash_message_success', 'Berhasil hapus tabel');
     }
     
         

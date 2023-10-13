@@ -6,6 +6,11 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid bg-light ">
+            @if (session('flash_message_success'))
+                <div class="alert alert-success mt-4">
+                    {{session('flash_message_success')}}
+                </div>
+            @endif
             <div class="row">
                 <div class="col">
                     <h3 class="mt-4 text-success">Daily Meeting Lv 1</h3>
@@ -85,7 +90,11 @@
                                     <a href="{{route('detail.index',$item->id)}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
                                     @role('ADMIN')
                                     <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
-                                    <a href="detail.html"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
+                                    <form action="{{ route('MoM1.destroy', ['id' => $item->id]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" style="border: none; background: none"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></button>
+                                    </form>
                                     @endrole
                                 </td>
                             </tr>
@@ -131,10 +140,7 @@
                                                             <div class="col align-self-end">
                                                                 <button type="submit" class="btn btn-success float-end savebtn">Submit</button>
                                                             </div> 
-                                                        </div>
-                                                        
-                                                        
-                                                                    
+                                                        </div>               
                                                     </form>
                                                 </div>
                                             </div>

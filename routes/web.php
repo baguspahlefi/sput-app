@@ -33,6 +33,9 @@ Route::get('/MoM1', [MoM1Controller::class,'index'])
 Route::post('MoM1/store',[MoM1Controller::class,'store'])
 ->middleware(['auth'])
 ->name('MoM1.store');
+Route::delete('/MoM1/destroy/{id}', [MoM1Controller::class,'destroy'])
+->middleware(['auth'])
+->name('MoM1.destroy');
 
 Route::get('/MoM1/detail/{id}', [DetailLvl1Controller::class,'index'])
 ->middleware(['auth','level1'])

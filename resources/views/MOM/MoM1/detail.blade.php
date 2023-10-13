@@ -23,6 +23,11 @@
     <main>
         <!-- Section input  -->
         <section id="pantau-panjar">
+            @if (session('flash_message_success'))
+                <div class="alert alert-success mt-4">
+                    {{session('flash_message_success')}}
+                </div>
+            @endif
             <div class="container-fluid">
                 <div class="row">
                     <div class="col my-4">

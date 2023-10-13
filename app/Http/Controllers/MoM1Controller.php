@@ -92,6 +92,9 @@ class MoM1Controller extends Controller
      */
     public function destroy($id)
     {
-
+        $item = MeetingLevel1::findOrFail($id);
+        $item->delete();
+        sleep(1);
+        return redirect()->back()->with('flash_message_success', 'Berhasil hapus meeting');
     }
 }

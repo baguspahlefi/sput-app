@@ -23,9 +23,15 @@
     <main>
         <!-- Section input  -->
         <section id="pantau-panjar">
-            @if (session('flash_message_success'))
-                <div class="alert alert-success mt-4">
-                    {{session('flash_message_success')}}
+            @if (session('failed'))
+                <div class="alert alert-danger">
+                    {{ session('failed') }}
+                </div>
+            @endif
+
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
                 </div>
             @endif
             <div class="container-fluid">
@@ -83,7 +89,7 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <a class="" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
+                                            <a class="" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEdit-{{$detail->id}}"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                             <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalGambar{{$detail->id}}"><img src="{{url('assets/icon/gallery.png')}}" width="32" alt=""></a>
                                             <form action="{{route('detail1.destroy',$detail->id)}}" method="POST">
                                                 @csrf
@@ -95,6 +101,65 @@
                                         </td>
                                     </tr>
                                     @endif
+                                     <!-- Modal Edit Meeting -->
+                                    <div class="modal fade" id="exampleModalEdit-{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Tambah Tabel</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{route('detail1.update',$detail->id)}}" method="post" class="row g-3" >
+                                                        @csrf 
+                                                        @method('PUT')
+                                                        <div class="col-6 d-none">
+                                                            <input class="form-control" type="text" id="id" name="id" value="{{$item->id}}" placeholder="Default input" aria-label="default input example">
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="fs-5 my-auto mx-auto">Point Of Meeting</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" value="{{$detail->point_of_meeting}}" placeholder="Default input" aria-label="default input example">
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="fs-5 my-auto mx-auto">pic</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <select id="pic" name="pic" value="{{$detail->pic}}" class="form-select" aria-label="Default select example">
+                                                                <option selected>{{$detail->pic}}</option>
+                                                                @foreach($pic as $picEdit)
+                                                                <option value="{{$picEdit->pic}}">{{$picEdit->pic}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="fs-5 my-auto mx-auto">DUE</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <input placeholder="Select date" id="due" name="due" value="{{$detail->due}}" type="date" id="example" class="form-control">
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="fs-5 my-auto mx-auto">Status</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <select id="status" name="status" value="{{$detail->status}}" class="form-select" aria-label="Default select example">
+                                                                <option selected>{{$detail->status}}</option>
+                                                                @foreach($status as $statusEdit)
+                                                                <option value="{{$statusEdit->status}}">{{$statusEdit->status}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                       <!-- Modal Evidance Edit-->
                                     <div class="modal fade" id="exampleModalGambar{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
@@ -130,7 +195,9 @@
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <input type="file" class="form-control" id="inputGroupFile02" name="path_gambar">
+                                                                        <span><p class="text-danger fs-6">Pastikan ukuran tidak lebih dari 5Mb dan format gambar harus png ,jpg dan jpeg</p></span>
                                                                     </div>
+                                                                    
                                                                 </div>
                                                                 <div class="row mt-3">
                                                                     <div class="col align-self-end">
@@ -213,67 +280,64 @@
                     </div>
                 </div>
         
-                <!-- Modal -->
+                <!-- Modal Tambah Meeting -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Tambah Tabel</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Tambah Tabel</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{route('detail1.store')}}" method="post" class="row g-3" >
+                                    @csrf 
+                                    <div class="col-6 d-none">
+                                        <input class="form-control" type="text" id="id" name="id" value="{{$item->id}}" placeholder="Default input" aria-label="default input example">
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="fs-5 my-auto mx-auto">Point Of Meeting</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" placeholder="Default input" aria-label="default input example">
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="fs-5 my-auto mx-auto">pic</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <select id="pic" name="pic" class="form-select" aria-label="Default select example">
+                                            <option selected>Open this select menu</option>
+                                            @foreach($pic as $pic)
+                                            <option value="{{$pic->pic}}">{{$pic->pic}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="fs-5 my-auto mx-auto">DUE</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <input placeholder="Select date" id="due" name="due" type="date" id="example" class="form-control">
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="fs-5 my-auto mx-auto">Status</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <select id="status" name="status" class="form-select" aria-label="Default select example">
+                                            <option selected>Open this select menu</option>
+                                            @foreach($status as $status)
+                                            <option value="{{$status->status}}">{{$status->status}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                            </div>
+                            </form>
                         </div>
-                        <div class="modal-body">
-                            <form action="{{route('detail1.store')}}" method="post" class="row g-3" >
-                                @csrf 
-                                <div class="col-6 d-none">
-                                    <input class="form-control" type="text" id="id" name="id" value="{{$item->id}}" placeholder="Default input" aria-label="default input example">
-                                </div>
-                                <div class="col-6">
-                                    <p class="fs-5 my-auto mx-auto">Point Of Meeting</p>
-                                </div>
-                                <div class="col-6">
-                                    <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" placeholder="Default input" aria-label="default input example">
-                                </div>
-                                <div class="col-6">
-                                    <p class="fs-5 my-auto mx-auto">pic</p>
-                                </div>
-                                <div class="col-6">
-                                    <select id="pic" name="pic" class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        @foreach($pic as $pic)
-                                        <option value="{{$pic->pic}}">{{$pic->pic}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-6">
-                                    <p class="fs-5 my-auto mx-auto">DUE</p>
-                                </div>
-                                <div class="col-6">
-                                    <input placeholder="Select date" id="due" name="due" type="date" id="example" class="form-control">
-                                </div>
-                                <div class="col-6">
-                                    <p class="fs-5 my-auto mx-auto">Status</p>
-                                </div>
-                                <div class="col-6">
-                                    <select id="status" name="status" class="form-select" aria-label="Default select example">
-                                        <option selected>Open this select menu</option>
-                                        @foreach($status as $status)
-                                        <option value="{{$status->status}}">{{$status->status}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            
-                        </div>
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                        </div>
-                        </form>
                     </div>
                 </div>
-                </div>
-
-                
-               
             </div>
         </section>
     </main>

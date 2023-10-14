@@ -6,9 +6,9 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid bg-light ">
-            @if (session('flash_message_success'))
+            @if (session('success'))
                 <div class="alert alert-success mt-4">
-                    {{session('flash_message_success')}}
+                    {{session('success')}}
                 </div>
             @endif
             <div class="row">
@@ -23,7 +23,7 @@
                         Tambah Meeting
                     </button>
 
-                    <!-- Modal Meeting-->
+                    <!-- Modal Tambah Meeting-->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -55,6 +55,7 @@
                             </div>
                         </div>
                     </div>
+                  
                     @endrole
 
                     
@@ -84,12 +85,12 @@
                                 <td class="text-center">{{$item->judul}}</td>
                                 <td class="text-center">{{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir{{$item->id}}">Lihat Daftar Hadir {{$item->id}}</button>
+                                    <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir{{$item->id}}">Lihat Daftar Hadir</button>
                                 </td>
                                 <td class="text-center">
                                     <a href="{{route('detail.index',$item->id)}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
                                     @role('ADMIN')
-                                    <a class="mx-1" href="#"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
+                                    <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEdit-{{$item->id}}"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <form action="{{ route('MoM1.destroy', ['id' => $item->id]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
@@ -98,6 +99,39 @@
                                     @endrole
                                 </td>
                             </tr>
+                            <!-- Modal Edit Meeting-->
+                            <div class="modal fade" id="exampleModalEdit-{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Edit Meeting</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <form action="{{route('MoM1.update',$item->id)}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
+                                            @csrf
+                                            @method('PUT')
+                                                <div class="col-6">
+                                                    <p class="fs-5 my-auto mx-auto">Judul</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input class="form-control" name="judul" value="{{$item->judul}}" type="text" placeholder="Default input" aria-label="default input example">
+                                                </div>
+                                                <div class="col-6">
+                                                    <p class="fs-5 my-auto mx-auto">Tanggal</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input class="form-control" id="date" name="tanggal" value="{{$item->tanggal}}" placeholder="MM/DD/YYY" type="date"/>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-success">Simpan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @role('ADMIN')
                             <!-- Modal Daftar Hadir Admin-->
                             <div class="modal fade" id="exampleModalHadir{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

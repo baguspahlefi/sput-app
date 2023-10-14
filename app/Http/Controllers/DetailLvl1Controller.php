@@ -59,15 +59,24 @@ class DetailLvl1Controller extends Controller
         $item = new EvidanceLevel1();
         $item->id_detaillvl1 = $request->id_detaillvl1;
         $item->nama_gambar = $request->nama_gambar;
-        $this->validate($request,[
-            'path_gambar' => 'required|image|mimes:jpeg,png,jpg|max:5000'
+        
+        $this->validate($request,
+          [
+            'path_gambar.required' => 'Gambar wajib diunggah.',
+            'path_gambar.image' => 'File harus berupa gambar.',
+            'path_gambar.mimes' => 'Format gambar harus jpeg, png, atau jpg.',
+            'path_gambar.max' => 'Gambar tidak boleh lebih dari 5MB.',
         ]);
-        $item['path_gambar'] = $request->file('path_gambar')->store(
-            'assets/gallery','public'
-        );
-        $item->save();
-        return redirect()->back()->with('flash_message_success', 'Berhasil menambahkan gambar evidance');
+    
+        if ($request->hasFile('path_gambar') && $request->file('path_gambar')->isValid()) {
+            $item['path_gambar'] = $request->file('path_gambar')->store('assets/gallery', 'public');
+            $item->save();
+            return redirect()->back()->with('success', 'Berhasil menambahkan gambar evidance');
+        } else {
+            return redirect()->back()->with('failed','Pastikan format gambar benar dan gambar tidak boleh lebih dari 5MB');
+        }
     }
+    
 
     /**
      * Display the specified resource.
@@ -90,7 +99,11 @@ class DetailLvl1Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = DetailLevel1::findOrFail($id);
+        $item = $request->all();
+
+        $data->update($item);
+        return redirect()->back()->with('success', 'Berhasil edit meeting');
     }
 
     /**
@@ -101,7 +114,7 @@ class DetailLvl1Controller extends Controller
         DB::delete('DELETE FROM evidance_level1 WHERE id_detaillvl1 = ?', [$id]);
         $id->delete();
         sleep(1);
-        return redirect()->back()->with('flash_message_success', 'Berhasil hapus tabel');
+        return redirect()->back()->with('success', 'Berhasil hapus tabel');
     }
     
         

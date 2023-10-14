@@ -84,7 +84,11 @@ class MoM1Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = MeetingLevel1::findOrFail($id);
+        $item = $request->all();
+
+        $data->update($item);
+        return redirect()->route('MoM1')->with('success','Update Berhasil');
     }
 
     /**
@@ -95,6 +99,6 @@ class MoM1Controller extends Controller
         $item = MeetingLevel1::findOrFail($id);
         $item->delete();
         sleep(1);
-        return redirect()->back()->with('flash_message_success', 'Berhasil hapus meeting');
+        return redirect()->back()->with('success', 'Berhasil hapus meeting');
     }
 }

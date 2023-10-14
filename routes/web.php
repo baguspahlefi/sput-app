@@ -30,9 +30,12 @@ Route::get('/dashboard', function () {
 Route::get('/MoM1', [MoM1Controller::class,'index'])
 ->middleware(['auth','level1'])
 ->name('MoM1');
-Route::post('MoM1/store',[MoM1Controller::class,'store'])
+Route::post('/MoM1/store',[MoM1Controller::class,'store'])
 ->middleware(['auth'])
 ->name('MoM1.store');
+Route::put('/MoM1/update/{id}',[MoM1Controller::class,'update'])
+->middleware(['auth'])
+->name('MoM1.update');
 Route::delete('/MoM1/destroy/{id}', [MoM1Controller::class,'destroy'])
 ->middleware(['auth'])
 ->name('MoM1.destroy');
@@ -43,6 +46,9 @@ Route::get('/MoM1/detail/{id}', [DetailLvl1Controller::class,'index'])
 Route::post('MoM1/detail/store',[DetailLvl1Controller::class,'store'])
 ->middleware(['auth'])
 ->name('detail1.store');
+Route::put('MoM1/detail/update/{id}',[DetailLvl1Controller::class,'update'])
+->middleware(['auth'])
+->name('detail1.update');
 Route::post('MoM1/detail/evidance',[DetailLvl1Controller::class,'store_evidance'])
 ->middleware(['auth'])
 ->name('detail1.store_evidance');
@@ -66,15 +72,12 @@ Route::post('daftar_hadir/store',[MoM1Controller::class,'modal_store'])
 Route::get('/pengaturan-akun', [PengaturanAkunController::class,'index'])
 ->middleware(['auth'])
 ->name('pengaturanAkun.index');
-
 Route::post('/pengaturan-akun/store', [PengaturanAkunController::class,'storeAkun'])
 ->middleware(['auth'])
 ->name('pengaturanAkun.store');
-
 Route::put('/pengaturan-akun/update/{id}', [PengaturanAkunController::class,'update'])
 ->middleware(['auth'])
 ->name('pengaturanAkun.update');
-
 Route::delete('/pengaturan-akun/update/{id}', [PengaturanAkunController::class,'destroy'])
 ->middleware(['auth'])
 ->name('pengaturanAkun.destroy');

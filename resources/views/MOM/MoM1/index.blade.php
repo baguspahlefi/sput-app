@@ -192,30 +192,39 @@
                                                         </div>
                                                     </div>
                                                     <hr>
+                                                    <form action="{{route('daftarHadir1.update')}}" method="post">
+                                                        @csrf
+                                                        @method('put')
                                                     @foreach($item->daftar_hadir as $daftar_hadir)
                                                         <div class="row">
+                                                            <input type="hidden" name="daftar_hadir_id[]" value="{{ $daftar_hadir->id }}">
                                                             <div class="col-4">
                                                                 <p class="text-center">{{$loop->iteration}}</p>
                                                             </div>
                                                             <div class="col-4">
                                                                 <p class="text-center">
-                                                                    <span class="editable" ondblclick="editInPlaceNama(this)">{{$daftar_hadir->nama}} <i class="ml-2 fa fa-pencil pull-right"></i></span>
+                                                                    <input class="form-control w-80" name="nama_{{ $daftar_hadir->id }}"  value="{{$daftar_hadir->nama}}" readonly ondblclick="editInPlaceNama(this)">
+                                                                    <p class="edit-message fs-6">Klik 2 kali untuk mengedit</p>
                                                                 </p>
                                                             </div>
                                                             <div class="col-4">
                                                                 <p class="text-center">
-                                                                    <span class="editable" ondblclick="editInPlaceNrp(this)">{{$daftar_hadir->nrp}} <i class="ml-2 fa fa-pencil pull-right"></i></span>
+                                                                    <input class="form-control w-80" name="nrp_{{ $daftar_hadir->id }}"  value="{{$daftar_hadir->nrp}}" readonly ondblclick="editInPlaceNRP(this)">
+                                                                    <p class="edit-message fs-6">Klik 2 kali untuk mengedit</p>
                                                                 </p>
                                                             </div>
                                                         </div>
                                                     @endforeach
+                                                    
                                                         
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-success">Submit</button>
                                         </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

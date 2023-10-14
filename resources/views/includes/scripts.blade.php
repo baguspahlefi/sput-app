@@ -30,39 +30,40 @@
 
 <script>
 function editInPlaceNama(element) {
-    var span = element;
-    var input = document.createElement("input");
-    var originalText = span.textContent || span.innerText;
+    var input = element;
+    var originalText = input.value;
 
-    input.value = originalText;
-    input.className = "form-control"; // Optionally, add Bootstrap input style
-    input.name = "name";
+    // Hapus atribut readonly
+    input.removeAttribute('readonly');
 
     input.onblur = function () {
         var newValue = this.value;
-        span.textContent = newValue;
-    }
 
-    span.innerHTML = "";
-    span.appendChild(input);
+        // Setel kembali atribut readonly setelah blur (selesai mengedit)
+        this.setAttribute('readonly', 'readonly');
+
+        // Di sini Anda dapat melakukan apa yang diperlukan dengan newValue (misalnya, menyimpan ke server)
+    }
+    
     input.focus();
 }
-function editInPlaceNrp(element) {
-    var span = element;
-    var input = document.createElement("input");
-    var originalText = span.textContent || span.innerText;
 
-    input.value = originalText;
-    input.className = "form-control"; // Optionally, add Bootstrap input style
-    input.name = "nrp";
+function editInPlaceNRP(element) {
+    var input = element;
+    var originalText = input.value;
+
+    // Hapus atribut readonly
+    input.removeAttribute('readonly');
 
     input.onblur = function () {
         var newValue = this.value;
-        span.textContent = newValue;
-    }
 
-    span.innerHTML = "";
-    span.appendChild(input);
+        // Setel kembali atribut readonly setelah blur (selesai mengedit)
+        this.setAttribute('readonly', 'readonly');
+
+        // Di sini Anda dapat melakukan apa yang diperlukan dengan newValue (misalnya, menyimpan ke server)
+    }
+    
     input.focus();
 }
 </script>

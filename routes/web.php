@@ -62,6 +62,9 @@ Route::delete('/MoM1/detail/evidance/{id}', [EvidanceLevel1Controller::class,'de
 Route::post('daftar_hadir/store',[MoM1Controller::class,'modal_store'])
 ->middleware(['auth'])
 ->name('daftarHadir1.store');
+Route::put('daftar_hadir/update',[MoM1Controller::class,'update_daftarHadir'])
+->middleware(['auth'])
+->name('daftarHadir1.update');
 
 // Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
 // ->middleware(['auth'])

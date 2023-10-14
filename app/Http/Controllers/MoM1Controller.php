@@ -91,6 +91,31 @@ class MoM1Controller extends Controller
         return redirect()->route('MoM1')->with('success','Update Berhasil');
     }
 
+    public function update_daftarHadir(Request $request)
+    {
+            $daftar_hadir_ids = $request->input('daftar_hadir_id');
+
+            // $daftar_hadir_ids sekarang berisi array dari ID yang dikirim dari formulir
+
+            // Anda dapat melakukan operasi update sesuai kebutuhan, misalnya:
+            foreach ($daftar_hadir_ids as $id) {
+                $daftarHadir = DaftarHadir::find($id);
+        
+                if ($daftarHadir) {
+                    $nama = $request->input('nama_' . $id); // Mengakses input berdasarkan ID
+                    $nrp = $request->input('nrp_' . $id);
+        
+                    // Lakukan operasi pada setiap $daftarHadir, contohnya:
+                    $daftarHadir->nama = $nama;
+                    $daftarHadir->nrp = $nrp;
+                    $daftarHadir->save();
+                }
+            }
+
+        // Setelah update selesai, Anda dapat melakukan redirect atau mereturn responsenya.
+        return redirect()->route('MoM1')->with('success','Update Berhasil');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

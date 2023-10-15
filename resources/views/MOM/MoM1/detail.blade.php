@@ -47,9 +47,11 @@
                 </div>
                 <div class="row">
                     <div class="col-12 mt-4 mb-2">
+                        @role('ADMIN')
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Tambah Tabel
                         </button>
+                        @endrole
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Export Excel
                         </button>
@@ -91,6 +93,7 @@
                                         <td>
                                             <a class="" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEdit-{{$detail->id}}"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                             <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalGambar{{$detail->id}}"><img src="{{url('assets/icon/gallery.png')}}" width="32" alt=""></a>
+                                            @role('ADMIN')
                                             <form action="{{route('detail1.destroy',$detail->id)}}" method="POST">
                                                 @csrf
                                                 @method('delete')
@@ -98,10 +101,12 @@
                                                     <img src="{{url('assets/icon/delete.png')}}" width="32" alt="">
                                                 </button>
                                             </form>
+                                            @endrole
                                         </td>
                                     </tr>
                                     @endif
-                                     <!-- Modal Edit Meeting -->
+                                    @role('ADMIN')
+                                     <!-- Modal Edit Meeting Admin-->
                                     <div class="modal fade" id="exampleModalEdit-{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
@@ -137,6 +142,66 @@
                                                             <p class="fs-5 my-auto mx-auto">DUE</p>
                                                         </div>
                                                         <div class="col-6">
+                                                            <input placeholder="Select date" id="due" name="due" value="{{$detail->due}}" type="date" id="example" class="form-control">
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="fs-5 my-auto mx-auto">Status</p>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <select id="status" name="status" value="{{$detail->status}}" class="form-select" aria-label="Default select example">
+                                                                <option selected>{{$detail->status}}</option>
+                                                                @foreach($status as $statusEdit)
+                                                                <option value="{{$statusEdit->status}}">{{$statusEdit->status}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endrole
+                                     <!-- Modal Edit Meeting User-->
+                                     <div class="modal fade" id="exampleModalEdit-{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Tambah Tabel</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{route('detail1.update',$detail->id)}}" method="post" class="row g-3" >
+                                                        @csrf 
+                                                        @method('PUT')
+                                                        <div class="col-6 d-none">
+                                                            <input class="form-control" type="text" id="id" name="id" value="{{$item->id}}" placeholder="Default input" aria-label="default input example">
+                                                        </div>
+                                                        <div class="col-6 d-none">
+                                                            <p class="fs-5 my-auto mx-auto">Point Of Meeting</p>
+                                                        </div>
+                                                        <div class="col-6 d-none">
+                                                            <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" value="{{$detail->point_of_meeting}}" placeholder="Default input" aria-label="default input example">
+                                                        </div>
+                                                        <div class="col-6 d-none">
+                                                            <p class="fs-5 my-auto mx-auto">pic</p>
+                                                        </div>
+                                                        <div class="col-6 d-none">
+                                                            <select id="pic" name="pic" value="{{$detail->pic}}" class="form-select" aria-label="Default select example">
+                                                                <option selected>{{$detail->pic}}</option>
+                                                                @foreach($pic as $picEdit)
+                                                                <option value="{{$picEdit->pic}}">{{$picEdit->pic}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-6 d-none">
+                                                            <p class="fs-5 my-auto mx-auto">DUE</p>
+                                                        </div>
+                                                        <div class="col-6 d-none">
                                                             <input placeholder="Select date" id="due" name="due" value="{{$detail->due}}" type="date" id="example" class="form-control">
                                                         </div>
                                                         <div class="col-6">
@@ -252,7 +317,7 @@
                                         <div class="modal-dialog modal-fullscreen">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Gambar Evidence {{$detail->id}} </h1>
+                                                    <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Gambar Evidence </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">

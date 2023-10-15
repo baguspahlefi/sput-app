@@ -231,7 +231,7 @@
 
                             @else
                             <!-- Modal Daftar Hadir User-->
-                            <div class="modal fade" id="exampleModalHadir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModalHadir{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -239,45 +239,6 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                        <div class="row">
-                                                <div class="col-12">
-                                                    <form action="{{route('daftarHadir1.store')}}" id="submit-form" method="POST" enctype="multipart/form-data" class="row g-3 mt-2">
-                                                        @csrf
-                                                        <div class="row">
-                                                            <div class="col-6">
-                                                                <p class="fs-5 my-auto mx-auto">Id Daftar Hadir</p>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <input class="form-control" id="id_daftar_hadir" name="id_daftar_hadir" type="text" value="{{$item->id}}" placeholder="Default input" readonly>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-6">
-                                                                <p class="fs-5 my-auto mx-auto">Nama</p>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                <input class="form-control" id="nama" name="nama" type="text" placeholder="Default input">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-2">
-                                                            <div class="col-6">
-                                                                    <p class="fs-5 my-auto mx-auto">nrp</p>
-                                                            </div>
-                                                            <div class="col-6">
-                                                                    <input class="form-control" id="nrp" name="nrp" placeholder="Masukan nrp" type="text"/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mt-3">
-                                                            <div class="col align-self-end">
-                                                                <button type="submit" class="btn btn-success float-end savebtn">Submit</button>
-                                                            </div> 
-                                                        </div>
-                                                        
-                                                        
-                                                                    
-                                                    </form>
-                                                </div>
-                                            </div>
                                             <div class="row mt-4">
                                                 <div class="col-12">
                                                     <div class="row">

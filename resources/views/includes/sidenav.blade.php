@@ -18,10 +18,10 @@
                         <a class="nav-link text-white" href="{{route('MoM1')}}">MoM 1 : Daily Meeting Lv 1</a>
                     @endif
                     @if(auth()->user()->accessLevel2())
-                        <a class="nav-link text-white" href="layout-sidenav-light.html">MoM 2 : Daily Meeting Lv 2</a>
+                        <a class="nav-link text-white" href="{{route('MoM2')}}">MoM 2 : Daily Meeting Lv 2</a>
                     @endif
                     @if(auth()->user()->accessLevel3())
-                        <a class="nav-link text-white" href="layout-sidenav-light.html">MoM 3 : Meeting Koordinasi</a>
+                        <a class="nav-link text-white" href="{{route('MoM3')}}">MoM 3 : Meeting Koordinasi</a>
                     @endif
                     
                 </nav>

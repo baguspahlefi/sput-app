@@ -7,6 +7,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailLvl1Controller;
 use App\Http\Controllers\PengaturanAkunController;
 use App\Http\Controllers\EvidanceLevel1Controller;
+use App\Http\Controllers\MoM2Controller;
+use App\Http\Controllers\DetailLvl2Controller;
+use App\Http\Controllers\EvidanceLevel2Controller;
+use App\Http\Controllers\MoM3Controller;
+use App\Http\Controllers\DetailLvl3Controller;
+use App\Http\Controllers\EvidanceLevel3Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +33,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// MoM Level 1
 Route::get('/MoM1', [MoM1Controller::class,'index'])
 ->middleware(['auth','level1'])
 ->name('MoM1');
@@ -59,12 +66,92 @@ Route::delete('/MoM1/detail/evidance/{id}', [EvidanceLevel1Controller::class,'de
 ->middleware(['auth','role:ADMIN'])
 ->name('evidance1.destroy');
 
-Route::post('daftar_hadir/store',[MoM1Controller::class,'modal_store'])
+// MoM Level 2
+Route::get('/MoM2', [MoM2Controller::class,'index'])
+->middleware(['auth','level2'])
+->name('MoM2');
+Route::post('/MoM2/store',[MoM2Controller::class,'store'])
+->middleware(['auth','role:ADMIN'])
+->name('MoM2.store');
+Route::put('/MoM2/update/{id}',[MoM2Controller::class,'update'])
+->middleware(['auth','role:ADMIN'])
+->name('MoM2.update');
+Route::delete('/MoM2/destroy/{id}', [MoM2Controller::class,'destroy'])
+->middleware(['auth'])
+->name('MoM2.destroy','role:ADMIN');
+
+Route::post('daftar_hadir_1/store',[MoM2Controller::class,'modal_store'])
 ->middleware(['auth'])
 ->name('daftarHadir1.store');
-Route::put('daftar_hadir/update',[MoM1Controller::class,'update_daftarHadir'])
+Route::put('daftar_hadir_1/update',[MoM2Controller::class,'update_daftarHadir'])
 ->middleware(['auth'])
 ->name('daftarHadir1.update');
+
+Route::post('daftar_hadir_2/store',[MoM2Controller::class,'modal_store'])
+->middleware(['auth'])
+->name('daftarHadir2.store');
+Route::put('daftar_hadir_2/update',[MoM2Controller::class,'update_daftarHadir'])
+->middleware(['auth'])
+->name('daftarHadir2.update');
+
+Route::get('/MoM2/detail/{id}', [DetailLvl2Controller::class,'index'])
+->middleware(['auth','level2'])
+->name('detail.index');
+Route::post('MoM2/detail/store',[DetailLvl2Controller::class,'store'])
+->middleware(['auth','role:ADMIN'])
+->name('detail2.store');
+Route::put('MoM2/detail/update/{id}',[DetailLvl2Controller::class,'update'])
+->middleware(['auth'])
+->name('detail2.update');
+Route::post('MoM2/detail/evidance',[DetailLvl2Controller::class,'store_evidance'])
+->middleware(['auth'])
+->name('detail2.store_evidance');
+Route::delete('/MoM2/detail/{id}', [DetailLvl2Controller::class, 'destroy'])
+->middleware(['auth','role:ADMIN'])
+->name('detail2.destroy');
+Route::delete('/MoM2/detail/evidance/{id}', [EvidanceLevel2Controller::class,'destroy'])
+->middleware(['auth','role:ADMIN'])
+->name('evidance2.destroy');
+
+// MoM Level 3
+Route::get('/MoM3', [MoM3Controller::class,'index'])
+->middleware(['auth','level3'])
+->name('MoM3');
+Route::post('/MoM3/store',[MoM3Controller::class,'store'])
+->middleware(['auth','role:ADMIN'])
+->name('MoM3.store');
+Route::put('/MoM3/update/{id}',[MoM3Controller::class,'update'])
+->middleware(['auth','role:ADMIN'])
+->name('MoM3.update');
+Route::delete('/MoM3/destroy/{id}', [MoM3Controller::class,'destroy'])
+->middleware(['auth'])
+->name('MoM3.destroy','role:ADMIN');
+
+Route::get('/MoM3/detail/{id}', [DetailLvl3Controller::class,'index'])
+->middleware(['auth','level3'])
+->name('detail.index');
+Route::post('MoM3/detail/store',[DetailLvl3Controller::class,'store'])
+->middleware(['auth','role:ADMIN'])
+->name('detail3.store');
+Route::put('MoM3/detail/update/{id}',[DetailLvl3Controller::class,'update'])
+->middleware(['auth'])
+->name('detail3.update');
+Route::post('MoM3/detail/evidance',[DetailLvl3Controller::class,'store_evidance'])
+->middleware(['auth'])
+->name('detail3.store_evidance');
+Route::delete('/MoM3/detail/{id}', [DetailLvl3Controller::class, 'destroy'])
+->middleware(['auth','role:ADMIN'])
+->name('detail3.destroy');
+Route::delete('/MoM3/detail/evidance/{id}', [EvidanceLevel3Controller::class,'destroy'])
+->middleware(['auth','role:ADMIN'])
+->name('evidance3.destroy');
+
+Route::post('daftar_hadir_3/store',[MoM2Controller::class,'modal_store'])
+->middleware(['auth'])
+->name('daftarHadir3.store');
+Route::put('daftar_hadir_3/update',[MoM2Controller::class,'update_daftarHadir'])
+->middleware(['auth'])
+->name('daftarHadir3.update');
 
 // Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
 // ->middleware(['auth'])

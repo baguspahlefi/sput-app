@@ -49,7 +49,7 @@ Route::delete('/MoM1/destroy/{id}', [MoM1Controller::class,'destroy'])
 
 Route::get('/MoM1/detail/{id}', [DetailLvl1Controller::class,'index'])
 ->middleware(['auth','level1'])
-->name('detail.index');
+->name('detail1.index');
 Route::post('MoM1/detail/store',[DetailLvl1Controller::class,'store'])
 ->middleware(['auth','role:ADMIN'])
 ->name('detail1.store');
@@ -96,7 +96,7 @@ Route::put('daftar_hadir_2/update',[MoM2Controller::class,'update_daftarHadir'])
 
 Route::get('/MoM2/detail/{id}', [DetailLvl2Controller::class,'index'])
 ->middleware(['auth','level2'])
-->name('detail.index');
+->name('detail2.index');
 Route::post('MoM2/detail/store',[DetailLvl2Controller::class,'store'])
 ->middleware(['auth','role:ADMIN'])
 ->name('detail2.store');
@@ -129,7 +129,7 @@ Route::delete('/MoM3/destroy/{id}', [MoM3Controller::class,'destroy'])
 
 Route::get('/MoM3/detail/{id}', [DetailLvl3Controller::class,'index'])
 ->middleware(['auth','level3'])
-->name('detail.index');
+->name('detail3.index');
 Route::post('MoM3/detail/store',[DetailLvl3Controller::class,'store'])
 ->middleware(['auth','role:ADMIN'])
 ->name('detail3.store');

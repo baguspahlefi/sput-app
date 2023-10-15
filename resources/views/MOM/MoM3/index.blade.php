@@ -88,7 +88,7 @@
                                     <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir{{$item->id}}">Lihat Daftar Hadir</button>
                                 </td>
                                 <td class="text-center">
-                                    <a href="{{route('detail.index',$item->id)}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
+                                    <a href="{{route('detail3.index',$item->id)}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
                                     @role('ADMIN')
                                     <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEdit-{{$item->id}}"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                     <form action="{{ route('MoM3.destroy', ['id' => $item->id]) }}" method="POST">

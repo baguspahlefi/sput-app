@@ -6,6 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\DetailLevel1;
 use App\Models\DetailLevel2;
+use Faker\Factory as Faker;
+use DB;
 
 class DetailLevel1Seeder extends Seeder
 {
@@ -14,20 +16,19 @@ class DetailLevel1Seeder extends Seeder
      */
     public function run(): void
     {
-        $data = DetailLevel1::create([
-            'id_meeting_level_1' => '1',
-            'point_of_meeting' => 'Test Point Of MoM 1',
-            'pic' => 'PLANT',
-            'due' => '2023-10-10',
-            'status' => 'CLOSE',
-        ]);
-
-        $data = DetailLevel2::create([
-            'id_meeting_level_2' => '1',
-            'point_of_meeting' => 'Test Point Of MoM 2',
-            'pic' => 'FAT',
-            'due' => '2023-10-10',
-            'status' => 'OPEN',
-        ]);
+        $faker = Faker::create('id');
+ 
+    	for($i = 1; $i <= 40; $i++){
+ 
+    	      // insert data ke table pegawai menggunakan Faker
+    		DB::table('detail_level1')->insert([
+    			'id_meeting_level_1' => $faker->numberBetween(1, 2),
+    			'point_of_meeting' => $faker->text(50),
+    			'pic' => 'SHE',
+    			'due' => $faker->dateTimeThisCentury->format('Y-m-d'),
+    			'status' => 'PROGRESS'
+    		]);
+ 
+    	}
     }
 }

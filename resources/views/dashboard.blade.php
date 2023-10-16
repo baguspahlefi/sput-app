@@ -34,7 +34,7 @@
                             <i class="fas fa-chart-bar me-1"></i>
                             Column Chart MoM Level 1
                         </div>
-                        <div class="card-body"><canvas id="multiBarChart"></canvas></div>
+                        <div class="card-body"><canvas id="multiBarChart" width="100%" height="50"></canvas></div>
                         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <i class="fas fa-chart-pie me-1"></i>
                             Pie Chart MoM Level 1
                         </div>
-                        <div class="card-body"><canvas id="piechartMoM1" width="100%" height="50"></canvas></div>
+                        <div class="card-body"><canvas id="piechartMoM1" width="100%" height="288"></canvas></div>
                         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                     </div>
                 </div>
@@ -113,6 +113,10 @@ var myPieChart = new Chart(ctx, {
       backgroundColor: ['#007bff', '#dc3545', '#ffc107'],
     }],
   },
+  options: {
+        responsive: true,         // Membuat chart responsif
+        maintainAspectRatio: false // Tidak mempertahankan rasio aspek
+  }
 });
 </script>
 

@@ -15,14 +15,16 @@
   table, th, td {
       border: 1px solid black;
   }
+  th{
+    background-color: yellow;
+  }
 
   th, td {
       padding: 5px;
       text-align: left;
   }
-  body {
+  body.tabel {
             text-align: center;
-            margin-top: 100px;
         }
 
         h1 {
@@ -42,31 +44,10 @@
             font-size: 18px;
             display: inline-block;
         }
-
-        .container {
-            text-align: center;
-            margin-top: 100px;
-        }
-
-        .column {
-            display: inline-block;
-            width: 45%; /* Lebar kolom kiri dan kanan */
-            vertical-align: top;
-        }
-
-        .left-column {
-            text-align: right;
-            padding-right: 20px;
-        }
-
-        .right-column {
-            text-align: left;
-            padding-left: 20px;
-        }
-
         h1 {
             font-size: 36px;
             margin: 0;
+            text-align: center;
         }
 
         p {
@@ -80,17 +61,6 @@
     <center><hr></center>
     <center><span class="minutes-of-meeting">MINUTES OF MEETING</span></center>
     <center><hr></center>
-
-    <div class="container">
-      <div class="column left-column">
-          <h5>MEETING TITLE:</h5>
-          <p>Daily Meeting Level 1</p>
-      </div>
-      <div class="column right-column">
-          <h5>AGENDA:</h5>
-          <p>OPRENG Perform</p>
-      </div>
-    </div>
     
   <div class="wrapper">
     <!-- Main content -->

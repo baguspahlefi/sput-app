@@ -36,9 +36,17 @@
                             Tambah Tabel
                         </button>
                         @endrole
-                        <a href="{{route('MoM1.cetakPdf',$item->id)}}" class="btn btn-success">
-                            Export Excel
-                        </a>
+                        
+                        
+                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Menu Export
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{{route('MoM1.cetakPdf',$item->id)}}">Export PDF</a></li>
+                              <li><a class="dropdown-item" href="#">Export Excel</a></li>
+                              <li><a class="dropdown-item" href="#">Export Word</a></li>
+                            </ul>
+                        
                     </div>
                     <div class="col-12" style="overflow-x: auto;">
                         <table id="datatablesSimple" class="table table-bordered border-light">

@@ -43,6 +43,18 @@ class DetailLvl1Controller extends Controller
 
 
     }
+    public function cetak_excel($id)
+    {
+        $item = MeetingLevel1::findOrFail($id);
+        $pdf = PDF::loadview('MOM.MoM1.detail_level_1_pdf',
+        [
+            'item'=>$item,
+            'details' => DetailLevel1::get()
+        ]);
+    	return $pdf->stream('laporan-detail-level-1-pdf');
+
+
+    }
 
     /**
      * Show the form for creating a new resource.

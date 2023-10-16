@@ -2,22 +2,6 @@
 @section('title')
     SPUT - MoM 1 Detail
 @endsection
-<style>
-    /* CSS untuk menambahkan nomor urutan hanya pada baris yang memiliki data */
-    /* CSS untuk menambahkan nomor urutan hanya pada baris yang memiliki data */
-    table {
-        counter-reset: rowNumber;
-    }
-    
-    table tbody tr {
-        counter-increment: rowNumber;
-    }
-    
-    table tbody tr td:first-child::before {
-        content: counter(rowNumber);
-    }
-    
-</style>
 @section('content')
 <div id="layoutSidenav_content">
     <main>
@@ -52,9 +36,9 @@
                             Tambah Tabel
                         </button>
                         @endrole
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <a href="{{route('MoM1.cetakPdf',$item->id)}}" class="btn btn-success">
                             Export Excel
-                        </button>
+                        </a>
                     </div>
                     <div class="col-12" style="overflow-x: auto;">
                         <table id="datatablesSimple" class="table table-bordered border-light">
@@ -72,11 +56,16 @@
                             </thead>
                           
                             <tbody>
-                                @if(count($details) > 0)
+                                @php
+                                    $iterationCount = 0;
+                                @endphp
                                 @foreach($details as $key => $detail)
                                     @if($detail->id_meeting_level_1 == $item->id)
+                                    @php
+                                    $iterationCount++;
+                                    @endphp
                                     <tr>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">{{$iterationCount}}</td>
                                         <td class="text-center">{{$detail->point_of_meeting}}</td>
                                         <td class="text-center">{{$detail->pic}}</td>
                                         <td class="text-center">{{$detail->due}}</td>
@@ -339,7 +328,7 @@
                                         </div>
                                     </div>
                                 @endforeach     
-                                @endif   
+                                  
                             </tbody>
                         </table>
                     </div>

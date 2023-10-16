@@ -64,6 +64,6 @@ class EvidanceLevel2Controller extends Controller
         $meetingLevel2 = MeetingLevel2::first();
         $id->delete();
         sleep(1);
-        return redirect(route('detail.index', $meetingLevel2->id));
+        return redirect(route('detail2.index', $meetingLevel2->id));
     }
 }

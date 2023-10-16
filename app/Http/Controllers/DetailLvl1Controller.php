@@ -9,6 +9,7 @@ use App\Models\EvidanceLevel1;
 use App\Models\PIC;
 use App\Models\Status;
 use DB;
+use PDF;
 
 class DetailLvl1Controller extends Controller
 {
@@ -27,6 +28,18 @@ class DetailLvl1Controller extends Controller
             'status' => $status,
             'details' => DetailLevel1::get()
         ]);
+
+
+    }
+    public function cetak_pdf($id)
+    {
+        $item = MeetingLevel1::findOrFail($id);
+        $pdf = PDF::loadview('MOM.MoM1.detail_level_1_pdf',
+        [
+            'item'=>$item,
+            'details' => DetailLevel1::get()
+        ]);
+    	return $pdf->stream('laporan-detail-level-1-pdf');
 
 
     }
@@ -51,7 +64,7 @@ class DetailLvl1Controller extends Controller
         $item->due = $request->due;
         $item->status = $request->status;
         $item->save();
-        return redirect(route('detail.index', $item->id_meeting_level_1));
+        return redirect(route('detail1.index', $item->id_meeting_level_1));
     }
 
     public function store_evidance(Request $request)
@@ -111,7 +124,6 @@ class DetailLvl1Controller extends Controller
      */
     public function destroy(DetailLevel1 $id)
     {
-        DB::delete('DELETE FROM evidance_level1 WHERE id_detaillvl1 = ?', [$id]);
         $id->delete();
         sleep(1);
         return redirect()->back()->with('success', 'Berhasil hapus tabel');

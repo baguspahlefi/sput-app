@@ -65,6 +65,10 @@ Route::delete('/MoM1/detail/{id}', [DetailLvl1Controller::class, 'destroy'])
 Route::delete('/MoM1/detail/evidance/{id}', [EvidanceLevel1Controller::class,'destroy'])
 ->middleware(['auth','role:ADMIN'])
 ->name('evidance1.destroy');
+Route::get('/MoM1/detail/cetak_pdf/{id}', [DetailLvl1Controller::class,'cetak_pdf'])
+->middleware(['auth'])
+->name('MoM1.cetakPdf');
+
 
 // MoM Level 2
 Route::get('/MoM2', [MoM2Controller::class,'index'])

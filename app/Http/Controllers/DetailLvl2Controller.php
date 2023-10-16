@@ -51,7 +51,7 @@ class DetailLvl2Controller extends Controller
         $item->due = $request->due;
         $item->status = $request->status;
         $item->save();
-        return redirect(route('detail.index', $item->id_meeting_level_2));
+        return redirect(route('detail2.index', $item->id_meeting_level_2));
     }
 
     public function store_evidance(Request $request)
@@ -111,7 +111,6 @@ class DetailLvl2Controller extends Controller
      */
     public function destroy(DetailLevel2 $id)
     {
-        DB::delete('DELETE FROM evidance_level2 WHERE id_detaillvl2 = ?', [$id]);
         $id->delete();
         sleep(1);
         return redirect()->back()->with('success', 'Berhasil hapus tabel');

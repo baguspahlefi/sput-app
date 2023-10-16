@@ -43,7 +43,7 @@
                             </button>
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="{{route('MoM1.cetakPdf',$item->id)}}">Export PDF</a></li>
-                              <li><a class="dropdown-item" href="#">Export Excel</a></li>
+                              <li><a class="dropdown-item" href="{{route('MoM1.cetakExcel',$item->id)}}">Export Excel</a></li>
                               <li><a class="dropdown-item" href="#">Export Word</a></li>
                             </ul>
                         

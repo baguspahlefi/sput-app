@@ -10,6 +10,8 @@ use App\Models\PIC;
 use App\Models\Status;
 use DB;
 use PDF;
+use App\Exports\DetailLevel1Export;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DetailLvl1Controller extends Controller
 {
@@ -45,15 +47,7 @@ class DetailLvl1Controller extends Controller
     }
     public function cetak_excel($id)
     {
-        $item = MeetingLevel1::findOrFail($id);
-        $pdf = PDF::loadview('MOM.MoM1.detail_level_1_pdf',
-        [
-            'item'=>$item,
-            'details' => DetailLevel1::get()
-        ]);
-    	return $pdf->stream('laporan-detail-level-1-pdf');
-
-
+        return Excel::download(new DetailLevel1Export($id), 'MoM-Level-1.xlsx');
     }
 
     /**

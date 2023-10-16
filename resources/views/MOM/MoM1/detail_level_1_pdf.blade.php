@@ -79,10 +79,16 @@
             </tr>
             </thead>
             <tbody>
+              @php
+                  $iterationCount = 0;
+              @endphp
               @foreach($details as $key => $detail)
               @if($detail->id_meeting_level_1 == $item->id)
+              @php
+              $iterationCount++;
+              @endphp
               <tr>
-                <td>{{$loop->iteration}}</th>
+                <td>{{$iterationCount}}</th>
                 <td>{{$detail->point_of_meeting}}</td>
                 <td>{{$detail->pic}}</td>
                 <td>{{$detail->due}}</td>

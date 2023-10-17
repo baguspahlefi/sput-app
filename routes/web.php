@@ -25,13 +25,10 @@ use App\Http\Controllers\EvidanceLevel3Controller;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [DashboardController::class,'index'])
+->middleware(['auth','verified'])
+->name('dashboard');
 
 // MoM Level 1
 Route::get('/MoM1', [MoM1Controller::class,'index'])

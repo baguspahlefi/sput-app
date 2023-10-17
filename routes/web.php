@@ -63,7 +63,7 @@ Route::delete('/MoM1/detail/{id}', [DetailLvl1Controller::class, 'destroy'])
 ->middleware(['auth','role:ADMIN'])
 ->name('detail1.destroy');
 Route::delete('/MoM1/detail/evidance/{id}', [EvidanceLevel1Controller::class,'destroy'])
-->middleware(['auth','role:ADMIN'])
+->middleware(['auth'])
 ->name('evidance1.destroy');
 
 Route::get('/MoM1/detail/cetak_pdf/{id}', [DetailLvl1Controller::class,'cetak_pdf'])
@@ -118,7 +118,7 @@ Route::delete('/MoM2/detail/{id}', [DetailLvl2Controller::class, 'destroy'])
 ->middleware(['auth','role:ADMIN'])
 ->name('detail2.destroy');
 Route::delete('/MoM2/detail/evidance/{id}', [EvidanceLevel2Controller::class,'destroy'])
-->middleware(['auth','role:ADMIN'])
+->middleware(['auth'])
 ->name('evidance2.destroy');
 
 // MoM Level 3
@@ -151,7 +151,7 @@ Route::delete('/MoM3/detail/{id}', [DetailLvl3Controller::class, 'destroy'])
 ->middleware(['auth','role:ADMIN'])
 ->name('detail3.destroy');
 Route::delete('/MoM3/detail/evidance/{id}', [EvidanceLevel3Controller::class,'destroy'])
-->middleware(['auth','role:ADMIN'])
+->middleware(['auth'])
 ->name('evidance3.destroy');
 
 Route::post('daftar_hadir_3/store',[MoM2Controller::class,'modal_store'])

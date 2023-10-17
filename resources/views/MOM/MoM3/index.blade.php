@@ -204,13 +204,13 @@
                                                             <div class="col-4">
                                                                 <p class="text-center">
                                                                     <input class="form-control w-80" name="nama_{{ $daftar_hadir->id }}"  value="{{$daftar_hadir->nama}}" readonly ondblclick="editInPlaceNama(this)">
-                                                                    <p class="edit-message fs-6">Klik 2 kali untuk mengedit</p>
+                                                                    <!-- <p class="edit-message fs-6">Klik 2 kali untuk mengedit</p> -->
                                                                 </p>
                                                             </div>
                                                             <div class="col-4">
                                                                 <p class="text-center">
                                                                     <input class="form-control w-80" name="nrp_{{ $daftar_hadir->id }}"  value="{{$daftar_hadir->nrp}}" readonly ondblclick="editInPlaceNRP(this)">
-                                                                    <p class="edit-message fs-6">Klik 2 kali untuk mengedit</p>
+                                                                    <!-- <p class="edit-message fs-6">Klik 2 kali untuk mengedit</p> -->
                                                                 </p>
                                                             </div>
                                                         </div>

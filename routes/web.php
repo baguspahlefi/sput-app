@@ -72,6 +72,9 @@ Route::get('/MoM1/detail/cetak_pdf/{id}', [DetailLvl1Controller::class,'cetak_pd
 Route::get('/MoM1/detail/cetak_excel/{id}', [DetailLvl1Controller::class,'cetak_excel'])
 ->middleware(['auth'])
 ->name('MoM1.cetakExcel');
+Route::get('/MoM1/detail/cetak_word/{id}', [DetailLvl1Controller::class,'cetak_word'])
+->middleware(['auth'])
+->name('MoM1.cetakWord');
 
 
 // MoM Level 2
@@ -121,6 +124,17 @@ Route::delete('/MoM2/detail/evidance/{id}', [EvidanceLevel2Controller::class,'de
 ->middleware(['auth'])
 ->name('evidance2.destroy');
 
+Route::get('/MoM2/detail/cetak_pdf/{id}', [DetailLvl2Controller::class,'cetak_pdf'])
+->middleware(['auth'])
+->name('MoM2.cetakPdf');
+Route::get('/MoM2/detail/cetak_excel/{id}', [DetailLvl2Controller::class,'cetak_excel'])
+->middleware(['auth'])
+->name('MoM2.cetakExcel');
+Route::get('/MoM2/detail/cetak_word/{id}', [DetailLvl2Controller::class,'cetak_word'])
+->middleware(['auth'])
+->name('MoM2.cetakWord');
+
+
 // MoM Level 3
 Route::get('/MoM3', [MoM3Controller::class,'index'])
 ->middleware(['auth','level3'])
@@ -160,6 +174,16 @@ Route::post('daftar_hadir_3/store',[MoM2Controller::class,'modal_store'])
 Route::put('daftar_hadir_3/update',[MoM2Controller::class,'update_daftarHadir'])
 ->middleware(['auth'])
 ->name('daftarHadir3.update');
+
+Route::get('/MoM3/detail/cetak_pdf/{id}', [DetailLvl3Controller::class,'cetak_pdf'])
+->middleware(['auth'])
+->name('MoM3.cetakPdf');
+Route::get('/MoM3/detail/cetak_excel/{id}', [DetailLvl3Controller::class,'cetak_excel'])
+->middleware(['auth'])
+->name('MoM3.cetakExcel');
+Route::get('/MoM3/detail/cetak_word/{id}', [DetailLvl3Controller::class,'cetak_word'])
+->middleware(['auth'])
+->name('MoM3.cetakWord');
 
 // Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
 // ->middleware(['auth'])

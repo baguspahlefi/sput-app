@@ -52,9 +52,14 @@
                             Tambah Tabel
                         </button>
                         @endrole
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Export Excel
+                        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Menu Export
                         </button>
+                        <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="{{route('MoM2.cetakPdf',$item->id)}}">Export PDF</a></li>
+                              <li><a class="dropdown-item" href="{{route('MoM2.cetakExcel',$item->id)}}">Export Excel</a></li>
+                              <li><a class="dropdown-item" href="{{route('MoM2.cetakWord',$item->id)}}">Export Word</a></li>
+                        </ul>
                     </div>
                     <div class="col-12" style="overflow-x: auto;">
                         <table id="datatablesSimple" class="table table-bordered border-light">

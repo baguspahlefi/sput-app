@@ -9,6 +9,13 @@ use App\Models\EvidanceLevel2;
 use App\Models\PIC;
 use App\Models\Status;
 use DB;
+use PDF;
+use App\Exports\DetailLevel2Export;
+use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpWord\TemplateProcessor;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\IOFactory;
+
 
 class DetailLvl2Controller extends Controller
 {
@@ -29,6 +36,70 @@ class DetailLvl2Controller extends Controller
         ]);
 
 
+    }
+
+    public function cetak_pdf($id)
+    {
+        $item = MeetingLevel2::findOrFail($id);
+        $pdf = PDF::loadview('MOM.MoM2.detail_level_2_pdf',
+        [
+            'item'=>$item,
+            'details' => DetailLevel2::get()
+        ]);
+    	return $pdf->stream('laporan-detail-level-2-pdf');
+
+
+    }
+    public function cetak_excel($id)
+    {
+        return Excel::download(new DetailLevel2Export($id), 'MoM-Level-2.xlsx');
+    }
+
+
+    public function cetak_word($id)
+    {
+        // Inisialisasi objek PHPWord
+        $phpWord = new PhpWord();
+        $section = $phpWord->addSection();
+
+        $data = DetailLevel2::where('id_meeting_level_2', $id)->get();
+
+        // Mulai tabel HTML
+        $htmlContent = '<table border="1">';
+        $htmlContent .= '<tr>';
+        $htmlContent .= '<th>No</th>';
+        $htmlContent .= '<th>Point Of Meeting</th>';
+        $htmlContent .= '<th>Status</th>';
+        $htmlContent .= '<th>Due</th>';
+        $htmlContent .= '<th>PIC</th>';
+        $htmlContent .= '</tr>';
+
+        // Loop melalui data dan tambahkan baris-baris ke tabel
+        foreach ($data as $key => $detail) {
+            $htmlContent .= '<tr>';
+            $htmlContent .= '<td>' . ($key + 1) . '</td>'; // No
+            $htmlContent .= '<td>' . $detail->point_of_meeting . '</td>'; // Point Of Meeting
+            $htmlContent .= '<td>' . $detail->status . '</td>'; // Status
+            $htmlContent .= '<td>' . $detail->due . '</td>'; // Due
+            $htmlContent .= '<td>' . $detail->pic . '</td>'; // PIC
+            $htmlContent .= '</tr>';
+        }
+
+        // Tutup tabel HTML
+        $htmlContent .= '</table>';
+
+// Sekarang Anda bisa menggunakan $htmlContent dalam kode sebelumnya untuk mengonversinya ke dokumen Word.
+
+
+        // Tambahkan HTML ke dokumen
+        \PhpOffice\PhpWord\Shared\Html::addHtml($section, $htmlContent);
+
+        // Simpan dokumen sebagai file
+        $phpWord->save('dokumen_word.docx');
+
+        // Kembalikan dokumen ke browser
+        return response()->download('dokumen_word.docx')->deleteFileAfterSend(true);
+        
     }
 
     /**

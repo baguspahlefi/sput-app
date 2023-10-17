@@ -12,6 +12,9 @@ use DB;
 use PDF;
 use App\Exports\DetailLevel1Export;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpWord\TemplateProcessor;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\IOFactory;
 
 class DetailLvl1Controller extends Controller
 {
@@ -48,6 +51,53 @@ class DetailLvl1Controller extends Controller
     public function cetak_excel($id)
     {
         return Excel::download(new DetailLevel1Export($id), 'MoM-Level-1.xlsx');
+    }
+
+
+    public function cetak_word($id)
+    {
+        // Inisialisasi objek PHPWord
+        $phpWord = new PhpWord();
+        $section = $phpWord->addSection();
+
+        $data = DetailLevel1::where('id_meeting_level_1', $id)->get();
+
+        // Mulai tabel HTML
+        $htmlContent = '<table border="1">';
+        $htmlContent .= '<tr>';
+        $htmlContent .= '<th>No</th>';
+        $htmlContent .= '<th>Point Of Meeting</th>';
+        $htmlContent .= '<th>Status</th>';
+        $htmlContent .= '<th>Due</th>';
+        $htmlContent .= '<th>PIC</th>';
+        $htmlContent .= '</tr>';
+
+        // Loop melalui data dan tambahkan baris-baris ke tabel
+        foreach ($data as $key => $detail) {
+            $htmlContent .= '<tr>';
+            $htmlContent .= '<td>' . ($key + 1) . '</td>'; // No
+            $htmlContent .= '<td>' . $detail->point_of_meeting . '</td>'; // Point Of Meeting
+            $htmlContent .= '<td>' . $detail->status . '</td>'; // Status
+            $htmlContent .= '<td>' . $detail->due . '</td>'; // Due
+            $htmlContent .= '<td>' . $detail->pic . '</td>'; // PIC
+            $htmlContent .= '</tr>';
+        }
+
+        // Tutup tabel HTML
+        $htmlContent .= '</table>';
+
+// Sekarang Anda bisa menggunakan $htmlContent dalam kode sebelumnya untuk mengonversinya ke dokumen Word.
+
+
+        // Tambahkan HTML ke dokumen
+        \PhpOffice\PhpWord\Shared\Html::addHtml($section, $htmlContent);
+
+        // Simpan dokumen sebagai file
+        $phpWord->save('dokumen_word.docx');
+
+        // Kembalikan dokumen ke browser
+        return response()->download('dokumen_word.docx')->deleteFileAfterSend(true);
+        
     }
 
     /**

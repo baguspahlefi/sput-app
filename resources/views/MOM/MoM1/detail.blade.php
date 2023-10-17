@@ -44,12 +44,12 @@
                             <ul class="dropdown-menu">
                               <li><a class="dropdown-item" href="{{route('MoM1.cetakPdf',$item->id)}}">Export PDF</a></li>
                               <li><a class="dropdown-item" href="{{route('MoM1.cetakExcel',$item->id)}}">Export Excel</a></li>
-                              <li><a class="dropdown-item" href="#">Export Word</a></li>
+                              <li><a class="dropdown-item" href="{{route('MoM1.cetakWord',$item->id)}}">Export Word</a></li>
                             </ul>
                         
                     </div>
                     <div class="col-12" style="overflow-x: auto;">
-                        <table id="datatablesSimple" class="table table-bordered border-light">
+                        <table id="datatablesSimple" class="table table-bordered border-light table-word">
                             <thead>
                                 <tr>
                                     <th>No</th>

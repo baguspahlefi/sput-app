@@ -29,11 +29,13 @@ class DetailLvl3Controller extends Controller
         $pic = PIC::all();
         $status = Status::all();
         $item = MeetingLevel3::findOrFail($id);
-        if ($roles->contains("ADMIN")) {
+        $rolesToCheck = ["ADMIN", "Project Management"];
+
+        if ($roles->intersect($rolesToCheck)->isNotEmpty()) {
             $detail = DetailLevel3::get();
         } else {
             $detail = DetailLevel3::whereIn('pic', $roles)->get();
-        }
+        }      
         return view ('MOM.MoM3.detail',
         [
             'item'=>$item,

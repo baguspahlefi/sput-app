@@ -18,7 +18,7 @@ class DetailLevel1Seeder extends Seeder
     {
         $faker = Faker::create('id');
  
-    	for($i = 1; $i <= 40; $i++){
+    	for($i = 1; $i <= 3; $i++){
  
     	      // insert data ke table pegawai menggunakan Faker
     		DB::table('detail_level1')->insert([

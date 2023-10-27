@@ -15,6 +15,10 @@ use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
+use Spatie\Permission\Models\Role;
+use Notification;
+use App\Notifications\GenerateDetailNotification;
+use App\Models\User;
 
 
 class DetailLvl2Controller extends Controller
@@ -124,14 +128,20 @@ class DetailLvl2Controller extends Controller
      */
     public function store(Request $request)
     {
-        $item = new DetailLevel2();
-        $item->id_meeting_level_2 = $request->id;
-        $item->point_of_meeting = $request->point_of_meeting;
-        $item->pic = $request->pic;
-        $item->due = $request->due;
-        $item->status = $request->status;
-        $item->save();
-        return redirect(route('detail2.index', $item->id_meeting_level_2));
+        $item = [
+            'id_meeting_level_2' => $request->id,
+            'point_of_meeting' => $request->point_of_meeting,
+            'pic' => $request->pic,
+            'due' => $request->due,
+            'status' => $request->status,
+        ];
+        $data = DetailLevel2::create($item);
+        $roleName = $request->pic; // Ganti dengan peran yang Anda inginkan
+        $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
+            $query->where('name', $roleName);
+        })->where('level2', 1)->get();
+        Notification::send($usersWithRole, new GenerateDetailNotification($data));
+        return redirect(route('detail2.index', $request->id));
     }
 
     public function store_evidance(Request $request)

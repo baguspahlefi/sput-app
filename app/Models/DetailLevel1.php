@@ -17,6 +17,7 @@ class DetailLevel1 extends Model
         'id_meeting_level_1',
         'point_of_meeting',
         'pic',
+        'due',
         'nrp',
         'status'
     ];

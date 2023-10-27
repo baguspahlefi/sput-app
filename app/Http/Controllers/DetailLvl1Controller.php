@@ -17,6 +17,8 @@ use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
 use Spatie\Permission\Models\Role;
+use Notification;
+use App\Notifications\GenerateDetailNotification;
 
 
 class DetailLvl1Controller extends Controller
@@ -127,14 +129,27 @@ class DetailLvl1Controller extends Controller
      */
     public function store(Request $request)
     {
-        $item = new DetailLevel1();
-        $item->id_meeting_level_1 = $request->id;
-        $item->point_of_meeting = $request->point_of_meeting;
-        $item->pic = $request->pic;
-        $item->due = $request->due;
-        $item->status = $request->status;
-        $item->save();
-        return redirect(route('detail1.index', $item->id_meeting_level_1));
+        // $item = new DetailLevel1();
+        // $item->id_meeting_level_1 = $request->id;
+        // $item->point_of_meeting = $request->point_of_meeting;
+        // $item->pic = $request->pic;
+        // $item->due = $request->due;
+        // $item->status = $request->status;
+        // $item->save();
+        $item = [
+            'id_meeting_level_1' => $request->id,
+            'point_of_meeting' => $request->point_of_meeting,
+            'pic' => $request->pic,
+            'due' => $request->due,
+            'status' => $request->status,
+        ];
+        $data = DetailLevel1::create($item);
+        $roleName = $request->pic; // Ganti dengan peran yang Anda inginkan
+        $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
+            $query->where('name', $roleName);
+        })->where('level1', 1)->get();
+        Notification::send($usersWithRole, new GenerateDetailNotification($data));
+        return redirect(route('detail1.index', $request->id));
     }
 
     public function store_evidance(Request $request)

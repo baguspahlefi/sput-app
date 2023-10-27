@@ -24,15 +24,22 @@ class DetailLvl3Controller extends Controller
      */
     public function index($id)
     {
+        $user = auth()->user();
+        $roles = $user->getRoleNames();
         $pic = PIC::all();
         $status = Status::all();
         $item = MeetingLevel3::findOrFail($id);
+        if ($roles->contains("ADMIN")) {
+            $detail = DetailLevel3::get();
+        } else {
+            $detail = DetailLevel3::whereIn('pic', $roles)->get();
+        }
         return view ('MOM.MoM3.detail',
         [
             'item'=>$item,
             'pic' => $pic,
             'status' => $status,
-            'details' => DetailLevel3::get()
+            'details' => $detail
         ]);
 
 

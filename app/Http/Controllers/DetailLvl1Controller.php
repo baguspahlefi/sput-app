@@ -8,6 +8,7 @@ use App\Models\MeetingLevel1;
 use App\Models\EvidanceLevel1;
 use App\Models\PIC;
 use App\Models\Status;
+use App\Models\User;
 use DB;
 use PDF;
 use App\Exports\DetailLevel1Export;
@@ -15,23 +16,34 @@ use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
+use Spatie\Permission\Models\Role;
+
 
 class DetailLvl1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index($id)
+    public function index(Request $request,$id)
     {
+        $user = auth()->user();
+        $roles = $user->getRoleNames();
+
         $pic = PIC::all();
         $status = Status::all();
         $item = MeetingLevel1::findOrFail($id);
+        if ($roles->contains("ADMIN")) {
+            $detail = DetailLevel1::get();
+        } else {
+            $detail = DetailLevel1::whereIn('pic', $roles)->get();
+        }
+        
         return view ('MOM.MoM1.detail',
         [
             'item'=>$item,
             'pic' => $pic,
             'status' => $status,
-            'details' => DetailLevel1::get()
+            'details' => $detail
         ]);
 
 

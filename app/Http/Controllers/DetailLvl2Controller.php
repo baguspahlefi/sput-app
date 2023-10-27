@@ -24,15 +24,22 @@ class DetailLvl2Controller extends Controller
      */
     public function index($id)
     {
+        $user = auth()->user();
+        $roles = $user->getRoleNames();
         $pic = PIC::all();
         $status = Status::all();
         $item = MeetingLevel2::findOrFail($id);
+        if ($roles->contains("ADMIN")) {
+            $detail = DetailLevel2::get();
+        } else {
+            $detail = DetailLevel2::whereIn('pic', $roles)->get();
+        }
         return view ('MOM.MoM2.detail',
         [
             'item'=>$item,
             'pic' => $pic,
             'status' => $status,
-            'details' => DetailLevel2::get()
+            'details' => $detail
         ]);
 
 

@@ -99,7 +99,7 @@ class MoM3Controller extends Controller
 
             // Anda dapat melakukan operasi update sesuai kebutuhan, misalnya:
             foreach ($daftar_hadir_ids as $id) {
-                $daftarHadir = DaftarHadir::find($id);
+                $daftarHadir = DaftarHadir3::find($id);
         
                 if ($daftarHadir) {
                     $nama = $request->input('nama_' . $id); // Mengakses input berdasarkan ID

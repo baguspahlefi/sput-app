@@ -12,20 +12,17 @@
                 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                 <li class="breadcrumb-item active">Charts</li>
             </ol>
-            <div class="card mb-4">
-                <div class="card-body">
-                    Chart.js is a third party plugin that is used to generate the charts in this template. The charts below have been customized - for further customization options, please visit the official
-                    <a target="_blank" href="https://www.chartjs.org/docs/latest/">Chart.js documentation</a>
-                    .
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar me-1"></i>
+                            Column Chart MoM Level 1
+                        </div>
+                        <div class="card-body"><div id="chart" width="100%" height="50"></div></div>
+                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                    </div>
                 </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    Area Chart Example
-                </div>
-                <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -285,6 +282,73 @@ var myPieChart = new Chart(ctx, {
   }
 });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    var statusCountsHCGS = {!! json_encode($statusCountsHCGS) !!};
+    var statusCountsFAT = {!! json_encode($statusCountsFAT) !!};
+    var statusCountsEngineeringRoad = {!! json_encode($statusCountsEngineeringRoad) !!};
+    var statusCountsPortOperation = {!! json_encode($statusCountsPortOperation) !!};
+    var statusCountsSM = {!! json_encode($statusCountsSM) !!};
+    var statusCountsPLANT = {!! json_encode($statusCountsPLANT) !!};
+    var statusCountsSHE = {!! json_encode($statusCountsSHE) !!};
+    var statusCountsProjectManagement = {!! json_encode($statusCountsProjectManagement) !!};
+
+    var options = {
+        series: [{
+        name: 'OPEN',
+        data: [statusCountsHCGS.OPEN,statusCountsFAT.OPEN,statusCountsEngineeringRoad.OPEN,statusCountsPortOperation.OPEN,statusCountsSM.OPEN,statusCountsPLANT.OPEN,statusCountsSHE.OPEN,statusCountsProjectManagement.OPEN]
+    }, {
+        name: 'PROGRESS',
+        data: [statusCountsHCGS.PROGRESS,statusCountsFAT.PROGRESS,statusCountsEngineeringRoad.PROGRESS,statusCountsPortOperation.PROGRESS,statusCountsSM.PROGRESS,statusCountsPLANT.PROGRESS,statusCountsSHE.PROGRESS,statusCountsProjectManagement.PROGRESS]
+    }, {
+        name: 'CLOSE',
+        data: [statusCountsHCGS.CLOSE,statusCountsFAT.CLOSE,statusCountsEngineeringRoad.CLOSE,statusCountsPortOperation.CLOSE,statusCountsSM.CLOSE,statusCountsPLANT.CLOSE,statusCountsSHE.CLOSE,statusCountsProjectManagement.CLOSE]
+    }],
+        chart: {
+        type: 'bar',
+        height: 350
+    },
+    plotOptions: {
+        bar: {
+        horizontal: false,
+        columnWidth: '55%',
+        endingShape: 'rounded'
+        },
+    },
+    dataLabels: {
+        enabled: false
+    },
+    stroke: {
+        show: true,
+        width: 2,
+        colors: ['transparent']
+    },
+    xaxis: {
+        categories: ['HCGS', 'FAT', 'Engineering Road', 'Port Operation', 'SM', 'PLANT', 'SHE', 'Project Management'],
+    },
+    yaxis: {
+        title: {
+        text: 'Jumlah Status'
+        }
+    },
+    fill: {
+        opacity: 1
+    },
+    tooltip: {
+        y: {
+        formatter: function (val) {
+            return val 
+        }
+        }
+    }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+
+</script>
+
 
 @endsection
 

@@ -14,7 +14,7 @@
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-bell fa-fw"></i>
                         <span class="badge rounded-pill badge-notification bg-danger">{{ auth()->user()->unreadNotifications->count() }}</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-end scrollable-dropdown" aria-labelledby="navbarDropdown">
                     @foreach (auth()->user()->unreadNotifications as $notification)
                         <li>
                             <a href="{{url($notification->data['url'].'?id='.$notification->id)}}" class="top-text-block">

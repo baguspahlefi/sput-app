@@ -11863,6 +11863,11 @@ body {
   100% { transform: rotate(360deg); }
 }
 
+.scrollable-dropdown {
+  max-height: 300px; /* Set a maximum height for the dropdown */
+  overflow-y: auto; /* Make the content scrollable when it exceeds the maximum height */
+}
+
 
 
 

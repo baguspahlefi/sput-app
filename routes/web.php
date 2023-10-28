@@ -63,6 +63,13 @@ Route::delete('/MoM1/detail/evidance/{id}', [EvidanceLevel1Controller::class,'de
 ->middleware(['auth'])
 ->name('evidance1.destroy');
 
+Route::post('daftar_hadir_1/store',[MoM1Controller::class,'modal_store'])
+->middleware(['auth'])
+->name('daftarHadir1.store');
+Route::put('daftar_hadir_1/update',[MoM1Controller::class,'update_daftarHadir'])
+->middleware(['auth'])
+->name('daftarHadir1.update');
+
 Route::get('/MoM1/detail/cetak_pdf/{id}', [DetailLvl1Controller::class,'cetak_pdf'])
 ->middleware(['auth'])
 ->name('MoM1.cetakPdf');
@@ -88,12 +95,12 @@ Route::delete('/MoM2/destroy/{id}', [MoM2Controller::class,'destroy'])
 ->middleware(['auth'])
 ->name('MoM2.destroy','role:ADMIN');
 
-Route::post('daftar_hadir_1/store',[MoM2Controller::class,'modal_store'])
+Route::post('daftar_hadir_2/store',[MoM2Controller::class,'modal_store'])
 ->middleware(['auth'])
-->name('daftarHadir1.store');
-Route::put('daftar_hadir_1/update',[MoM2Controller::class,'update_daftarHadir'])
+->name('daftarHadir2.store');
+Route::put('daftar_hadir_2/update',[MoM2Controller::class,'update_daftarHadir'])
 ->middleware(['auth'])
-->name('daftarHadir1.update');
+->name('daftarHadir2.update');
 
 Route::post('daftar_hadir_2/store',[MoM2Controller::class,'modal_store'])
 ->middleware(['auth'])
@@ -165,10 +172,10 @@ Route::delete('/MoM3/detail/evidance/{id}', [EvidanceLevel3Controller::class,'de
 ->middleware(['auth'])
 ->name('evidance3.destroy');
 
-Route::post('daftar_hadir_3/store',[MoM2Controller::class,'modal_store'])
+Route::post('daftar_hadir_3/store',[MoM3Controller::class,'modal_store'])
 ->middleware(['auth'])
 ->name('daftarHadir3.store');
-Route::put('daftar_hadir_3/update',[MoM2Controller::class,'update_daftarHadir'])
+Route::put('daftar_hadir_3/update',[MoM3Controller::class,'update_daftarHadir'])
 ->middleware(['auth'])
 ->name('daftarHadir3.update');
 

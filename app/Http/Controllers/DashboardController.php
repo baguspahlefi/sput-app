@@ -16,35 +16,35 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $statusMoM1 = DetailLevel1::select('status', DB::raw('count(id) as count'))
-        ->groupBy('status')
-        ->get();
-        $labelsMoM1 = $statusMoM1->pluck('status');
-        $dataMoM1 = $statusMoM1->pluck('count');
-        $statusMoM1_2 = DB::table('detail_level1')
-        ->select('pic', DB::raw('count(id) as id_count'), 'status')
-        ->groupBy('pic', 'status')
-        ->get();
+        // $statusMoM1 = DetailLevel1::select('status', DB::raw('count(id) as count'))
+        // ->groupBy('status')
+        // ->get();
+        // $labelsMoM1 = $statusMoM1->pluck('status');
+        // $dataMoM1 = $statusMoM1->pluck('count');
+        // $statusMoM1_2 = DB::table('detail_level1')
+        // ->select('pic', DB::raw('count(id) as id_count'), 'status')
+        // ->groupBy('pic', 'status')
+        // ->get();
 
-        $statusMoM2 = DetailLevel2::select('status', DB::raw('count(id) as count'))
-        ->groupBy('status')
-        ->get();
-        $labelsMoM2 = $statusMoM2->pluck('status');
-        $dataMoM2 = $statusMoM2->pluck('count');
-        $statusMoM2_2 = DB::table('detail_level2')
-        ->select('pic', DB::raw('count(id) as id_count'), 'status')
-        ->groupBy('pic', 'status')
-        ->get();
+        // $statusMoM2 = DetailLevel2::select('status', DB::raw('count(id) as count'))
+        // ->groupBy('status')
+        // ->get();
+        // $labelsMoM2 = $statusMoM2->pluck('status');
+        // $dataMoM2 = $statusMoM2->pluck('count');
+        // $statusMoM2_2 = DB::table('detail_level2')
+        // ->select('pic', DB::raw('count(id) as id_count'), 'status')
+        // ->groupBy('pic', 'status')
+        // ->get();
 
-        $statusMoM3 = DetailLevel3::select('status', DB::raw('count(id) as count'))
-        ->groupBy('status')
-        ->get();
-        $labelsMoM3 = $statusMoM3->pluck('status');
-        $dataMoM3 = $statusMoM3->pluck('count');
-        $statusMoM3_2 = DB::table('detail_level3')
-        ->select('pic', DB::raw('count(id) as id_count'), 'status')
-        ->groupBy('pic', 'status')
-        ->get();
+        // $statusMoM3 = DetailLevel3::select('status', DB::raw('count(id) as count'))
+        // ->groupBy('status')
+        // ->get();
+        // $labelsMoM3 = $statusMoM3->pluck('status');
+        // $dataMoM3 = $statusMoM3->pluck('count');
+        // $statusMoM3_2 = DB::table('detail_level3')
+        // ->select('pic', DB::raw('count(id) as id_count'), 'status')
+        // ->groupBy('pic', 'status')
+        // ->get();
         
         
         // return view ('dashboard', [
@@ -78,7 +78,7 @@ class DashboardController extends Controller
 
         $dataFAT = DB::table('detail_level1')
         ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'Engineering Road')
+        ->where('pic', 'FAT')
         ->groupBy('status')
         ->get();
 
@@ -162,21 +162,6 @@ class DashboardController extends Controller
             'statusCountsPLANT' => $statusCountsPLANT,
             'statusCountsSHE' => $statusCountsSHE,
             'statusCountsProjectManagement' => $statusCountsProjectManagement,
-            'statusMoM1' => [
-                        'labelsMoM1' => $labelsMoM1,
-                        'dataMoM1' => $dataMoM1,
-                    ],
-                    'statusMoM1_2' => $statusMoM1_2,
-                    'statusMoM2' => [
-                        'labelsMoM2' => $labelsMoM2,
-                        'dataMoM2' => $dataMoM2,
-                    ],
-                    'statusMoM2_2' => $statusMoM2_2,
-                    'statusMoM3' => [
-                        'labelsMoM2' => $labelsMoM3,
-                        'dataMoM3' => $dataMoM3,
-                    ],
-                    'statusMoM3_2' => $statusMoM3_2,
         ]);
         
     }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\DaftarHadir;
+use App\Models\DaftarHadir2;
 use App\Models\DetailLevel2;
 
 class MeetingLevel2 extends Model
@@ -17,9 +17,9 @@ class MeetingLevel2 extends Model
         'tanggal'
     ];
 
-    public function daftar_hadir()
+    public function daftar_hadir_2()
     {
-        return $this->hasMany(DaftarHadir::class, 'id_daftar_hadir','id');
+        return $this->hasMany(DaftarHadir2::class, 'id_daftar_hadir','id');
     }
 
     public function detaillvl2()

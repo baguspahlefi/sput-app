@@ -99,7 +99,7 @@
 <script src="{{url('assets/demo/chart-bar-demo.js')}}"></script>
 <script src="{{url('assets/demo/chart-pie-demo.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
-<script>
+{{-- <script>
 var data = @json($statusMoM1_2);
 
 var labels = [...new Set(data.map(item => item.pic))];
@@ -281,7 +281,7 @@ var myPieChart = new Chart(ctx, {
         maintainAspectRatio: false // Tidak mempertahankan rasio aspek
   }
 });
-</script>
+</script> --}}
 
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>

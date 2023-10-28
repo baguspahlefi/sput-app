@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MeetingLevel2;
-use App\Models\DaftarHadir;
+use App\Models\DaftarHadir2;
 use App\Models\DetailLevel2;
 use App\Models\PIC;
 use App\Models\Status;
@@ -29,7 +29,7 @@ class MoM2Controller extends Controller
 
     // Show modal daftar hadir
     public function modal_store(Request $request){
-        $item = new DaftarHadir();
+        $item = new DaftarHadir2();
         $item->id_daftar_hadir = $request->id_daftar_hadir;
         $item->nama = $request->nama;
         $item->nrp = $request->nrp;
@@ -99,7 +99,7 @@ class MoM2Controller extends Controller
 
             // Anda dapat melakukan operasi update sesuai kebutuhan, misalnya:
             foreach ($daftar_hadir_ids as $id) {
-                $daftarHadir = DaftarHadir::find($id);
+                $daftarHadir = DaftarHadir2::find($id);
         
                 if ($daftarHadir) {
                     $nama = $request->input('nama_' . $id); // Mengakses input berdasarkan ID

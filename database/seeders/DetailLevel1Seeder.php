@@ -17,16 +17,18 @@ class DetailLevel1Seeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id');
+		$picList = ['FAT', 'Engineering Road', 'Port Operation', 'SM', 'PLANT', 'SHE', 'Project Management'];
+		$statusList = ['OPEN','PROGRESS','CLOSE'];
  
-    	for($i = 1; $i <= 3; $i++){
+    	for($i = 1; $i <= 40; $i++){
  
     	      // insert data ke table pegawai menggunakan Faker
     		DB::table('detail_level1')->insert([
     			'id_meeting' => $faker->numberBetween(1, 2),
     			'point_of_meeting' => $faker->text(50),
-    			'pic' => 'SHE',
+    			'pic' => $faker->randomElement($picList),
     			'due' => $faker->dateTimeThisCentury->format('Y-m-d'),
-    			'status' => 'PROGRESS'
+    			'status' => $faker->randomElement($statusList),
     		]);
  
     	}

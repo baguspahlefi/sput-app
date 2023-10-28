@@ -195,7 +195,7 @@
                                                     <form action="{{route('daftarHadir2.update')}}" method="post">
                                                         @csrf
                                                         @method('put')
-                                                    @foreach($item->daftar_hadir as $daftar_hadir)
+                                                    @foreach($item->daftar_hadir_2 as $daftar_hadir)
                                                         <div class="row">
                                                             <input type="hidden" name="daftar_hadir_id[]" value="{{ $daftar_hadir->id }}">
                                                             <div class="col-4">

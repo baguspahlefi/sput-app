@@ -17,9 +17,9 @@ class MeetingLevel3 extends Model
         'tanggal'
     ];
 
-    public function daftar_hadir()
+    public function daftar_hadir_3()
     {
-        return $this->hasMany(DaftarHadir::class, 'id_daftar_hadir','id');
+        return $this->hasMany(DaftarHadir3::class, 'id_daftar_hadir','id');
     }
 
     public function detaillvl3()

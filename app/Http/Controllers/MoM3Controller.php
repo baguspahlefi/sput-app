@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\MeetingLevel3;
-use App\Models\DaftarHadir;
+use App\Models\DaftarHadir3;
 use App\Models\DetailLevel3;
 use App\Models\PIC;
 use App\Models\Status;
@@ -29,7 +29,7 @@ class MoM3Controller extends Controller
 
     // Show modal daftar hadir
     public function modal_store(Request $request){
-        $item = new DaftarHadir();
+        $item = new DaftarHadir3();
         $item->id_daftar_hadir = $request->id_daftar_hadir;
         $item->nama = $request->nama;
         $item->nrp = $request->nrp;

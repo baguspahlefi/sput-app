@@ -139,6 +139,9 @@ class DetailLvl1Controller extends Controller
         // $item->status = $request->status;
         // $item->save();
         $level = 1;
+        $nama = $request->user()->name;
+        $user = auth()->user();
+        $pic = $user->getRoleNames();
         $item = [
             'id_meeting' => $request->id,
             'point_of_meeting' => $request->point_of_meeting,
@@ -151,7 +154,7 @@ class DetailLvl1Controller extends Controller
         $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
             $query->where('name', $roleName);
         })->where('level1', 1)->get();
-        Notification::send($usersWithRole, new GenerateDetailNotification($data, $level));
+        Notification::send($usersWithRole, new GenerateDetailNotification($data,$level,$nama,$pic));
         return redirect(route('detail1.index', $request->id));
     }
 

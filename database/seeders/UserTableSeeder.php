@@ -16,17 +16,33 @@ class UserTableSeeder extends Seeder
         $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
-            'nrp' => '12345678901',
-            'password' => bcrypt('qwerty123'),
+            'nrp' => '098',
+            'password' => bcrypt('password'),
         ]);
         $admin->assignRole('ADMIN');
 
         $user = User::create([
             'name' => 'User',
             'email' => 'user@gmail.com',
-            'nrp' => '12345678910',
-            'password' => bcrypt('qwerty123'),
+            'nrp' => '123',
+            'password' => bcrypt('password'),
         ]);
         $user->assignRole('PLANT');
+
+        $user2 = User::create([
+            'name' => 'User2',
+            'email' => 'user2@gmail.com',
+            'nrp' => '456',
+            'password' => bcrypt('password'),
+        ]);
+        $user2->assignRole('PLANT');
+
+        $user3 = User::create([
+            'name' => 'User3',
+            'email' => 'user3@gmail.com',
+            'nrp' => '789',
+            'password' => bcrypt('password'),
+        ]);
+        $user3->assignRole('PLANT');
     }
 }

@@ -17,8 +17,19 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     @foreach (auth()->user()->unreadNotifications as $notification)
                         <li>
-                            <a href="{{url($notification->data['url'])}}" class="top-text-block">
-                                <div class="top-text-heading">{{ $notification->data['title'] }}</div>
+                            <a href="{{url($notification->data['url'].'?id='.$notification->id)}}" class="top-text-block">
+                                <div class="top-text-heading font-monospace">{{ $notification->data['title'] }}</div>
+                                <div class="top-text-light text-break">{{ $notification->data['messages'] }}</div>
+                                <small class="text-muted text-wrap">
+                                    {{$notification->created_at->diffForHumans()}}
+                                </small>
+                            </a> 
+                        </li>
+                    @endforeach
+                    @foreach (auth()->user()->readNotifications as $notification)
+                        <li>
+                            <a href="{{url($notification->data['url'].'?id='.$notification->id)}}" class="top-text-block">
+                                <p class="top-text-heading font-monospace">{{ $notification->data['title'] }}</div>
                                 <div class="top-text-light">{{ $notification->data['messages'] }}</div>
                                 <small class="text-muted">
                                     {{$notification->created_at->diffForHumans()}}

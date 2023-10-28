@@ -68,7 +68,7 @@
                                     $iterationCount = 0;
                                 @endphp
                                 @foreach($details as $key => $detail)
-                                    @if($detail->id_meeting_level_1 == $item->id)
+                                    @if($detail->id_meeting == $item->id)
                                     @php
                                     $iterationCount++;
                                     @endphp

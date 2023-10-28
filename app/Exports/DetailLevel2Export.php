@@ -24,7 +24,7 @@ class DetailLevel2Export implements FromCollection,WithHeadings,WithStyles
     
     public function collection()
     {
-        $data = DetailLevel2::where('id_meeting_level_2', $this->id)->get();
+        $data = DetailLevel2::where('id_meeting', $this->id)->get();
   
         return $data;
     }

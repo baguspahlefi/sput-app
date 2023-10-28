@@ -14,10 +14,17 @@ class GenerateDetailNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    private $data;
-    public function __construct($data)
+    public $data;
+    public $level;
+    public $nama;
+    public $pic;
+
+    public function __construct($data,$level,$nama,$pic)
     {
         $this->data = $data;
+        $this->level = $level;
+        $this->nama = $nama;
+        $this->pic = $pic;
     }
 
     /**
@@ -48,12 +55,21 @@ class GenerateDetailNotification extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        return [
-            'id' => $this->data->id_meeting_level_2,
+        $data = [
+            'id' => $this->data->id_meeting,
             'pic' => $this->data->pic,
             'title' => 'MoM Baru',
             'messages' => 'Status '. $this->data->status,
-            'url' => route('detail1.index', $this->data->id_meeting_level_2),
         ];
+    
+        if ($notifiable->hasRole('ADMIN')) {
+            // Jika pengguna memiliki peran "ADMIN," atur hasil yang berbeda
+            $data['title'] = 'Update';
+            $data['messages'] = 'Data ' .$this->data->point_of_meeting. ' telah diupdate oleh ' . $this->nama. ' '.$this->pic;
+        }
+    
+        $data['url'] = route('detail' . $this->level . '.index', $this->data->id_meeting);
+    
+        return $data;
     }
 }

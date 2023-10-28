@@ -24,6 +24,6 @@ class MeetingLevel3 extends Model
 
     public function detaillvl3()
     {
-        return $this->hasMany(DetailLevel3::class, 'id_meeting_level_3','id');
+        return $this->hasMany(DetailLevel3::class, 'id_meeting','id');
     }
 }

@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('detail_level2', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_meeting_level_2');
+            $table->unsignedBigInteger('id_meeting');
             $table->string('point_of_meeting');
             $table->string('pic');
             $table->date('due');
             $table->string('status');
             $table->timestamps();
             
-            $table->foreign('id_meeting_level_2')->references('id')->on('meeting_level2')->onDelete('cascade');
+            $table->foreign('id_meeting')->references('id')->on('meeting_level2')->onDelete('cascade');
         });
     }
 

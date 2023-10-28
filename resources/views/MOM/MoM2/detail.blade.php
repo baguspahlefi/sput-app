@@ -79,7 +79,7 @@
                             <tbody>
                                 @if(count($details) > 0)
                                 @foreach($details as $key => $detail)
-                                    @if($detail->id_meeting_level_2 == $item->id)
+                                    @if($detail->id_meeting == $item->id)
                                     <tr>
                                         <td class="text-center"></td>
                                         <td class="text-center">{{$detail->point_of_meeting}}</td>

@@ -49,11 +49,11 @@ class GenerateDetailLevel3Notification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'id' => $this->data->id_meeting_level_3,
+            'id' => $this->data->id_meeting,
             'pic' => $this->data->pic,
             'title' => 'MoM Baru',
             'messages' => 'Status '. $this->data->status,
-            'url' => route('detail3.index', $this->data->id_meeting_level_3),
+            'url' => route('detail3.index', $this->data->id_meeting),
         ];
     }
 }

@@ -40,6 +40,7 @@ class DetailLvl2Controller extends Controller
         } else {
             $detail = DetailLevel2::whereIn('pic', $roles)->get();
         }      
+        auth()->user()->unreadNotifications->where('id',request('id'))->first()?->markAsRead();
         return view ('MOM.MoM2.detail',
         [
             'item'=>$item,
@@ -75,7 +76,7 @@ class DetailLvl2Controller extends Controller
         $phpWord = new PhpWord();
         $section = $phpWord->addSection();
 
-        $data = DetailLevel2::where('id_meeting_level_2', $id)->get();
+        $data = DetailLevel2::where('id_meeting', $id)->get();
 
         // Mulai tabel HTML
         $htmlContent = '<table border="1">';
@@ -128,8 +129,12 @@ class DetailLvl2Controller extends Controller
      */
     public function store(Request $request)
     {
+        $level = 2;
+        $nama = $request->user()->name;
+        $user = auth()->user();
+        $pic = $user->getRoleNames();
         $item = [
-            'id_meeting_level_2' => $request->id,
+            'id_meeting' => $request->id,
             'point_of_meeting' => $request->point_of_meeting,
             'pic' => $request->pic,
             'due' => $request->due,
@@ -140,7 +145,7 @@ class DetailLvl2Controller extends Controller
         $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
             $query->where('name', $roleName);
         })->where('level2', 1)->get();
-        Notification::send($usersWithRole, new GenerateDetailNotification($data));
+        Notification::send($usersWithRole, new GenerateDetailNotification($data,$level,$nama,$pic));
         return redirect(route('detail2.index', $request->id));
     }
 
@@ -189,8 +194,18 @@ class DetailLvl2Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $level = 2;
+        $nama = $request->user()->name;
+        $user = auth()->user();
+        $pic = $user->getRoleNames();
         $data = DetailLevel2::findOrFail($id);
         $item = $request->all();
+
+        $roleName = "ADMIN"; // Ganti dengan nama peran "ADMIN"
+        $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
+            $query->where('name', $roleName);
+        })->get();
+        Notification::send($usersWithRole, new GenerateDetailNotification($data, $level, $nama,$pic));
 
         $data->update($item);
         return redirect()->back()->with('success', 'Berhasil edit meeting');

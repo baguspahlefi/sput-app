@@ -14,7 +14,7 @@ class DetailLevel2 extends Model
     protected $table = 'detail_level2';
 
     protected $fillable = [
-        'id_meeting_level_2',
+        'id_meeting',
         'point_of_meeting',
         'pic',
         'due',
@@ -24,7 +24,7 @@ class DetailLevel2 extends Model
 
     public function meeting_level_2()
 	{
-		return $this->belongsTo(MeetingLevel2::class, 'id_meeting_level_2','id');
+		return $this->belongsTo(MeetingLevel2::class, 'id_meeting','id');
 	}
 
     public function evidance_level_2()

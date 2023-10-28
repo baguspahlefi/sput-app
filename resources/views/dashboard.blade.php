@@ -297,13 +297,40 @@ var myPieChart = new Chart(ctx, {
     var options = {
         series: [{
         name: 'OPEN',
-        data: [statusCountsHCGS.OPEN,statusCountsFAT.OPEN,statusCountsEngineeringRoad.OPEN,statusCountsPortOperation.OPEN,statusCountsSM.OPEN,statusCountsPLANT.OPEN,statusCountsSHE.OPEN,statusCountsProjectManagement.OPEN]
+        data: [
+            statusCountsHCGS.OPEN || 0,
+            statusCountsFAT.OPEN || 0,
+            statusCountsEngineeringRoad.OPEN || 0,
+            statusCountsPortOperation.OPEN || 0,
+            statusCountsSM.OPEN || 0,
+            statusCountsPLANT.OPEN || 0,
+            statusCountsSHE.OPEN || 0,
+            statusCountsProjectManagement.OPEN || 0
+        ]
     }, {
         name: 'PROGRESS',
-        data: [statusCountsHCGS.PROGRESS,statusCountsFAT.PROGRESS,statusCountsEngineeringRoad.PROGRESS,statusCountsPortOperation.PROGRESS,statusCountsSM.PROGRESS,statusCountsPLANT.PROGRESS,statusCountsSHE.PROGRESS,statusCountsProjectManagement.PROGRESS]
+        data: [
+            statusCountsHCGS.PROGRESS || 0,
+            statusCountsFAT.PROGRESS || 0,
+            statusCountsEngineeringRoad.PROGRESS || 0,
+            statusCountsPortOperation.PROGRESS || 0,
+            statusCountsSM.PROGRESS || 0,
+            statusCountsPLANT.PROGRESS || 0,
+            statusCountsSHE.PROGRESS || 0,
+            statusCountsProjectManagement.PROGRESS || 0
+        ]
     }, {
         name: 'CLOSE',
-        data: [statusCountsHCGS.CLOSE,statusCountsFAT.CLOSE,statusCountsEngineeringRoad.CLOSE,statusCountsPortOperation.CLOSE,statusCountsSM.CLOSE,statusCountsPLANT.CLOSE,statusCountsSHE.CLOSE,statusCountsProjectManagement.CLOSE]
+        data: [
+            statusCountsHCGS.CLOSE || 0,
+            statusCountsFAT.CLOSE || 0,
+            statusCountsEngineeringRoad.CLOSE || 0,
+            statusCountsPortOperation.CLOSE || 0,
+            statusCountsSM.CLOSE || 0,
+            statusCountsPLANT.CLOSE || 0,
+            statusCountsSHE.CLOSE || 0,
+            statusCountsProjectManagement.CLOSE || 0
+        ]
     }],
         chart: {
         type: 'bar',

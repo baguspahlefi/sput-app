@@ -34,7 +34,7 @@ class MoM3Controller extends Controller
         $item->nama = $request->nama;
         $item->nrp = $request->nrp;
         $item->save();
-        return redirect()->route('MoM3');
+        return redirect()->route('MoM3')->with('success', 'Berhasil tambah daftar hadir');
     }
 
     // public function modal_show($id){
@@ -60,7 +60,7 @@ class MoM3Controller extends Controller
     {
         $item = $request->all();
         MeetingLevel3::create($item);
-        return redirect()->route('MoM3');
+        return redirect()->route('MoM3')->with('success', 'Berhasil membuat meeting');;
     }
 
     /**
@@ -125,5 +125,13 @@ class MoM3Controller extends Controller
         $item->delete();
         sleep(1);
         return redirect()->back()->with('success', 'Berhasil hapus meeting');
+    }
+
+    public function destroy_daftarHadir($id)
+    {
+        $item = DaftarHadir3::findOrFail($id);
+        $item->delete();
+        sleep(1);
+        return redirect()->back()->with('success', 'Berhasil hapus daftar hadir');
     }
 }

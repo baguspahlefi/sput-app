@@ -120,7 +120,7 @@
                                         <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#ModalAksesMenu-{{$item->id}}">
                                             <img src="{{url('assets/icon/edit.png')}}" width="32" alt="">
                                         </a>  
-                                        <form action="{{route('pengaturanAkun.destroy',$item->id)}}" method="post">
+                                        <form class="d-inline" action="{{route('pengaturanAkun.destroy',$item->id)}}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" style="border: none; background: none">

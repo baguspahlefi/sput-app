@@ -4,7 +4,7 @@
 <script src="{{url('assets/demo/chart-area-demo.js')}}"></script>
 <script src="{{url('assets/demo/chart-bar-demo.js')}}"></script>
 <script src="{{url('assets/demo/chart-pie-demo.js')}}"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+<script src="{{url('js/datatables.js')}}" crossorigin="anonymous"></script>
 <script src="{{url('js/datatables-simple-demo.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>

@@ -23,6 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(picTableSeeder::class);
         $this->call(StatusTableSeeder::class);
         $this->call(MeetingLevel1TableSeeder::class);
-        // $this->call(DetailLevel1Seeder::class);
+        $this->call(DetailLevel1Seeder::class);
     }
 }

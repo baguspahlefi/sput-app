@@ -71,7 +71,7 @@
                                     <th class="col text-center">DUE</th>
                                     <th class="col text-center">Status</th>
                                     <th class="col text-center">Evidence</th>
-                                    <th class="col text-center">Action</th>
+                                    <th class="col text-center">Aksi</th>
                     
                                 </tr>
                             </thead>
@@ -97,9 +97,9 @@
                                         </td>
                                         <td>
                                             <a class="" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEdit-{{$detail->id}}"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
-                                            <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalGambar{{$detail->id}}"><img src="{{url('assets/icon/gallery.png')}}" width="32" alt=""></a>
+                                            <a class="ms-1" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalGambar{{$detail->id}}"><img src="{{url('assets/icon/gallery.png')}}" width="32" alt=""></a>
                                             @role('ADMIN')
-                                            <form action="{{route('detail3.destroy',$detail->id)}}" method="POST">
+                                            <form class="d-inline" action="{{route('detail3.destroy',$detail->id)}}" method="POST" onsubmit="return confirm('Apakah anda yakin menghapusnya?')>
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" style="border: none; background: none">

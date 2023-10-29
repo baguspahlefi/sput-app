@@ -91,7 +91,7 @@
                                     <a href="{{route('detail3.index',$item->id)}}"><img src="{{url('assets/icon/detail.png')}}" width="32" alt=""></a>
                                     @role('ADMIN')
                                     <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEdit-{{$item->id}}"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
-                                    <form action="{{ route('MoM3.destroy', ['id' => $item->id]) }}" method="POST">
+                                    <form class="d-inline" action="{{ route('MoM3.destroy', ['id' => $item->id]) }}" method="POST" onsubmit="return confirm('Apakah anda yakin menghapusnya?')>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" style="border: none; background: none"><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></button>
@@ -181,14 +181,17 @@
                                             <div class="row mt-4">
                                                 <div class="col-12">
                                                     <div class="row">
-                                                        <div class="col-4">
+                                                        <div class="col-3">
                                                             <h5 class="text-center">No</h5>
                                                         </div>
-                                                        <div class="col-4">
+                                                        <div class="col-3">
                                                             <h5 class="text-center">Nama</h5>
                                                         </div>
-                                                        <div class="col-4">
+                                                        <div class="col-3">
                                                             <h5 class="text-center">NRP</h5>
+                                                        </div>
+                                                        <div class="col-3">
+                                                            <h5 class="text-center"></h5>
                                                         </div>
                                                     </div>
                                                     <hr>
@@ -198,20 +201,23 @@
                                                     @foreach($item->daftar_hadir_3 as $daftar_hadir)
                                                         <div class="row">
                                                             <input type="hidden" name="daftar_hadir_id[]" value="{{ $daftar_hadir->id }}">
-                                                            <div class="col-4">
+                                                            <div class="col-3">
                                                                 <p class="text-center">{{$loop->iteration}}</p>
                                                             </div>
-                                                            <div class="col-4">
+                                                            <div class="col-3">
                                                                 <p class="text-center">
                                                                     <input class="form-control w-80" name="nama_{{ $daftar_hadir->id }}"  value="{{$daftar_hadir->nama}}" readonly ondblclick="editInPlaceNama(this)">
                                                                     <!-- <p class="edit-message fs-6">Klik 2 kali untuk mengedit</p> -->
                                                                 </p>
                                                             </div>
-                                                            <div class="col-4">
+                                                            <div class="col-3">
                                                                 <p class="text-center">
                                                                     <input class="form-control w-80" name="nrp_{{ $daftar_hadir->id }}"  value="{{$daftar_hadir->nrp}}" readonly ondblclick="editInPlaceNRP(this)">
                                                                     <!-- <p class="edit-message fs-6">Klik 2 kali untuk mengedit</p> -->
                                                                 </p>
+                                                            </div>
+                                                            <div class="col-3 text-center">
+                                                                <a href="{{route('daftarHadir3.destroy', ['id' => $daftar_hadir->id])}}" ><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>
                                                             </div>
                                                         </div>
                                                     @endforeach

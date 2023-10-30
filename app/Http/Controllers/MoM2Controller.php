@@ -19,11 +19,12 @@ class MoM2Controller extends Controller
     {
         // $items = MeetingLevel1::with(['daftar_hadir'])->firstOrFail();
         // $meetingLevel1Id = 3; // Ganti dengan ID yang sesuai
-        
+        $pic = PIC::all();
         $level2 = MeetingLevel2::all();
         return view('MOM.MoM2.index',
         [   
-            'level2' => $level2
+            'level2' => $level2,
+            'pic' => $pic
         ]);
     }
 
@@ -32,7 +33,7 @@ class MoM2Controller extends Controller
         $item = new DaftarHadir2();
         $item->id_daftar_hadir = $request->id_daftar_hadir;
         $item->nama = $request->nama;
-        $item->nrp = $request->nrp;
+        $item->pic = $request->pic;
         $item->save();
         return redirect()->route('MoM2')->with('success', 'Berhasil tambah daftar hadir');
     }
@@ -103,11 +104,11 @@ class MoM2Controller extends Controller
         
                 if ($daftarHadir) {
                     $nama = $request->input('nama_' . $id); // Mengakses input berdasarkan ID
-                    $nrp = $request->input('nrp_' . $id);
+                    $pic = $request->input('pic_' . $id);
         
                     // Lakukan operasi pada setiap $daftarHadir, contohnya:
                     $daftarHadir->nama = $nama;
-                    $daftarHadir->nrp = $nrp;
+                    $daftarHadir->pic = $pic;
                     $daftarHadir->save();
                 }
             }

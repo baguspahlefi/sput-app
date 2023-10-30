@@ -38,13 +38,13 @@
                                             <p class="fs-5 my-auto mx-auto">Judul</p>
                                         </div>
                                         <div class="col-6">
-                                            <input class="form-control" name="judul" type="text" placeholder="Default input" aria-label="default input example">
+                                            <input class="form-control" name="judul" type="text" placeholder="Default input" aria-label="default input example" required>
                                         </div>
                                         <div class="col-6">
                                             <p class="fs-5 my-auto mx-auto">Tanggal</p>
                                         </div>
                                         <div class="col-6">
-                                            <input class="form-control" id="date" name="tanggal" placeholder="MM/DD/YYY" type="date"/>
+                                            <input class="form-control" id="date" name="tanggal" placeholder="MM/DD/YYY" type="date" required/>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -159,15 +159,20 @@
                                                                 <p class="fs-5 my-auto mx-auto">Nama</p>
                                                             </div>
                                                             <div class="col-6">
-                                                                <input class="form-control" id="nama" name="nama" type="text" placeholder="Default input">
+                                                                <input class="form-control" id="nama" name="nama" type="text" placeholder="Default input" required>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-2">
                                                             <div class="col-6">
-                                                                    <p class="fs-5 my-auto mx-auto">nrp</p>
+                                                                <p class="fs-5 my-auto mx-auto">Departement</p>
                                                             </div>
                                                             <div class="col-6">
-                                                                    <input class="form-control" id="nrp" name="nrp" placeholder="Masukan nrp" type="text"/>
+                                                                <select id="pic" name="pic" class="form-select" aria-label="Default select example" required>
+                                                                    <option selected>Open this select menu</option>
+                                                                    @foreach($pic as $picDaftarHadir)
+                                                                    <option value="{{$picDaftarHadir->pic}}">{{$picDaftarHadir->pic}}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-3">
@@ -211,10 +216,12 @@
                                                                 </p>
                                                             </div>
                                                             <div class="col-3">
-                                                                <p class="text-center">
-                                                                    <input class="form-control w-80" name="nrp_{{ $daftar_hadir->id }}"  value="{{$daftar_hadir->nrp}}" readonly ondblclick="editInPlaceNRP(this)">
-                                                                    <!-- <p class="edit-message fs-6">Klik 2 kali untuk mengedit</p> -->
-                                                                </p>
+                                                                <select id="pic" name="pic_{{ $daftar_hadir->id }}" class="form-select w-80" aria-label="Default select example">
+                                                                    <option selected>{{$daftar_hadir->pic}}</option>
+                                                                    @foreach($pic as $picDaftarHadir)
+                                                                    <option value="{{$picDaftarHadir->pic}}">{{$picDaftarHadir->pic}}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                             <div class="col-3 text-center">
                                                                 <a href="{{route('daftarHadir3.destroy', ['id' => $daftar_hadir->id])}}" ><img src="{{url('assets/icon/delete.png')}}" width="32" alt=""></a>

@@ -21,9 +21,11 @@ class MoM3Controller extends Controller
         // $meetingLevel1Id = 3; // Ganti dengan ID yang sesuai
         
         $level3 = MeetingLevel3::all();
+        $pic = PIC::all();
         return view('MOM.MoM3.index',
         [   
-            'level3' => $level3
+            'level3' => $level3,
+            'pic' =>  $pic
         ]);
     }
 
@@ -32,7 +34,7 @@ class MoM3Controller extends Controller
         $item = new DaftarHadir3();
         $item->id_daftar_hadir = $request->id_daftar_hadir;
         $item->nama = $request->nama;
-        $item->nrp = $request->nrp;
+        $item->pic = $request->pic;
         $item->save();
         return redirect()->route('MoM3')->with('success', 'Berhasil tambah daftar hadir');
     }
@@ -103,11 +105,11 @@ class MoM3Controller extends Controller
         
                 if ($daftarHadir) {
                     $nama = $request->input('nama_' . $id); // Mengakses input berdasarkan ID
-                    $nrp = $request->input('nrp_' . $id);
+                    $pic = $request->input('pic_' . $id);
         
                     // Lakukan operasi pada setiap $daftarHadir, contohnya:
                     $daftarHadir->nama = $nama;
-                    $daftarHadir->nrp = $nrp;
+                    $daftarHadir->pic = $pic;
                     $daftarHadir->save();
                 }
             }

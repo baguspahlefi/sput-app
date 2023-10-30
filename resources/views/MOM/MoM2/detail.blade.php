@@ -130,13 +130,13 @@
                                                             <p class="fs-5 my-auto mx-auto">Point Of Meeting</p>
                                                         </div>
                                                         <div class="col-6">
-                                                            <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" value="{{$detail->point_of_meeting}}" placeholder="Default input" aria-label="default input example">
+                                                            <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" value="{{$detail->point_of_meeting}}" placeholder="Default input" aria-label="default input example" required>
                                                         </div>
                                                         <div class="col-6">
                                                             <p class="fs-5 my-auto mx-auto">pic</p>
                                                         </div>
                                                         <div class="col-6">
-                                                            <select id="pic" name="pic" value="{{$detail->pic}}" class="form-select" aria-label="Default select example">
+                                                            <select id="pic" name="pic" value="{{$detail->pic}}" class="form-select" aria-label="Default select example" required>
                                                                 <option selected>{{$detail->pic}}</option>
                                                                 @foreach($pic as $picEdit)
                                                                 <option value="{{$picEdit->pic}}">{{$picEdit->pic}}</option>
@@ -147,13 +147,13 @@
                                                             <p class="fs-5 my-auto mx-auto">DUE</p>
                                                         </div>
                                                         <div class="col-6">
-                                                            <input placeholder="Select date" id="due" name="due" value="{{$detail->due}}" type="date" id="example" class="form-control">
+                                                            <input placeholder="Select date" id="due" name="due" value="{{$detail->due}}" type="date" id="example" class="form-control" required>
                                                         </div>
                                                         <div class="col-6">
                                                             <p class="fs-5 my-auto mx-auto">Status</p>
                                                         </div>
                                                         <div class="col-6">
-                                                            <select id="status" name="status" value="{{$detail->status}}" class="form-select" aria-label="Default select example">
+                                                            <select id="status" name="status" value="{{$detail->status}}" class="form-select" aria-label="Default select example" required>
                                                                 <option selected>{{$detail->status}}</option>
                                                                 @foreach($status as $statusEdit)
                                                                 <option value="{{$statusEdit->status}}">{{$statusEdit->status}}</option>
@@ -176,7 +176,7 @@
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Tambah Tabel</h1>
+                                                    <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Edit Tabel</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -235,7 +235,7 @@
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Tambah gambar {{$detail->id}}</h1>
+                                                    <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Tambah gambar</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -256,7 +256,7 @@
                                                                         <p class="fs-5 my-auto mx-auto">Nama</p>
                                                                     </div>
                                                                     <div class="col-6">
-                                                                        <input class="form-control" id="nama" name="nama_gambar" type="text" placeholder="Default input">
+                                                                        <input class="form-control" id="nama" name="nama_gambar" type="text" placeholder="Default input" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row mt-2">
@@ -264,7 +264,7 @@
                                                                             <p class="fs-5 my-auto mx-auto">Upload Evidance</p>
                                                                     </div>
                                                                     <div class="col-6">
-                                                                        <input type="file" class="form-control" id="inputGroupFile02" name="path_gambar">
+                                                                        <input type="file" class="form-control" id="inputGroupFile02" name="path_gambar" required>
                                                                         <span><p class="text-danger fs-6">Pastikan ukuran tidak lebih dari 5Mb dan format gambar harus png ,jpg dan jpeg</p></span>
                                                                     </div>
                                                                     
@@ -368,14 +368,13 @@
                                         <p class="fs-5 my-auto mx-auto">Point Of Meeting</p>
                                     </div>
                                     <div class="col-6">
-                                        <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" placeholder="Default input" aria-label="default input example">
+                                        <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" placeholder="Default input" aria-label="default input example" required>
                                     </div>
                                     <div class="col-6">
                                         <p class="fs-5 my-auto mx-auto">pic</p>
                                     </div>
                                     <div class="col-6">
-                                        <select id="pic" name="pic" class="form-select" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
+                                        <select id="pic" name="pic" class="form-select" aria-label="Default select example" required>
                                             @foreach($pic as $pic)
                                             <option value="{{$pic->pic}}">{{$pic->pic}}</option>
                                             @endforeach
@@ -385,14 +384,13 @@
                                         <p class="fs-5 my-auto mx-auto">DUE</p>
                                     </div>
                                     <div class="col-6">
-                                        <input placeholder="Select date" id="due" name="due" type="date" id="example" class="form-control">
+                                        <input placeholder="Select date" id="due" name="due" type="date" id="example" class="form-control" required>
                                     </div>
                                     <div class="col-6">
                                         <p class="fs-5 my-auto mx-auto">Status</p>
                                     </div>
                                     <div class="col-6">
-                                        <select id="status" name="status" class="form-select" aria-label="Default select example">
-                                            <option selected>Open this select menu</option>
+                                        <select id="status" name="status" class="form-select" aria-label="Default select example" required>
                                             @foreach($status as $status)
                                             <option value="{{$status->status}}">{{$status->status}}</option>
                                             @endforeach

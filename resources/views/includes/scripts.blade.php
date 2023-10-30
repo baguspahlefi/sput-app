@@ -48,18 +48,18 @@ function editInPlaceNama(element) {
     input.focus();
 }
 
-function editInPlaceNRP(element) {
+function editInPlacePIC(element) {
     var input = element;
     var originalText = input.value;
 
     // Hapus atribut readonly
-    input.removeAttribute('readonly');
+    input.removeAttribute('disabled');
 
     input.onblur = function () {
         var newValue = this.value;
 
         // Setel kembali atribut readonly setelah blur (selesai mengedit)
-        this.setAttribute('readonly', 'readonly');
+        this.setAttribute('disabled', 'disabled');
 
         // Di sini Anda dapat melakukan apa yang diperlukan dengan newValue (misalnya, menyimpan ke server)
     }

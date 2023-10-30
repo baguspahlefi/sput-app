@@ -15,7 +15,7 @@ class DaftarHadir2 extends Model
     protected $fillable = [
         'id_daftar_hadir',
         'nama',
-        'nrp'
+        'pic'
     ];
 
     public function level1()

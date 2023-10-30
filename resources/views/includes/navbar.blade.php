@@ -2,10 +2,10 @@
             <!-- Navbar Brand-->
             <a class="navbar-brand m-4" href="{{route('dashboard')}}">
                 <img src="{{url('assets/img/kpp-logo.png')}}" alt="" style="width: 60px; margin-right: 10px;">
-                <span style="vertical-align: middle;">S P U T</span>
+                <span class="fs-6" style="vertical-align: middle;">Sungai Puting Satu Pintu</span>
             </a>
             <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <button class="btn btn-link btn-sm order-1 order-lg-0 ms-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             
             <!-- Navbar-->
             <ul class="navbar-nav justify-content-end flex-grow-1">

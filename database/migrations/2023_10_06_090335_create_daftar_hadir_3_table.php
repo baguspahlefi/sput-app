@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_daftar_hadir');
             $table->string('nama');
-            $table->string('nrp');
+            $table->string('pic');
             $table->timestamps();
 
             $table->foreign('id_daftar_hadir')->references('id')->on('meeting_level1')->onDelete('cascade');

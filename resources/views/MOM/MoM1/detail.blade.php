@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 mt-4 mb-2">
+                    <div class="col-12 mt-4">
                         @role('ADMIN')
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Tambah Tabel
@@ -47,7 +47,36 @@
                               <li><a class="dropdown-item" href="{{route('MoM1.cetakWord',$item->id)}}">Export Word</a></li>
                             </ul>
                         
+                        
                     </div>
+                    <div class="col-12 mt-2 mb-2">
+                        <div class="row">
+                            
+                        </div>
+                        <form action="{{route('detail1.index',1)}}">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label for="tgl_bulan_dr">Dari Tanggal</label>
+                                    <input type="date" class="form-control" placeholder="Tanggal" name="tgl_bulan_dr"
+                                            id="tgl_bulan_dr">
+                                </div>
+                                <div class="col-3">
+                                    <label for="tgl_bulan_th_sd">Sampai Tanggal</label>
+                                    <input type="date" class="form-control" placeholder="Tanggal" name="tgl_bulan_sd"
+                                            id="tgl_bulan_sd">
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <button class="btn btn-reset px-4 py-3/2" type="reset">Reset</button>
+                                <button class="btn btn-filter px-4 py-3/2" type="submit">Filter</button>
+                            </div>
+                        </form>
+                        <div class="clear-filter">
+                            <a href="{{route('detail1.index',1)}}">Clear Filters</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                    
                     <div class="col-12" style="overflow-x: auto;">
                         <table id="datatablesSimple" class="table table-bordered border-light table-word">
                             <thead>
@@ -72,6 +101,7 @@
                                     @php
                                     $iterationCount++;
                                     @endphp
+                                    
                                     <tr>
                                         <td class="text-center">{{$iterationCount}}</td>
                                         <td class="text-center">{{$detail->point_of_meeting}}</td>

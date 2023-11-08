@@ -37,9 +37,9 @@ class DetailLvl1Controller extends Controller
         $rolesToCheck = ["ADMIN", "Project Management"];
 
         if ($roles->intersect($rolesToCheck)->isNotEmpty()) {
-            $detail = DetailLevel1::get();
+            $detail = DetailLevel1::filter(request(['due']))->get();
         } else {
-            $detail = DetailLevel1::whereIn('pic', $roles)->get();
+            $detail = DetailLevel1::whereIn('pic', $roles)->filter(request(['due']))->get();
         }
 
         auth()->user()->unreadNotifications->where('id',request('id'))->first()?->markAsRead();

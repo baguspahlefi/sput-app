@@ -262,7 +262,7 @@
                                                             <h5 class="text-center">Nama</h5>
                                                         </div>
                                                         <div class="col-4">
-                                                            <h5 class="text-center">NRP</h5>
+                                                            <h5 class="text-center">Departemen</h5>
                                                         </div>
                                                     </div>
                                                     <hr>
@@ -275,7 +275,7 @@
                                                                 <p class="text-center">{{$item->nama}}</p>
                                                             </div>
                                                             <div class="col-4">
-                                                                <p class="text-center">{{$item->nrp}}</p>
+                                                                <p class="text-center">{{$item->pic}}</p>
                                                             </div>
                                                         </div>
                                                     @endforeach

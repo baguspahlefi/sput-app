@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('detail_level3', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_meeting');
-            $table->string('point_of_meeting');
+            $table->text('point_of_meeting');
             $table->string('pic');
             $table->date('due');
             $table->string('status');

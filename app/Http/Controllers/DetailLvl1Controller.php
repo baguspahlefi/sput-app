@@ -12,6 +12,8 @@ use App\Models\User;
 use DB;
 use PDF;
 use App\Exports\DetailLevel1Export;
+use App\Exports\FormatingLevel1Upload;
+use App\Imports\DetailLevel1Import;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\PhpWord;
@@ -69,6 +71,23 @@ class DetailLvl1Controller extends Controller
     public function cetak_excel($id)
     {
         return Excel::download(new DetailLevel1Export($id), 'MoM-Level-1.xlsx');
+    }
+
+    public function upload_excel(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DetailLevel1',$namaFile);
+
+        Excel::import(new DetailLevel1Import, public_path('/DetailLevel1/'.$namaFile ));
+        return redirect()->back()->with('success', 'Berhasil Import Meeting');
+    }
+
+    public function format_excel($id)
+    {
+        $export = new FormatingLevel1Upload($id);
+
+        return Excel::download($export, 'template-MoM-1.xlsx');
     }
 
 
@@ -230,6 +249,4 @@ class DetailLvl1Controller extends Controller
         sleep(1);
         return redirect()->back()->with('success', 'Berhasil hapus tabel');
     }
-    
-        
 }

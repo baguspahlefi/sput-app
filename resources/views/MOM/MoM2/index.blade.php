@@ -261,11 +261,11 @@
                                                             <h5 class="text-center">Nama</h5>
                                                         </div>
                                                         <div class="col-4">
-                                                            <h5 class="text-center">NRP</h5>
+                                                            <h5 class="text-center">Departemen</h5>
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    @foreach($item->daftar_hadir as $item)
+                                                    @foreach($item->daftar_hadir_2 as $item)
                                                         <div class="row">
                                                             <div class="col-4">
                                                                 <p class="text-center">{{$loop->iteration}}</p>
@@ -274,7 +274,7 @@
                                                                 <p class="text-center">{{$item->nama}}</p>
                                                             </div>
                                                             <div class="col-4">
-                                                                <p class="text-center">{{$item->nrp}}</p>
+                                                                <p class="text-center">{{$item->pic}}</p>
                                                             </div>
                                                         </div>
                                                     @endforeach

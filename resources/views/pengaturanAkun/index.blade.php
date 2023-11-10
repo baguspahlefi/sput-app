@@ -106,7 +106,7 @@
                                 <tr>
                                     <th class="text-center">nrp</th>
                                     <th class="text-center">Nama</th>
-                                    <th class="text-center">Jabatan</th>
+                                    <th class="text-center">Departemen</th>
                                     <th class="text-center">Edit Akses</th>
                                 </tr>
                             </thead> 

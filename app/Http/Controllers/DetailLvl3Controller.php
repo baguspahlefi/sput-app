@@ -11,6 +11,8 @@ use App\Models\Status;
 use DB;
 use PDF;
 use App\Exports\DetailLevel3Export;
+use App\Exports\FormatingLevel3Upload;
+use App\Imports\DetailLevel3Import;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\PhpWord;
@@ -66,6 +68,23 @@ class DetailLvl3Controller extends Controller
     public function cetak_excel($id)
     {
         return Excel::download(new DetailLevel3Export($id), 'MoM-Level-3.xlsx');
+    }
+
+    public function upload_excel(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DetailLevel3',$namaFile);
+
+        Excel::import(new DetailLevel3Import, public_path('/DetailLevel3/'.$namaFile ));
+        return redirect()->back()->with('success', 'Berhasil Import Meeting');
+    }
+
+    public function format_excel($id)
+    {
+        $export = new FormatingLevel3Upload($id);
+
+        return Excel::download($export, 'template-MoM-3.xlsx');
     }
 
 

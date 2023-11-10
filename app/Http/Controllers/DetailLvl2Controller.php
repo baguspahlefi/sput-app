@@ -11,6 +11,8 @@ use App\Models\Status;
 use DB;
 use PDF;
 use App\Exports\DetailLevel2Export;
+use App\Exports\FormatingLevel2Upload;
+use App\Imports\DetailLevel2Import;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpWord\TemplateProcessor;
 use PhpOffice\PhpWord\PhpWord;
@@ -68,6 +70,25 @@ class DetailLvl2Controller extends Controller
     {
         return Excel::download(new DetailLevel2Export($id), 'MoM-Level-2.xlsx');
     }
+
+
+    public function upload_excel(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DetailLevel2',$namaFile);
+
+        Excel::import(new DetailLevel2Import, public_path('/DetailLevel2/'.$namaFile ));
+        return redirect()->back()->with('success', 'Berhasil Import Meeting');
+    }
+
+    public function format_excel($id)
+    {
+        $export = new FormatingLevel2Upload($id);
+
+        return Excel::download($export, 'template-MoM-2.xlsx');
+    }
+
 
 
     public function cetak_word($id)

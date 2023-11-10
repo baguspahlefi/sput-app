@@ -79,6 +79,12 @@ Route::get('/MoM1/detail/cetak_pdf/{id}', [DetailLvl1Controller::class,'cetak_pd
 Route::get('/MoM1/detail/cetak_excel/{id}', [DetailLvl1Controller::class,'cetak_excel'])
 ->middleware(['auth'])
 ->name('MoM1.cetakExcel');
+Route::get('/MoM1/detail/format_excel/{id}', [DetailLvl1Controller::class,'format_excel'])
+->middleware(['auth'])
+->name('MoM1.formatExcel');
+Route::post('/MoM1/detail/upload_excel/{id}', [DetailLvl1Controller::class,'upload_excel'])
+->middleware(['auth'])
+->name('MoM1.uploadExcel');
 Route::get('/MoM1/detail/cetak_word/{id}', [DetailLvl1Controller::class,'cetak_word'])
 ->middleware(['auth'])
 ->name('MoM1.cetakWord');
@@ -137,6 +143,12 @@ Route::delete('/MoM2/detail/evidance/{id}', [EvidanceLevel2Controller::class,'de
 Route::get('/MoM2/detail/cetak_pdf/{id}', [DetailLvl2Controller::class,'cetak_pdf'])
 ->middleware(['auth'])
 ->name('MoM2.cetakPdf');
+Route::get('/MoM2/detail/format_excel/{id}', [DetailLvl2Controller::class,'format_excel'])
+->middleware(['auth'])
+->name('MoM2.formatExcel');
+Route::post('/MoM2/detail/upload_excel/{id}', [DetailLvl2Controller::class,'upload_excel'])
+->middleware(['auth'])
+->name('MoM2.uploadExcel');
 Route::get('/MoM2/detail/cetak_excel/{id}', [DetailLvl2Controller::class,'cetak_excel'])
 ->middleware(['auth'])
 ->name('MoM2.cetakExcel');
@@ -194,6 +206,12 @@ Route::get('/MoM3/detail/cetak_pdf/{id}', [DetailLvl3Controller::class,'cetak_pd
 Route::get('/MoM3/detail/cetak_excel/{id}', [DetailLvl3Controller::class,'cetak_excel'])
 ->middleware(['auth'])
 ->name('MoM3.cetakExcel');
+Route::get('/MoM3/detail/format_excel/{id}', [DetailLvl3Controller::class,'format_excel'])
+->middleware(['auth'])
+->name('MoM3.formatExcel');
+Route::post('/MoM3/detail/upload_excel/{id}', [DetailLvl3Controller::class,'upload_excel'])
+->middleware(['auth'])
+->name('MoM3.uploadExcel');
 Route::get('/MoM3/detail/cetak_word/{id}', [DetailLvl3Controller::class,'cetak_word'])
 ->middleware(['auth'])
 ->name('MoM3.cetakWord');

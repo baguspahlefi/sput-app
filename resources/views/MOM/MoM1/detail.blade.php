@@ -35,18 +35,49 @@
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Tambah Tabel
                         </button>
+                        <button type="button" class="btn btn-success" style="float: right" data-bs-toggle="modal" data-bs-target="#exampleModalImport">
+                            Import Excel
+                        </button>
+
+                         <!-- Modal Import Excel -->
+                         <div class="modal fade" id="exampleModalImport" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <form method="post" action="{{route('MoM1.uploadExcel',$item->id)}}" enctype="multipart/form-data">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                                        </div>
+                                        <div class="modal-body">
+                 
+                                            {{ csrf_field() }}
+                 
+                                            <label>Pilih file excel</label>
+                                            <div class="form-group">
+                                                <input type="file" name="file" required="required">
+                                            </div>
+                 
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Import</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> 
+                        <a class="btn btn-success me-2" style="float: right" href="{{route('MoM1.formatExcel',$item->id)}}">
+                            Download Format
+                        </a>
                         @endrole
                         
-                        
-                            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Menu Export
-                            </button>
-                            <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="{{route('MoM1.cetakPdf',$item->id)}}">Export PDF</a></li>
-                              <li><a class="dropdown-item" href="{{route('MoM1.cetakExcel',$item->id)}}">Export Excel</a></li>
-                              <li><a class="dropdown-item" href="{{route('MoM1.cetakWord',$item->id)}}">Export Word</a></li>
-                            </ul>
-                        
+                        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Menu Export
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{{route('MoM1.cetakPdf',$item->id)}}">Export PDF</a></li>
+                            <li><a class="dropdown-item" href="{{route('MoM1.cetakExcel',$item->id)}}">Export Excel</a></li>
+                            <li><a class="dropdown-item" href="{{route('MoM1.cetakWord',$item->id)}}">Export Word</a></li>
+                        </ul>
                     </div>
                     <div class="col-12" style="overflow-x: auto;">
                         <table id="datatablesSimple" class="table table-bordered border-light table-word">
@@ -91,7 +122,7 @@
                                             <a class="" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEdit-{{$detail->id}}"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                             <a class="ms-1" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalGambar{{$detail->id}}"><img src="{{url('assets/icon/gallery.png')}}" width="32" alt=""></a>
                                             @role('ADMIN')
-                                            <form class="d-inline" action="{{route('detail1.destroy',$detail->id)}}" method="POST" onsubmit="return confirm('Apakah anda yakin menghapusnya?')>
+                                            <form class="d-inline" action="{{route('detail1.destroy',$detail->id)}}" method="POST" onsubmit="return confirm('Apakah anda yakin menghapusnya?')">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" style="border: none; background: none">
@@ -122,7 +153,9 @@
                                                             <p class="fs-5 my-auto mx-auto">Point Of Meeting</p>
                                                         </div>
                                                         <div class="col-6">
-                                                            <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" value="{{$detail->point_of_meeting}}" placeholder="Default input" aria-label="default input example" required>
+                                                            <div class="input-group">
+                                                                <textarea class="form-control" aria-label="With textarea" id="point_of_meeting" name="point_of_meeting" required>{{$detail->point_of_meeting}}</textarea>
+                                                            </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <p class="fs-5 my-auto mx-auto">pic</p>
@@ -162,6 +195,7 @@
                                             </div>
                                         </div>
                                     </div>
+  
                                     @endrole
                                      <!-- Modal Edit Meeting User-->
                                      <div class="modal fade" id="exampleModalEdit-{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -181,8 +215,10 @@
                                                         <div class="col-6 d-none">
                                                             <p class="fs-5 my-auto mx-auto">Point Of Meeting</p>
                                                         </div>
-                                                        <div class="col-6 d-none">
-                                                            <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" value="{{$detail->point_of_meeting}}" placeholder="Default input" aria-label="default input example">
+                                                        <div class="col-6">
+                                                            <div class="input-group">
+                                                                <textarea class="form-control" id="point_of_meeting" name="point_of_meeting" aria-label="With textarea">{{$detail->point_of_meeting}}</textarea>
+                                                            </div>
                                                         </div>
                                                         <div class="col-6 d-none">
                                                             <p class="fs-5 my-auto mx-auto">pic</p>
@@ -360,7 +396,9 @@
                                         <p class="fs-5 my-auto mx-auto">Point Of Meeting</p>
                                     </div>
                                     <div class="col-6">
-                                        <input class="form-control" type="text" id="point_of_meeting" name="point_of_meeting" placeholder="Default input" aria-label="default input example">
+                                        <div class="input-group">
+                                            <textarea class="form-control" id="point_of_meeting" name="point_of_meeting" aria-label="With textarea"></textarea>
+                                        </div>
                                     </div>
                                     <div class="col-6">
                                         <p class="fs-5 my-auto mx-auto">pic</p>

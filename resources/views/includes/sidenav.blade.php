@@ -34,13 +34,13 @@
                     <div class="collapse" id="collapseLayoutsReports" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
                             @if(auth()->user()->accessLevel1())
-                                <a class="nav-link text-white" href="{{route('MoM1')}}">Meeting Level 1</a>
+                                <a class="nav-link text-white" href="{{route('MoM1.reports')}}">Meeting Level 1</a>
                             @endif
                             @if(auth()->user()->accessLevel2())
-                                <a class="nav-link text-white" href="{{route('MoM2')}}">Meeting Level 2</a>
+                                <a class="nav-link text-white" href="{{route('MoM2.reports')}}">Meeting Level 2</a>
                             @endif
                             @if(auth()->user()->accessLevel3())
-                                <a class="nav-link text-white" href="{{route('MoM3')}}">Meeting Level 3</a>
+                                <a class="nav-link text-white" href="{{route('MoM3.reports')}}">Meeting Level 3</a>
                             @endif
                         </nav>
                     </div>

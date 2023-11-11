@@ -13,6 +13,9 @@ use App\Http\Controllers\EvidanceLevel2Controller;
 use App\Http\Controllers\MoM3Controller;
 use App\Http\Controllers\DetailLvl3Controller;
 use App\Http\Controllers\EvidanceLevel3Controller;
+use App\Http\Controllers\MoM1ReportsController;
+use App\Http\Controllers\MoM2ReportsController;
+use App\Http\Controllers\MoM3ReportsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +93,11 @@ Route::get('/MoM1/detail/cetak_word/{id}', [DetailLvl1Controller::class,'cetak_w
 ->name('MoM1.cetakWord');
 
 
+Route::get('/MoM1/reports', [MoM1ReportsController::class,'index'])
+->middleware(['auth','level1'])
+->name('MoM1.reports');
+
+
 // MoM Level 2
 Route::get('/MoM2', [MoM2Controller::class,'index'])
 ->middleware(['auth','level2'])
@@ -103,13 +111,6 @@ Route::put('/MoM2/update/{id}',[MoM2Controller::class,'update'])
 Route::delete('/MoM2/destroy/{id}', [MoM2Controller::class,'destroy'])
 ->middleware(['auth'])
 ->name('MoM2.destroy','role:ADMIN');
-
-Route::post('daftar_hadir_2/store',[MoM2Controller::class,'modal_store'])
-->middleware(['auth'])
-->name('daftarHadir2.store');
-Route::put('daftar_hadir_2/update',[MoM2Controller::class,'update_daftarHadir'])
-->middleware(['auth'])
-->name('daftarHadir2.update');
 
 Route::post('daftar_hadir_2/store',[MoM2Controller::class,'modal_store'])
 ->middleware(['auth'])
@@ -155,6 +156,10 @@ Route::get('/MoM2/detail/cetak_excel/{id}', [DetailLvl2Controller::class,'cetak_
 Route::get('/MoM2/detail/cetak_word/{id}', [DetailLvl2Controller::class,'cetak_word'])
 ->middleware(['auth'])
 ->name('MoM2.cetakWord');
+
+Route::get('/MoM2/reports', [MoM2ReportsController::class,'index'])
+->middleware(['auth','level2'])
+->name('MoM2.reports');
 
 
 // MoM Level 3
@@ -215,6 +220,10 @@ Route::post('/MoM3/detail/upload_excel/{id}', [DetailLvl3Controller::class,'uplo
 Route::get('/MoM3/detail/cetak_word/{id}', [DetailLvl3Controller::class,'cetak_word'])
 ->middleware(['auth'])
 ->name('MoM3.cetakWord');
+
+Route::get('/MoM3/reports', [MoM3ReportsController::class,'index'])
+->middleware(['auth','level3'])
+->name('MoM3.reports');
 
 // Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
 // ->middleware(['auth'])

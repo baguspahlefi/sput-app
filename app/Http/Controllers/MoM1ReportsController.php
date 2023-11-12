@@ -73,13 +73,24 @@ class MoM1ReportsController extends Controller
 
     public function reportPDF(Request $request)
     {
-        $startDate = $request->has('startDate') ? Carbon::createFromFormat('Y-m-d', $request->input('startDate'))->startOfDay() : null;
-        $endDate = $request->has('endDate') ? Carbon::createFromFormat('Y-m-d', $request->input('endDate'))->endOfDay() : null;
+        $tanggalAwal = $request->input('startDate');
+        $tanggalAkhir = $request->input('endDate');
+        $startDate = $request->has('startDate') ? Carbon::parse($tanggalAwal)->format('Y-m-d') : null;
+        $endDate = $request->has('endDate') ? Carbon::parse($tanggalAkhir)->format('Y-m-d') : null;
 
         $query = DetailLevel1::query();
 
-        if ($startDate && $endDate) {
-            $query->whereBetween('due', [$startDate, $endDate]);
+        if (!$tanggalAwal && !$tanggalAkhir) {
+            // Filter status close without date filtering
+            $query->where('status', 'close');
+        } else {
+            // If startDate and/or endDate are provided, apply date filtering
+            if ($tanggalAwal && $tanggalAkhir) {
+                $query->whereBetween('due', [$startDate, $endDate]);
+            }
+    
+            // Always filter status close regardless of date filtering
+            $query->where('status', 'close');
         }
 
         // Filter status close regardless of date filtering
@@ -96,8 +107,8 @@ class MoM1ReportsController extends Controller
 
     public function reportExcel(Request $request)
     {
-        $startDate = $request->has('startDate') ? Carbon::createFromFormat('Y-m-d', $request->input('startDate'))->startOfDay() : null;
-        $endDate = $request->has('endDate') ? Carbon::createFromFormat('Y-m-d', $request->input('endDate'))->endOfDay() : null;
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
         return Excel::download(new ReportDetailLevel1Export($startDate,$endDate), 'Report-MoM-Level-1.xlsx');
     }
 

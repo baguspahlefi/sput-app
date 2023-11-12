@@ -96,6 +96,9 @@ Route::get('/MoM1/detail/cetak_word/{id}', [DetailLvl1Controller::class,'cetak_w
 Route::get('/MoM1/reports', [MoM1ReportsController::class,'index'])
 ->middleware(['auth','level1'])
 ->name('MoM1.reports');
+Route::get('/MoM1/reportPDF', [MoM1ReportsController::class,'reportPDF'])
+->middleware(['auth'])
+->name('MoM1.reportPDF');
 
 
 // MoM Level 2

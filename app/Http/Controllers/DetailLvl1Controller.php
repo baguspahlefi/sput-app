@@ -65,9 +65,8 @@ class DetailLvl1Controller extends Controller
             'details' => DetailLevel1::get()
         ]);
     	return $pdf->stream('laporan-detail-level-1-pdf');
-
-
     }
+    
     public function cetak_excel($id)
     {
         return Excel::download(new DetailLevel1Export($id), 'MoM-Level-1.xlsx');

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use App\Models\DetailLevel1;
 use PDF;
 
@@ -14,22 +13,10 @@ class MoM1ReportsController extends Controller
      */
     public function index(Request $request)
     {
-        $startDate = $request->has('startDate') ? Carbon::createFromFormat('Y-m-d', $request->input('startDate'))->startOfDay() : null;
-        $endDate = $request->has('endDate') ? Carbon::createFromFormat('Y-m-d', $request->input('endDate'))->endOfDay() : null;
-    
-        $query = DetailLevel1::query();
-    
-        if ($startDate && $endDate) {
-            $query->whereBetween('due', [$startDate, $endDate]);
-        }
-    
-        // Filter status close regardless of date filtering
-        $query->where('status', 'close');
-    
-        $data = $query->get();
-    
+        $data = DetailLevel1::filter(request(['due']))->get();
+
         return view('report.reportMoM1.index', [
-            'data' => $data,
+            'data' => $data->where('status', "CLOSE"),
         ]);
     }
 

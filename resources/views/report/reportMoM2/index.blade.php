@@ -28,7 +28,9 @@
                 </div>
                 <div class="row">
                     <div class="col-12 mt-4">
-                        <div class="card">
+                    <div class="card">
+                            <form action="{{route('MoM2.reports')}}" method="get">
+                                @csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-12 col-md-6">
@@ -40,7 +42,12 @@
                                         <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control" required>
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-success mt-2 px-3" style="float:right;">Filter</button>
+                                <button class="btn btn-outline-success mt-2 mb-2 px-3" style="float:right;">Filter</button>
+                                <button class="btn btn-reset mt-2 mb-2 px-3" style="float:right;" type="reset">Reset</button>
+                            </form>
+                            <div class="clear-filter">
+                                <a class="btn btn-reset mt-2" style="float:right;" href="{{route('MoM2.reports')}}">Clear Filter</a>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -68,6 +75,52 @@
                                     <th class="col text-center">Evidence</th>              
                                 </tr>
                             </thead>
+                            <tbody>
+                                @foreach($data as $key => $detail)
+                                    <tr>
+                                        <td class="text-center">{{$loop->iteration}}</td>
+                                        <td class="text-center">{{$detail->point_of_meeting}}</td>
+                                        <td class="text-center">{{$detail->pic}}</td>
+                                        <td class="text-center">{{$detail->due}}</td>
+                                        <td class="text-center">{{$detail->status}}</td>
+                                        <td>
+                                            @foreach($detail->evidance_level_2 as $gambarTabel)
+                                            @if($loop->first)
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEvidance{{$detail->id}}">
+                                                    <img src="{{ Storage::url($gambarTabel->path_gambar) }}" alt="" width="150" class="img-thumbnail">
+                                                </a>
+                                            @endif
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                    <!-- Modal Evidance -->
+                                    <div class="modal fade" id="exampleModalEvidance{{$detail->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-fullscreen">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Gambar Evidence </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <section aria-label="Newest Photos">
+                                                        <div class="carousel" data-carousel>
+                                                        <button class="carousel-button prev" data-carousel-button="prev">&#8656;</button>
+                                                        <button class="carousel-button next" data-carousel-button="next">&#8658;</button>
+                                                            <ul data-slides>
+                                                            @foreach($detail->evidance_level_2 as $img)
+                                                                <li class="slide" {{ $key == 0 ? 'data-active' : '' }}>
+                                                                        <img src="{{Storage::url($img->path_gambar)}}" alt="Nature Image #1">
+                                                                </li>
+                                                            @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach       
+                            </tbody>
                         </table>
                     </div>
                 </div>

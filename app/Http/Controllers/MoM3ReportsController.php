@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Carbon\Carbon;
+use App\Models\DetailLevel3;
 
 class MoM3ReportsController extends Controller
 {
@@ -12,7 +12,11 @@ class MoM3ReportsController extends Controller
      */
     public function index()
     {
-        return view('report.reportMoM3.index');
+        $data = DetailLevel3::filter(request(['due']))->get();
+
+        return view('report.reportMoM3.index', [
+            'data' => $data->where('status', "CLOSE"),
+        ]);
     }
 
     /**

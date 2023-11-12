@@ -42,8 +42,12 @@
                                         <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control" required>
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-success mt-2 px-3" style="float:right;">Filter</button>
+                                <button class="btn btn-outline-success mt-2 mb-2 px-3" style="float:right;">Filter</button>
+                                <button class="btn btn-reset mt-2 mb-2 px-3" style="float:right;" type="reset">Reset</button>
                             </form>
+                            <div class="clear-filter">
+                                <a class="btn btn-reset mt-2" style="float:right;" href="{{route('MoM1.reports')}}">Clear Filter</a>
+                            </div>
                             </div>
                         </div>
                     </div>

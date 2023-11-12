@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\MeetingLevel1;
 use App\Models\DetailLevel1;
 use App\Models\EvidanceLevel1;
+use Carbon\Carbon;
 
 class DetailLevel1 extends Model
 {
@@ -31,6 +32,16 @@ class DetailLevel1 extends Model
     {
         return $this->hasMany(EvidanceLevel1::class, 'id_detaillvl1','id');
     }
+
+    public function scopeFilter($query, array $filters){
+		// filter tanggal
+        if (request()->startDate || request()->endDate){
+            $startDate = Carbon::parse(request()->startDate)->toDateTimeString();
+            $endDate = Carbon::parse(request()->endDate)->toDateTimeString();
+            $query->whereBetween('due',[$startDate,$endDate]);
+        }
+		
+	}
 
  
 }

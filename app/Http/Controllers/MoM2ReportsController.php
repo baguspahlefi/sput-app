@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailLevel2;
 use Illuminate\Http\Request;
 
 class MoM2ReportsController extends Controller
@@ -11,7 +12,11 @@ class MoM2ReportsController extends Controller
      */
     public function index()
     {
-        return view('report.reportMoM2.index');
+        $data = DetailLevel2::filter(request(['due']))->get();
+
+        return view('report.reportMoM2.index', [
+            'data' => $data->where('status', "CLOSE"),
+        ]);
     }
 
     /**

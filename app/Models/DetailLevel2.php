@@ -33,15 +33,7 @@ class DetailLevel2 extends Model
         return $this->hasMany(EvidanceLevel2::class, 'id_detaillvl2','id');
     }
 
-    public function scopeFilter($query, array $filters){
-		// filter tanggal
-        if (request()->startDate || request()->endDate){
-            $startDate = Carbon::parse(request()->startDate)->toDateTimeString();
-            $endDate = Carbon::parse(request()->endDate)->toDateTimeString();
-            $query->whereBetween('due',[$startDate,$endDate]);
-        }
-		
-	}
+
 
  
 }

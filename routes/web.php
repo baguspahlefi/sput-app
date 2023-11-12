@@ -96,9 +96,15 @@ Route::get('/MoM1/detail/cetak_word/{id}', [DetailLvl1Controller::class,'cetak_w
 Route::get('/MoM1/reports', [MoM1ReportsController::class,'index'])
 ->middleware(['auth','level1'])
 ->name('MoM1.reports');
-Route::get('/MoM1/reportPDF', [MoM1ReportsController::class,'reportPDF'])
+Route::post('/MoM1/reportPDF/filter', [MoM1ReportsController::class,'filter'])
+->middleware(['auth'])
+->name('MoM1.filter');
+Route::post('/MoM1/reportPDF', [MoM1ReportsController::class,'reportPDF'])
 ->middleware(['auth'])
 ->name('MoM1.reportPDF');
+Route::post('/MoM1/reportExcel', [MoM1ReportsController::class,'reportExcel'])
+->middleware(['auth'])
+->name('MoM1.reportExcel');
 
 
 // MoM Level 2
@@ -163,6 +169,15 @@ Route::get('/MoM2/detail/cetak_word/{id}', [DetailLvl2Controller::class,'cetak_w
 Route::get('/MoM2/reports', [MoM2ReportsController::class,'index'])
 ->middleware(['auth','level2'])
 ->name('MoM2.reports');
+Route::post('/MoM2/reportPDF/filter', [MoM2ReportsController::class,'filter'])
+->middleware(['auth'])
+->name('MoM2.filter');
+Route::post('/MoM2/reportPDF', [MoM2ReportsController::class,'reportPDF'])
+->middleware(['auth'])
+->name('MoM2.reportPDF');
+Route::post('/MoM2/reportExcel', [MoM2ReportsController::class,'reportExcel'])
+->middleware(['auth'])
+->name('MoM2.reportExcel');
 
 
 // MoM Level 3
@@ -227,6 +242,15 @@ Route::get('/MoM3/detail/cetak_word/{id}', [DetailLvl3Controller::class,'cetak_w
 Route::get('/MoM3/reports', [MoM3ReportsController::class,'index'])
 ->middleware(['auth','level3'])
 ->name('MoM3.reports');
+Route::post('/MoM3/reportPDF/filter', [MoM3ReportsController::class,'filter'])
+->middleware(['auth'])
+->name('MoM3.filter');
+Route::post('/MoM3/reportPDF', [MoM3ReportsController::class,'reportPDF'])
+->middleware(['auth'])
+->name('MoM3.reportPDF');
+Route::post('/MoM3/reportExcel', [MoM3ReportsController::class,'reportExcel'])
+->middleware(['auth'])
+->name('MoM3.reportExcel');
 
 // Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
 // ->middleware(['auth'])

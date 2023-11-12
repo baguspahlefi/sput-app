@@ -28,27 +28,27 @@
                 </div>
                 <div class="row">
                     <div class="col-12 mt-4">
-                        <div class="card">
-                                <form action="{{route('MoM3.reports')}}" method="get">
-                                    @csrf
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12 col-md-6">
-                                            <label class="ms-1" for="start-date">Start date</label>
-                                            <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control" required>
-                                        </div>
-                                        <div class="col-12 col-md-6">
-                                            <label class="ms-1" for="start-date">End date</label>
-                                            <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control" required>
-                                        </div>
+                    <div class="card">
+                            <form action="{{route('MoM3.filter')}}" method="POST" id="filterForm">
+                                @csrf
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <label class="ms-1" for="start-date">Start date</label>
+                                        <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control" required>
                                     </div>
-                                    <button class="btn btn-outline-success mt-2 mb-2 px-3" style="float:right;">Filter</button>
-                                    <button class="btn btn-reset mt-2 mb-2 px-3" style="float:right;" type="reset">Reset</button>
-                                </form>
-                                <div class="clear-filter">
-                                    <a class="btn btn-reset mt-2" style="float:right;" href="{{route('MoM3.reports')}}">Clear Filter</a>
+                                    <div class="col-12 col-md-6">
+                                        <label class="ms-1" for="start-date">End date</label>
+                                        <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control" required>
+                                    </div>
                                 </div>
-                                </div>
+                                <button class="btn btn-outline-success mt-2 mb-2 px-3" style="float:right;">Filter</button>
+                                <button class="btn btn-reset mt-2 mb-2 px-3" style="float:right;" type="reset">Reset</button>
+                            </form>
+                            <div class="clear-filter">
+                                <a class="btn btn-reset mt-2" style="float:right;" href="{{route('MoM3.reports')}}">Clear Filter</a>
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,8 +58,26 @@
                             Menu Export
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Export PDF</a></li>
-                            <li><a class="dropdown-item" href="#">Export Excel</a></li>
+                            <li>
+                                <form method="post" action="{{ route('MoM3.reportPDF') }}">
+                                    @csrf
+                                    <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAwal}}">
+                                
+                                    <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAkhir}}">
+                                
+                                    <button class="dropdown-item" type="submit">Export PDF</button>
+                                </form>                                
+                            </li>
+                            <li>
+                                <form method="post" action="{{ route('MoM3.reportExcel') }}">
+                                    @csrf
+                                    <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAwal}}">
+                                
+                                    <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAkhir}}">
+                                
+                                    <button class="dropdown-item" type="submit">Export Excel</button>
+                                </form>    
+                            </li>
                             <li><a class="dropdown-item" href="#">Export Word</a></li>
                         </ul>
                     </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app_pdf')
 @section('title')
-    SPUT - MoM 1 Detail PDF
+    SPUT - MoM 2 REPORT PDF
 @endsection
 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 <link href=" {{url('css/styles.css')}} " rel="stylesheet" />
@@ -59,7 +59,7 @@
 <body onload="window.print();">
     <h1>PT. KALIMANTAN PRIMA PERSADA</h1>
     <center><hr></center>
-    <center><span class="minutes-of-meeting">MINUTES OF MEETING</span></center>
+    <center><span class="minutes-of-meeting">REPORTS MINUTES OF MEETING LEVEL 2</span></center>
     <center><hr></center>
     
   <div class="wrapper">
@@ -79,23 +79,15 @@
             </tr>
             </thead>
             <tbody>
-              @php
-                  $iterationCount = 0;
-              @endphp
-              @foreach($details as $key => $detail)
-              @if($detail->id_meeting == $item->id)
-              @php
-              $iterationCount++;
-              @endphp
+            @foreach($data as $key => $detail)
               <tr>
-                <td>{{$iterationCount}}</th>
-                <td>{{$detail->point_of_meeting}}</td>
-                <td>{{$detail->pic}}</td>
-                <td>{{$detail->due}}</td>
-                <td>{{$detail->status}}</td>
+                  <td class="text-center">{{$loop->iteration}}</td>
+                  <td class="text-center">{{$detail->point_of_meeting}}</td>
+                  <td class="text-center">{{$detail->pic}}</td>
+                  <td class="text-center">{{$detail->due}}</td>
+                  <td class="text-center">{{$detail->status}}</td>
+            @endforeach
               </tr>
-              @endif
-              @endforeach
             </tbody>
           </table>
         </div>

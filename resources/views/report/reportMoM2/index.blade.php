@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-12 mt-4">
                     <div class="card">
-                            <form action="{{route('MoM2.reports')}}" method="get">
+                            <form action="{{route('MoM2.filter')}}" method="POST" id="filterForm">
                                 @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -58,8 +58,26 @@
                             Menu Export
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Export PDF</a></li>
-                            <li><a class="dropdown-item" href="#">Export Excel</a></li>
+                            <li>
+                                <form method="post" action="{{ route('MoM2.reportPDF') }}">
+                                    @csrf
+                                    <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAwal}}">
+                                
+                                    <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAkhir}}">
+                                
+                                    <button class="dropdown-item" type="submit">Export PDF</button>
+                                </form>                                
+                            </li>
+                            <li>
+                                <form method="post" action="{{ route('MoM2.reportExcel') }}">
+                                    @csrf
+                                    <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAwal}}">
+                                
+                                    <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAkhir}}">
+                                
+                                    <button class="dropdown-item" type="submit">Export Excel</button>
+                                </form>    
+                            </li>
                             <li><a class="dropdown-item" href="#">Export Word</a></li>
                         </ul>
                     </div>

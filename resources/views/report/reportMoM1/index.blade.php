@@ -29,20 +29,20 @@
                 <div class="row">
                     <div class="col-12 mt-4">
                         <div class="card">
-                            <form action="{{route('MoM1.reports')}}" method="get">
+                            <form action="{{route('MoM1.filter')}}" method="POST" id="filterForm">
                                 @csrf
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-12 col-md-6">
                                         <label class="ms-1" for="start-date">Start date</label>
-                                        <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control" required>
+                                        <input placeholder="Select date" id="startDateFilter" name="startDate" type="date" class="form-control" value="{{ $tanggalAwal }}" required>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <label class="ms-1" for="start-date">End date</label>
-                                        <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control" required>
+                                        <input placeholder="Select date" id="endDateFilter" name="endDate" type="date" class="form-control" value="{{ $tanggalAkhir }}" required>
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-success mt-2 px-3" style="float:right;">Filter</button>
+                                <button class="btn btn-outline-success my-2 px-3" style="float:right;">Filter</button>
                             </form>
                             </div>
                         </div>
@@ -54,8 +54,26 @@
                             Menu Export
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{route('MoM1.reportPDF')}}">Export PDF</a></li>
-                            <li><a class="dropdown-item" href="#">Export Excel</a></li>
+                            <li>
+                                <form method="post" action="{{ route('MoM1.reportPDF') }}">
+                                    @csrf
+                                    <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAwal}}">
+                                
+                                    <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAkhir}}">
+                                
+                                    <button class="dropdown-item" type="submit">Export PDF</button>
+                                </form>                                
+                            </li>
+                            <li>
+                                <form method="post" action="{{ route('MoM1.reportExcel') }}">
+                                    @csrf
+                                    <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAwal}}">
+                                
+                                    <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAkhir}}">
+                                
+                                    <button class="dropdown-item" type="submit">Export Excel</button>
+                                </form>    
+                            </li>
                             <li><a class="dropdown-item" href="#">Export Word</a></li>
                         </ul>
                     </div>
@@ -122,6 +140,24 @@
                 </div>
             </div>
         </section>
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> <!-- Sertakan jQuery jika belum disertakan -->
+
+        <script>
+            $(document).ready(function () {
+                // Event listener untuk perubahan pada elemen input filter tanggal
+                $('#startDateFilter, #endDateFilter').change(function () {
+                    // Ambil nilai tanggal dari form filter
+                    var startDateFilterValue = $('#startDateFilter').val();
+                    var endDateFilterValue = $('#endDateFilter').val();
+
+                    // Set nilai tanggal pada form export PDF
+                    $('form[action="{{ route("MoM1.reportPDF") }}"] input[name="startDate"]').val(startDateFilterValue);
+                    $('form[action="{{ route("MoM1.reportPDF") }}"] input[name="endDate"]').val(endDateFilterValue);
+                });
+            });
+        </script>
+
     </main>
 </div>
 @endsection

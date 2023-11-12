@@ -96,9 +96,15 @@ Route::get('/MoM1/detail/cetak_word/{id}', [DetailLvl1Controller::class,'cetak_w
 Route::get('/MoM1/reports', [MoM1ReportsController::class,'index'])
 ->middleware(['auth','level1'])
 ->name('MoM1.reports');
-Route::get('/MoM1/reportPDF', [MoM1ReportsController::class,'reportPDF'])
+Route::post('/MoM1/reportPDF/filter', [MoM1ReportsController::class,'filter'])
+->middleware(['auth'])
+->name('MoM1.filter');
+Route::post('/MoM1/reportPDF', [MoM1ReportsController::class,'reportPDF'])
 ->middleware(['auth'])
 ->name('MoM1.reportPDF');
+Route::post('/MoM1/reportExcel', [MoM1ReportsController::class,'reportExcel'])
+->middleware(['auth'])
+->name('MoM1.reportExcel');
 
 
 // MoM Level 2

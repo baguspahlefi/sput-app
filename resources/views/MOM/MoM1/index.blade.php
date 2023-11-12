@@ -38,7 +38,7 @@
                                             <p class="fs-5 my-auto mx-auto">Judul</p>
                                         </div>
                                         <div class="col-6">
-                                            <input class="form-control" name="judul" type="text" placeholder="Default input" aria-label="default input example" required>
+                                            <input class="form-control" id="judul" name="judul" type="text" placeholder="Default input" aria-label="default input example" value="{{ old('judul') }}" required>
                                         </div>
                                         <div class="col-6">
                                             <p class="fs-5 my-auto mx-auto">Tanggal</p>

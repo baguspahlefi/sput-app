@@ -134,7 +134,7 @@
                                             <a class="" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEdit-{{$detail->id}}"><img src="{{url('assets/icon/edit.png')}}" width="32" alt=""></a>
                                             <a class="ms-1" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalGambar{{$detail->id}}"><img src="{{url('assets/icon/gallery.png')}}" width="32" alt=""></a>
                                             @role('ADMIN')
-                                            <form class="d-inline" action="{{route('detail2.destroy',$detail->id)}}" method="POST" onsubmit="return confirm('Apakah anda yakin menghapusnya?')>
+                                            <form class="d-inline" action="{{route('detail2.destroy',$detail->id)}}" method="POST" onsubmit="return confirm('Apakah anda yakin menghapusnya?')">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" style="border: none; background: none">

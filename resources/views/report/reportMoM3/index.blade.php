@@ -78,7 +78,16 @@
                                     <button class="dropdown-item" type="submit">Export Excel</button>
                                 </form>    
                             </li>
-                            <li><a class="dropdown-item" href="#">Export Word</a></li>
+                            <li>
+                                <form method="post" action="{{ route('MoM3.reportWord') }}">
+                                    @csrf
+                                    <input placeholder="Select date" id="due" name="startDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAwal}}">
+                                
+                                    <input placeholder="Select date" id="due" name="endDate" type="date" id="example" class="form-control d-none" value="{{$tanggalAkhir}}">
+                                
+                                    <button class="dropdown-item" type="submit">Export Word</button>
+                                </form>  
+                            </li>
                         </ul>
                     </div>
                     <div class="col-12" style="overflow-x: auto;">

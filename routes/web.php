@@ -105,6 +105,9 @@ Route::post('/MoM1/reportPDF', [MoM1ReportsController::class,'reportPDF'])
 Route::post('/MoM1/reportExcel', [MoM1ReportsController::class,'reportExcel'])
 ->middleware(['auth'])
 ->name('MoM1.reportExcel');
+Route::post('/MoM1/reportWord', [MoM1ReportsController::class,'reportWord'])
+->middleware(['auth'])
+->name('MoM1.reportWord');
 
 
 // MoM Level 2
@@ -178,6 +181,9 @@ Route::post('/MoM2/reportPDF', [MoM2ReportsController::class,'reportPDF'])
 Route::post('/MoM2/reportExcel', [MoM2ReportsController::class,'reportExcel'])
 ->middleware(['auth'])
 ->name('MoM2.reportExcel');
+Route::post('/MoM2/reportWord', [MoM2ReportsController::class,'reportWord'])
+->middleware(['auth'])
+->name('MoM2.reportWord');
 
 
 // MoM Level 3
@@ -251,6 +257,9 @@ Route::post('/MoM3/reportPDF', [MoM3ReportsController::class,'reportPDF'])
 Route::post('/MoM3/reportExcel', [MoM3ReportsController::class,'reportExcel'])
 ->middleware(['auth'])
 ->name('MoM3.reportExcel');
+Route::post('/MoM3/reportWord', [MoM3ReportsController::class,'reportWord'])
+->middleware(['auth'])
+->name('MoM3.reportWord');
 
 // Route::match(['get','post'],'/MoM1/{id}', [App\Http\Controllers\MoM1Controller::class, 'modal_show'])
 // ->middleware(['auth'])

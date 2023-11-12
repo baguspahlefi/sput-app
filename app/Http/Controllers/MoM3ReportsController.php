@@ -106,8 +106,8 @@ class MoM3ReportsController extends Controller
 
     public function reportExcel(Request $request)
     {
-        $startDate = $request->has('startDate') ? Carbon::createFromFormat('Y-m-d', $request->input('startDate'))->startOfDay() : null;
-        $endDate = $request->has('endDate') ? Carbon::createFromFormat('Y-m-d', $request->input('endDate'))->endOfDay() : null;
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
         return Excel::download(new ReportDetailLevel3Export($startDate,$endDate), 'Report-MoM-Level-3.xlsx');
     }
 

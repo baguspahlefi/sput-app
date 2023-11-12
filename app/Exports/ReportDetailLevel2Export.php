@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 use Illuminate\Support\Collection;
+use Carbon\Carbon;
 
 class ReportDetailLevel2Export implements FromCollection,WithHeadings,WithStyles
 {
@@ -27,21 +28,40 @@ class ReportDetailLevel2Export implements FromCollection,WithHeadings,WithStyles
     public function collection()
     {
         $query = DetailLevel2::query();
-        if ($this->startDate && $this->endDate) {
-            $query->whereBetween('due', [$this->startDate, $this->endDate]);
+        $startDate = $this->startDate ? Carbon::parse( $this->startDate)->format('Y-m-d') : null;
+        $endDate = $this->endDate ? Carbon::parse($this->endDate)->format('Y-m-d') : null;
+        if (!$this->startDate && !$this->endDate) {
+            // Filter status close without date filtering
+            $query->where('status', 'close');
+        } else {
+            // If startDate and/or endDate are provided, apply date filtering
+            if ($this->startDate && $this->endDate) {
+                $query->whereBetween('due', [$startDate, $endDate]);
+            }
+    
+            // Always filter status close regardless of date filtering
+            $query->where('status', 'close');
         }
-
-        $query->where('status', 'close');
 
         $data = $query->get();
   
-        return $data;
+         // Exclude columns 1 and 2 from the collection
+         $modifiedData = $data->map(function ($item) {
+            return collect($item->toArray())->except(['id_meeting','created_at','updated_at']);
+        });
+
+        return $modifiedData;
+    }
+
+    public function startCol(): int
+    {
+        return 2;
     }
 
     public function headings(): array
     {
         return [
-            ['NO','ID Meeting Level 2','Point Of Meeting','PIC','DUE','STATUS'], // Judul kolom dalam array
+            ['NO','Point Of Meeting','PIC','DUE','STATUS'], // Judul kolom dalam array
         ];
     }
 

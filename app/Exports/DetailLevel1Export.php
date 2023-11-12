@@ -26,13 +26,18 @@ class DetailLevel1Export implements FromCollection,WithHeadings,WithStyles
     {
         $data = DetailLevel1::where('id_meeting', $this->id)->get();
   
-        return $data;
+         // Exclude columns 1 and 2 from the collection
+         $modifiedData = $data->map(function ($item) {
+            return collect($item->toArray())->except(['id_meeting','created_at','updated_at']);
+        });
+
+        return $modifiedData;
     }
 
     public function headings(): array
     {
         return [
-            ['NO','ID Meeting Level 1','Point Of Meeting','PIC','DUE','STATUS'], // Judul kolom dalam array
+            ['NO','Point Of Meeting','PIC','DUE','STATUS'], // Judul kolom dalam array
         ];
     }
 

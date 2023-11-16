@@ -73,7 +73,7 @@
             <tr>
               <th>No</th>
               <th class="col">Point Of Meeting</th>
-              <th class="col">pic</th>
+              <th class="col">PIC</th>
               <th class="col">DUE</th>
               <th class="col">Status</th>
             </tr>
@@ -89,7 +89,17 @@
               @endphp
               <tr>
                 <td>{{$iterationCount}}</th>
-                <td>{{$detail->point_of_meeting}}</td>
+                <td class="text-center">
+                    {{-- Displaying the title (assuming title and points are separated by newline) --}}
+                    {{ $meetingDetails = explode("\n", $detail->point_of_meeting)[0] }}
+                    <br>
+                    {{-- Displaying points as a list without bullet points --}}
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        @foreach(array_slice(explode("\n", $detail->point_of_meeting), 1) as $point)
+                            <li>{{ trim($point) }}</li>
+                        @endforeach
+                    </ul>
+                </td>
                 <td>{{$detail->pic}}</td>
                 <td>{{$detail->due}}</td>
                 <td>{{$detail->status}}</td>

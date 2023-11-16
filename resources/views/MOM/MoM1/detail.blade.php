@@ -80,16 +80,16 @@
                         </ul>
                     </div>
                     <div class="col-12" style="overflow-x: auto;">
-                        <table id="datatablesSimple" class="table table-bordered border-light table-word">
+                        <table id="datatablesSimple" class="table table-bordered border-light table-word table-detail">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="col text-center">Point Of Meeting</th>
-                                    <th class="col text-center">pic</th>
-                                    <th class="col text-center">DUE</th>
-                                    <th class="col text-center">Status</th>
-                                    <th class="col text-center">Evidence</th>
-                                    <th class="col text-center">Aksi</th>
+                                    <th>Point Of Meeting</th>
+                                    <th>pic</th>
+                                    <th>DUE</th>
+                                    <th>Status</th>
+                                    <th>Evidence</th>
+                                    <th>Aksi</th>
                     
                                 </tr>
                             </thead>
@@ -104,11 +104,21 @@
                                     $iterationCount++;
                                     @endphp
                                     <tr>
-                                        <td class="text-center">{{$iterationCount}}</td>
-                                        <td class="text-center">{{$detail->point_of_meeting}}</td>
-                                        <td class="text-center">{{$detail->pic}}</td>
-                                        <td class="text-center">{{$detail->due}}</td>
-                                        <td class="text-center">{{$detail->status}}</td>
+                                        <td>{{$iterationCount}}</td>
+                                        <td>
+                                            {{-- Displaying the title (assuming title and points are separated by newline) --}}
+                                            {{ $meetingDetails = explode("\n", $detail->point_of_meeting)[0] }}
+                                            <br>
+                                            {{-- Displaying points as a list without bullet points --}}
+                                            <ul style="list-style-type: none; padding-left: 0;">
+                                                @foreach(array_slice(explode("\n", $detail->point_of_meeting), 1) as $point)
+                                                    <li>{{ trim($point) }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
+                                        <td>{{$detail->pic}}</td>
+                                        <td>{{$detail->due}}</td>
+                                        <td>{{$detail->status}}</td>
                                         <td>
                                             @foreach($detail->evidance_level_1 as $gambarTabel)
                                             @if($loop->first)

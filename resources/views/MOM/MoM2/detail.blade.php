@@ -117,7 +117,17 @@
                                     @if($detail->id_meeting == $item->id)
                                     <tr>
                                         <td class="text-center"></td>
-                                        <td class="text-center">{{$detail->point_of_meeting}}</td>
+                                        <td class="text-center">
+                                            {{-- Displaying the title (assuming title and points are separated by newline) --}}
+                                            {{ $meetingDetails = explode("\n", $detail->point_of_meeting)[0] }}
+                                            <br>
+                                            {{-- Displaying points as a list without bullet points --}}
+                                            <ul style="list-style-type: none; padding-left: 0;">
+                                                @foreach(array_slice(explode("\n", $detail->point_of_meeting), 1) as $point)
+                                                    <li>{{ trim($point) }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </td>
                                         <td class="text-center">{{$detail->pic}}</td>
                                         <td class="text-center">{{$detail->due}}</td>
                                         <td class="text-center">{{$detail->status}}</td>

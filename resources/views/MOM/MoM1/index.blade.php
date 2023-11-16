@@ -81,10 +81,10 @@
                         <tbody>
                             @foreach($level1 as $item)
                             <tr>
-                                <td class="text-center">{{$loop->iteration}}</td>
-                                <td class="text-center">{{$item->judul}}</td>
-                                <td class="text-center">{{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}</td>
-                                <td class="text-center">
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$item->judul}}</td>
+                                <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('d F Y') }}</td>
+                                <td>
                                     <button class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModalHadir{{$item->id}}">Lihat Daftar Hadir</button>
                                 </td>
                                 <td class="text-center">

@@ -55,7 +55,7 @@
                                             </div>
                                             <div class="col-6 mb-3">
                                                 <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="pic">
-                                                    <option selected>Pilih pic</option>    
+                                                    <option selected>Pilih PIC</option>    
                                                     @foreach($pic as $picAkun)
                                                     <option value="{{$picAkun->pic}}">{{$picAkun->pic}}</option>
                                                     @endforeach  
@@ -63,6 +63,18 @@
                                                 @error('pic')
                                                     <div class="text-danger mt-2">{{$message}}</div>
                                                 @enderror
+                                            </div>
+                                            <div class="col-6">
+                                                <x-input-label class="fs-5 my-auto mx-auto" for="roles" :value="__('Roles')" />
+                                            </div>
+                                            <div class="col-6 mb-3">
+                                                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="roles">
+                                                    <option selected>Pilih Roles</option>    
+                                                    @foreach($roles as $data)
+                                                    <option value="{{$data->name}}">{{$data->name}}</option>
+                                                    @endforeach  
+                                                </select>
+                                               
                                             </div>
                                             <!-- Password -->
                                             <div class="col-6">
@@ -115,7 +127,7 @@
                                 <tr>
                                     <td class="text-center">{{$item->nrp}}</td>
                                     <td class="text-center">{{$item->name}}</td>
-                                    <td class="text-center">{{$item->roles->map->name->implode(', ')}}</td>
+                                    <td class="text-center">{{$item->pic}}</td>
                                     <td class="text-center" style="display: flex; align-items: center;">
                                         <a class="mx-1" href="#" data-bs-toggle="modal" data-bs-target="#ModalAksesMenu-{{$item->id}}">
                                             <img src="{{url('assets/icon/edit.png')}}" width="32" alt="">
@@ -155,14 +167,27 @@
                                                             <input class="form-control" type="text" id="nrp" name="name" value="{{$item->name}}" aria-label="default input example">
                                                         </div>
                                                         <div class="col-6">
-                                                            <p class="fs-5 my-auto mx-auto">Jabatan</p>
+                                                            <p class="fs-5 my-auto mx-auto">Departemen</p>
+                                                        </div>
+                                                        <div class="col-6 mb-3">
+                                                            <div class="input-group">
+                                                                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="pic">
+                                                                    <option selected>{{ $item->pic }}</option>    
+                                                                    @foreach($pic as $itempic)
+                                                                    <option value="{{$itempic->pic}}">{{$itempic->pic}}</option>
+                                                                    @endforeach  
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <p class="fs-5 my-auto mx-auto">Roles</p>
                                                         </div>
                                                         <div class="col-6 mb-3">
                                                             <div class="input-group mb-3">
-                                                                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="pic">
-                                                                    <option selected>{{$item->roles->map->name->implode(', ')}}</option>    
-                                                                    @foreach($pic as $itempic)
-                                                                    <option value="{{$itempic->pic}}">{{$itempic->pic}}</option>
+                                                                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="roles">
+                                                                    <option selected>{{$item->roles->map->name->implode(', ')}}</option>      
+                                                                    @foreach($roles as $itempic)
+                                                                    <option value="{{$itempic->name}}">{{$itempic->name}}</option>
                                                                     @endforeach  
                                                                 </select>
                                                             </div>

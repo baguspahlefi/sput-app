@@ -29,6 +29,7 @@ class LoginRequest extends FormRequest
         return [
             'nrp' => ['required', 'string', 'string'],
             'password' => ['required', 'string'],
+            'akses' => ['required', 'string'],
         ];
     }
 
@@ -41,7 +42,7 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('nrp', 'password'), $this->boolean('remember'))) {
+        if (! Auth::attempt($this->only('nrp', 'password','akses'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

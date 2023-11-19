@@ -21,5 +21,6 @@ class picTableSeeder extends Seeder
         pic::create(['pic' => 'PLANT']);
         pic::create(['pic' => 'SHE']);
         pic::create(['pic' => 'Project Management']);
+        pic::create(['pic' => 'MD']);
     }
 }

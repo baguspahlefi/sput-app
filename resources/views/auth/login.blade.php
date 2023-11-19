@@ -25,6 +25,20 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
+        <div class="mt-4">
+            <x-input-label for="akses" :value="__('Roles')" />
+            <div class="input-group mb-3">
+                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="akses">
+                    <option selected>Roles</option>    
+                    @foreach($roles as $roles)
+                    <option value="{{$roles->name}}">{{$roles->name}}</option>
+                    @endforeach  
+                </select>
+            </div>
+            <x-input-error :messages="$errors->get('akses')" class="mt-2" />
+
+        </div>
+
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">

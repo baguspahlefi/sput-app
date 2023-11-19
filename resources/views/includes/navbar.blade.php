@@ -45,7 +45,7 @@
                     
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><div class="dropdown-item">{{ Auth::user()->name }}</div></li>
+                        <li><div class="dropdown-item">{{ Auth::user()->name }} / {{ Auth::user()->pic }}</div></li>
                         <li>
                             <li><a class="dropdown-item" href="{{route('profile.edit')}}">Profile</a></li>
                         </li>

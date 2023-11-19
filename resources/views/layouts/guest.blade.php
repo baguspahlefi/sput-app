@@ -8,9 +8,9 @@
         <title>SPUT</title>
 
         <!-- Styles -->
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="{{url('css/guest/style.css')}}" rel="stylesheet" />
         <link href=" {{url('css/styles.css')}} " rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <link rel="stylesheet" href="{{url('css/guest/bootstrap-datepicker3.css')}}"/>
         <style>
             body {
                 background-image:https://parboaboa.com/data/foto_sedang/gojo-satoru.webp; /* Ganti '/path/to/your/image.jpg' dengan path gambar Anda */
@@ -21,7 +21,7 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="{{url('css/font-bunny.css')}}" rel="stylesheet" />
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])

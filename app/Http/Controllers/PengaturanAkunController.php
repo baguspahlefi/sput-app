@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\pic;
+use App\Models\Roles;
 use DB;
 
 class PengaturanAkunController extends Controller
@@ -17,10 +18,12 @@ class PengaturanAkunController extends Controller
     {
         $items = User::all();
         $pic = pic::all();
+        $roles = Roles::all();
         return view('pengaturanAkun.index',
         [
             'items' => $items,
-            'pic' => $pic
+            'pic' => $pic,
+            'roles' => $roles
         ]);
     }
 
@@ -41,10 +44,12 @@ class PengaturanAkunController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'nrp' => $request->nrp,
+            'pic' => $request->pic,
+            'akses' => $request->roles,
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole($request->pic);
+        $user->assignRole($request->roles);
         return redirect()->route('pengaturanAkun.index')->with('flash_message_success','Berhasil menambahkan user');
     }
 
@@ -72,7 +77,7 @@ class PengaturanAkunController extends Controller
         $user = User::findOrFail($id);
         $data = $request->all();
 
-        $user->syncRoles($request->pic);
+        $user->syncRoles($request->roles);
         $user->update($data);
         return redirect()->route('pengaturanAkun.index')->with('flash_message_success','Update Berhasil');
     }

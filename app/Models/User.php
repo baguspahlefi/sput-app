@@ -22,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'nrp',
+        'pic',
+        'akses',
         'password',
         'level1',
         'level2',

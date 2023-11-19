@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->char('nrp')->unique();
+            $table->string('pic');
+            $table->string('akses');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('level1')->default('1');;

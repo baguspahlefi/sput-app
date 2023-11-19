@@ -14,9 +14,11 @@ class UserTableSeeder extends Seeder
     public function run(): void
     {
         $admin = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'nrp' => '098',
+            'name' => 'Jordan AlMurtadlo',
+            'email' => 'jordan.murtadlo@kppmining.com',
+            'nrp' => 'KB23060',
+            'pic' => 'MD',
+            'akses' => 'ADMIN',
             'password' => bcrypt('password'),
         ]);
         $admin->assignRole('ADMIN');

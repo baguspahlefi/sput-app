@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Models\pic;
+use App\Models\Roles;
 
 class RegisteredUserController extends Controller
 {
@@ -22,8 +23,12 @@ class RegisteredUserController extends Controller
     public function create(): View
     {
         $pic = pic::all();
+        $roles= Roles::all();
         return view('auth.register',
-        ['pic' => $pic]);
+        [
+            'pic' => $pic,
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -50,10 +55,11 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'nrp' => $request->nrp,
+            'pic' => $request->pic,
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole($request->pic);
+        $user->assignRole($request->roles);
 
         event(new Registered($user));
 

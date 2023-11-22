@@ -58,48 +58,26 @@ class DashboardController extends Controller
             $statusCountsFAT1[$row->status] = $row->count;
         }
 
-        $dataEngineeringRoad1 = DB::table('detail_level1')
+        $dataEPR1 = DB::table('detail_level1')
         ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'Engineering Road')
+        ->where('pic', 'Eng, Port & Road')
         ->groupBy('status')
         ->get();
 
-        $statusCountsEngineeringRoad1 = [];
-        foreach ($dataEngineeringRoad1 as $row) {
-            $statusCountsEngineeringRoad1[$row->status] = $row->count;
+        $statusCountsEPR1 = [];
+        foreach ($dataEPR1 as $row) {
+            $statusCountsEPR1[$row->status] = $row->count;
         }
 
-        $dataPortOperation1 = DB::table('detail_level1')
+        $dataPS1 = DB::table('detail_level1')
         ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'Port Operation')
+        ->where('pic', 'Plant & SM')
         ->groupBy('status')
         ->get();
 
-        $statusCountsPortOperation1 = [];
-        foreach ($dataPortOperation1 as $row) {
-            $statusCountsPortOperation1[$row->status] = $row->count;
-        }
-
-        $dataSM1 = DB::table('detail_level1')
-        ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'SM')
-        ->groupBy('status')
-        ->get();
-
-        $statusCountsSM1 = [];
-        foreach ($dataSM1 as $row) {
-            $statusCountsSM1[$row->status] = $row->count;
-        }
-
-        $dataPLANT1 = DB::table('detail_level1')
-        ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'PLANT')
-        ->groupBy('status')
-        ->get();
-
-        $statusCountsPLANT1 = [];
-        foreach ($dataPLANT1 as $row) {
-            $statusCountsPLANT1[$row->status] = $row->count;
+        $statusCountsPS1 = [];
+        foreach ($dataPS1 as $row) {
+            $statusCountsPS1[$row->status] = $row->count;
         }
 
         $dataSHE1 = DB::table('detail_level1')
@@ -124,6 +102,17 @@ class DashboardController extends Controller
             $statusCountsProjectManagement1[$row->status] = $row->count;
         }
 
+        $dataMD1 = DB::table('detail_level1')
+        ->select('status', DB::raw('count(*) as count'))
+        ->where('pic', 'MD')
+        ->groupBy('status')
+        ->get();
+
+        $statusCountsMD1 = [];
+        foreach ($dataMD1 as $row) {
+            $statusCountsMD1[$row->status] = $row->count;
+        }
+
         $dataHCGS2 = DB::table('detail_level2')
         ->select('status', DB::raw('count(*) as count'))
         ->where('pic', 'HCGS')
@@ -146,48 +135,26 @@ class DashboardController extends Controller
             $statusCountsFAT2[$row->status] = $row->count;
         }
 
-        $dataEngineeringRoad2 = DB::table('detail_level2')
+        $dataEPR2 = DB::table('detail_level2')
         ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'Engineering Road')
+        ->where('pic', 'Eng, Port & Road')
         ->groupBy('status')
         ->get();
 
-        $statusCountsEngineeringRoad2 = [];
-        foreach ($dataEngineeringRoad2 as $row) {
-            $statusCountsEngineeringRoad2[$row->status] = $row->count;
+        $statusCountsEPR2 = [];
+        foreach ($dataEPR2 as $row) {
+            $statusCountsEPR2[$row->status] = $row->count;
         }
 
-        $dataPortOperation2 = DB::table('detail_level2')
+        $dataPS2 = DB::table('detail_level2')
         ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'Port Operation')
+        ->where('pic', 'Plant & SM')
         ->groupBy('status')
         ->get();
 
-        $statusCountsPortOperation2 = [];
-        foreach ($dataPortOperation2 as $row) {
-            $statusCountsPortOperation2[$row->status] = $row->count;
-        }
-
-        $dataSM2 = DB::table('detail_level2')
-        ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'SM')
-        ->groupBy('status')
-        ->get();
-
-        $statusCountsSM2 = [];
-        foreach ($dataSM2 as $row) {
-            $statusCountsSM2[$row->status] = $row->count;
-        }
-
-        $dataPLANT2 = DB::table('detail_level2')
-        ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'PLANT')
-        ->groupBy('status')
-        ->get();
-
-        $statusCountsPLANT2 = [];
-        foreach ($dataPLANT2 as $row) {
-            $statusCountsPLANT2[$row->status] = $row->count;
+        $statusCountsPS2 = [];
+        foreach ($dataPS2 as $row) {
+            $statusCountsPS2[$row->status] = $row->count;
         }
 
         $dataSHE2 = DB::table('detail_level2')
@@ -212,6 +179,17 @@ class DashboardController extends Controller
             $statusCountsProjectManagement2[$row->status] = $row->count;
         }
 
+        $dataMD2 = DB::table('detail_level2')
+        ->select('status', DB::raw('count(*) as count'))
+        ->where('pic', 'MD')
+        ->groupBy('status')
+        ->get();
+
+        $statusCountsMD2 = [];
+        foreach ($dataMD2 as $row) {
+            $statusCountsMD2[$row->status] = $row->count;
+        }
+
         $dataHCGS3 = DB::table('detail_level3')
         ->select('status', DB::raw('count(*) as count'))
         ->where('pic', 'HCGS')
@@ -234,48 +212,26 @@ class DashboardController extends Controller
             $statusCountsFAT3[$row->status] = $row->count;
         }
 
-        $dataEngineeringRoad3 = DB::table('detail_level3')
+        $dataEPR3 = DB::table('detail_level3')
         ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'Engineering Road')
+        ->where('pic', 'Eng, Port & Road')
         ->groupBy('status')
         ->get();
 
-        $statusCountsEngineeringRoad3 = [];
-        foreach ($dataEngineeringRoad3 as $row) {
-            $statusCountsEngineeringRoad3[$row->status] = $row->count;
+        $statusCountsEPR3 = [];
+        foreach ($dataEPR3 as $row) {
+            $statusCountsEPR3[$row->status] = $row->count;
         }
 
-        $dataPortOperation3 = DB::table('detail_level3')
+        $dataPS3 = DB::table('detail_level3')
         ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'Port Operation')
+        ->where('pic', 'Plant & SM')
         ->groupBy('status')
         ->get();
 
-        $statusCountsPortOperation3 = [];
-        foreach ($dataPortOperation3 as $row) {
-            $statusCountsPortOperation3[$row->status] = $row->count;
-        }
-
-        $dataSM3 = DB::table('detail_level3')
-        ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'SM')
-        ->groupBy('status')
-        ->get();
-
-        $statusCountsSM3 = [];
-        foreach ($dataSM3 as $row) {
-            $statusCountsSM3[$row->status] = $row->count;
-        }
-
-        $dataPLANT3 = DB::table('detail_level3')
-        ->select('status', DB::raw('count(*) as count'))
-        ->where('pic', 'PLANT')
-        ->groupBy('status')
-        ->get();
-
-        $statusCountsPLANT3 = [];
-        foreach ($dataPLANT3 as $row) {
-            $statusCountsPLANT3[$row->status] = $row->count;
+        $statusCountsPS3 = [];
+        foreach ($dataPS3 as $row) {
+            $statusCountsPS3[$row->status] = $row->count;
         }
 
         $dataSHE3 = DB::table('detail_level3')
@@ -300,31 +256,39 @@ class DashboardController extends Controller
             $statusCountsProjectManagement3[$row->status] = $row->count;
         }
 
+        $dataMD3 = DB::table('detail_level3')
+        ->select('status', DB::raw('count(*) as count'))
+        ->where('pic', 'MD')
+        ->groupBy('status')
+        ->get();
+
+        $statusCountsMD3 = [];
+        foreach ($dataMD3 as $row) {
+            $statusCountsMD3[$row->status] = $row->count;
+        }
+
         return view('dashboard', [
             'statusCountsHCGS1' => $statusCountsHCGS1,
             'statusCountsFAT1' => $statusCountsFAT1,
-            'statusCountsEngineeringRoad1' => $statusCountsEngineeringRoad1,
-            'statusCountsPortOperation1' => $statusCountsPortOperation1,
-            'statusCountsSM1' => $statusCountsSM1,
-            'statusCountsPLANT1' => $statusCountsPLANT1,
+            'statusCountsEPR1' => $statusCountsEPR1,
+            'statusCountsPS1' => $statusCountsPS1,
             'statusCountsSHE1' => $statusCountsSHE1,
             'statusCountsProjectManagement1' => $statusCountsProjectManagement1,
+            'statusCountsMD1' => $statusCountsMD1,
             'statusCountsHCGS2' => $statusCountsHCGS2,
             'statusCountsFAT2' => $statusCountsFAT2,
-            'statusCountsEngineeringRoad2' => $statusCountsEngineeringRoad2,
-            'statusCountsPortOperation2' => $statusCountsPortOperation2,
-            'statusCountsSM2' => $statusCountsSM2,
-            'statusCountsPLANT2' => $statusCountsPLANT2,
+            'statusCountsEPR2' => $statusCountsEPR2,
+            'statusCountsPS2' => $statusCountsPS2,
             'statusCountsSHE2' => $statusCountsSHE2,
             'statusCountsProjectManagement2' => $statusCountsProjectManagement2,
+            'statusCountsMD2' => $statusCountsMD2,
             'statusCountsHCGS3' => $statusCountsHCGS3,
             'statusCountsFAT3' => $statusCountsFAT3,
-            'statusCountsEngineeringRoad3' => $statusCountsEngineeringRoad3,
-            'statusCountsPortOperation3' => $statusCountsPortOperation3,
-            'statusCountsSM3' => $statusCountsSM3,
-            'statusCountsPLANT3' => $statusCountsPLANT3,
+            'statusCountsEPR3' => $statusCountsEPR3,
+            'statusCountsPS3' => $statusCountsPS3,
             'statusCountsSHE3' => $statusCountsSHE3,
             'statusCountsProjectManagement3' => $statusCountsProjectManagement3,
+            'statusCountsMD3' => $statusCountsMD3,
             'statusMoM1' => [
                 'labelsMoM1' => $labelsMoM1,
                 'dataMoM1' => $dataMoM1,

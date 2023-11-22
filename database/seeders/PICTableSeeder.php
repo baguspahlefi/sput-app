@@ -15,10 +15,8 @@ class picTableSeeder extends Seeder
     {
         pic::create(['pic' => 'HCGS']);
         pic::create(['pic' => 'FAT']);
-        pic::create(['pic' => 'Engineering Road']);
-        pic::create(['pic' => 'Port Operation']);
-        pic::create(['pic' => 'SM']);
-        pic::create(['pic' => 'PLANT']);
+        pic::create(['pic' => 'Eng, Port & Road']);
+        pic::create(['pic' => 'Plant & SM']);
         pic::create(['pic' => 'SHE']);
         pic::create(['pic' => 'Project Management']);
         pic::create(['pic' => 'MD']);

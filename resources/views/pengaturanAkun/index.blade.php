@@ -184,8 +184,8 @@
                                                         </div>
                                                         <div class="col-6 mb-3">
                                                             <div class="input-group mb-3">
-                                                                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="roles">
-                                                                    <option selected>{{$item->roles->map->name->implode(', ')}}</option>      
+                                                                <select class="form-select border focus:border-primary rounded-md shadow-sm" id="inputGroupSelect02" name="akses">
+                                                                    <option selected>{{$item->akses}}</option>      
                                                                     @foreach($roles as $itempic)
                                                                     <option value="{{$itempic->name}}">{{$itempic->name}}</option>
                                                                     @endforeach  

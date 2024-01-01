@@ -32,6 +32,7 @@ class DetailLvl1Controller extends Controller
     {
         $user = auth()->user();
         $roles = $user->getRoleNames();
+        $akunPic= $user->pic;
 
         $pic = PIC::all();
         $status = Status::all();
@@ -41,7 +42,7 @@ class DetailLvl1Controller extends Controller
         if ($roles->intersect($rolesToCheck)->isNotEmpty()) {
             $detail = DetailLevel1::get();
         } else {
-            $detail = DetailLevel1::whereIn('pic', $roles)->get();
+            $detail = DetailLevel1::where('pic', $akunPic)->get();
         }
 
         auth()->user()->unreadNotifications->where('id',request('id'))->first()?->markAsRead();
@@ -159,7 +160,7 @@ class DetailLvl1Controller extends Controller
         $level = 1;
         $nama = $request->user()->name;
         $user = auth()->user();
-        $pic = $user->getRoleNames();
+        $pic = $user->pic;
         $item = [
             'id_meeting' => $request->id,
             'point_of_meeting' => $request->point_of_meeting,
@@ -224,7 +225,7 @@ class DetailLvl1Controller extends Controller
         $level = 1;
         $nama = $request->user()->name;
         $user = auth()->user();
-        $pic = $user->getRoleNames();
+        $pic = $user->pic;
         $data = DetailLevel1::findOrFail($id);
         $item = $request->all();
 

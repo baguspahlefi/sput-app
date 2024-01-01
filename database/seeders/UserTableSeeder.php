@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder
         $admin = User::create([
             'name' => 'Jordan AlMurtadlo',
             'email' => 'jordan.murtadlo@kppmining.com',
-            'nrp' => 'KB23060',
+            'nrp' => 'KB1234',
             'pic' => 'MD',
             'akses' => 'ADMIN',
             'password' => bcrypt('password'),

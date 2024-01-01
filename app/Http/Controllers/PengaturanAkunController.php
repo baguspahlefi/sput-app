@@ -45,11 +45,11 @@ class PengaturanAkunController extends Controller
             'email' => $request->email,
             'nrp' => $request->nrp,
             'pic' => $request->pic,
-            'akses' => $request->roles,
+            'akses' => $request->akses,
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole($request->roles);
+        $user->assignRole($request->akses);
         return redirect()->route('pengaturanAkun.index')->with('flash_message_success','Berhasil menambahkan user');
     }
 
@@ -74,11 +74,11 @@ class PengaturanAkunController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        
         $user = User::findOrFail($id);
         $data = $request->all();
-
-        $user->syncRoles($request->roles);
         $user->update($data);
+        $user->syncRoles($request->akses);
         return redirect()->route('pengaturanAkun.index')->with('flash_message_success','Update Berhasil');
     }
 

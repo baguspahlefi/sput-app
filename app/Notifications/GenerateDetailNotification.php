@@ -58,7 +58,7 @@ class GenerateDetailNotification extends Notification
         $data = [
             'id' => $this->data->id_meeting,
             'pic' => $this->data->pic,
-            'title' => 'MoM Baru',
+            'title' => 'Update',
             'messages' => 'Status '. $this->data->status,
         ];
     

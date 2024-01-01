@@ -160,7 +160,7 @@ class DetailLvl1Controller extends Controller
         $level = 1;
         $nama = $request->user()->name;
         $user = auth()->user();
-        $pic = $user->pic;
+        $pic = $request->pic;
         $item = [
             'id_meeting' => $request->id,
             'point_of_meeting' => $request->point_of_meeting,
@@ -170,10 +170,10 @@ class DetailLvl1Controller extends Controller
         ];
         $data = DetailLevel1::create($item);
         $roleName = $request->pic; // Ganti dengan peran yang Anda inginkan
-        $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
-            $query->where('name', $roleName);
-        })->where('level1', 1)->get();
-        Notification::send($usersWithRole, new GenerateDetailNotification($data,$level,$nama,$pic));
+        $usersWithPic = User::where('pic', $pic)
+        ->where('level1', 1)
+        ->get();
+        Notification::send($usersWithPic, new GenerateDetailNotification($data,$level,$nama,$pic));
         return redirect(route('detail1.index', $request->id));
     }
 
@@ -225,16 +225,20 @@ class DetailLvl1Controller extends Controller
         $level = 1;
         $nama = $request->user()->name;
         $user = auth()->user();
-        $pic = $user->pic;
+        $pic = $request->pic;
         $data = DetailLevel1::findOrFail($id);
         $item = $request->all();
 
         $roleName = "ADMIN"; // Ganti dengan nama peran "ADMIN"
-        $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
+        $userAdmin = User::whereHas('roles', function ($query) use ($roleName) {
             $query->where('name', $roleName);
         })->get();
-        Notification::send($usersWithRole, new GenerateDetailNotification($data, $level, $nama,$pic));
+        Notification::send($userAdmin, new GenerateDetailNotification($data, $level, $nama,$pic));
 
+        $usersWithPic = User::where('pic', $pic)
+        ->where('level1', 1)
+        ->get();
+        Notification::send($usersWithPic, new GenerateDetailNotification($data, $level, $nama,$pic));
 
         $data->update($item);
         return redirect()->back()->with('success', 'Berhasil edit meeting');

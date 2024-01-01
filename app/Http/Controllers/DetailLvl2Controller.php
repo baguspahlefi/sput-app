@@ -32,6 +32,8 @@ class DetailLvl2Controller extends Controller
     {
         $user = auth()->user();
         $roles = $user->getRoleNames();
+        $akunPic= $user->pic;
+
         $pic = PIC::all();
         $status = Status::all();
         $item = MeetingLevel2::findOrFail($id);
@@ -40,9 +42,11 @@ class DetailLvl2Controller extends Controller
         if ($roles->intersect($rolesToCheck)->isNotEmpty()) {
             $detail = DetailLevel2::get();
         } else {
-            $detail = DetailLevel2::whereIn('pic', $roles)->get();
-        }      
+            $detail = DetailLevel2::where('pic', $akunPic)->get();
+        }
+
         auth()->user()->unreadNotifications->where('id',request('id'))->first()?->markAsRead();
+        
         return view ('MOM.MoM2.detail',
         [
             'item'=>$item,
@@ -153,7 +157,7 @@ class DetailLvl2Controller extends Controller
         $level = 2;
         $nama = $request->user()->name;
         $user = auth()->user();
-        $pic = $user->getRoleNames();
+        $pic = $request->pic;
         $item = [
             'id_meeting' => $request->id,
             'point_of_meeting' => $request->point_of_meeting,
@@ -163,11 +167,11 @@ class DetailLvl2Controller extends Controller
         ];
         $data = DetailLevel2::create($item);
         $roleName = $request->pic; // Ganti dengan peran yang Anda inginkan
-        $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
-            $query->where('name', $roleName);
-        })->where('level2', 1)->get();
-        Notification::send($usersWithRole, new GenerateDetailNotification($data,$level,$nama,$pic));
-        return redirect(route('detail2.index', $request->id));
+        $usersWithPic = User::where('pic', $pic)
+        ->where('level2', 1)
+        ->get();
+        Notification::send($usersWithPic, new GenerateDetailNotification($data,$level,$nama,$pic));
+        return redirect(route('detail1.index', $request->id));
     }
 
     public function store_evidance(Request $request)
@@ -214,19 +218,23 @@ class DetailLvl2Controller extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        $level = 2;
+    { $level = 2;
         $nama = $request->user()->name;
         $user = auth()->user();
-        $pic = $user->getRoleNames();
+        $pic = $request->pic;
         $data = DetailLevel2::findOrFail($id);
         $item = $request->all();
 
         $roleName = "ADMIN"; // Ganti dengan nama peran "ADMIN"
-        $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
+        $userAdmin = User::whereHas('roles', function ($query) use ($roleName) {
             $query->where('name', $roleName);
         })->get();
-        Notification::send($usersWithRole, new GenerateDetailNotification($data, $level, $nama,$pic));
+        Notification::send($userAdmin, new GenerateDetailNotification($data, $level, $nama,$pic));
+
+        $usersWithPic = User::where('pic', $pic)
+        ->where('level2', 1)
+        ->get();
+        Notification::send($usersWithPic, new GenerateDetailNotification($data, $level, $nama,$pic));
 
         $data->update($item);
         return redirect()->back()->with('success', 'Berhasil edit meeting');

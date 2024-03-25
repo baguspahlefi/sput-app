@@ -9,6 +9,7 @@ use App\Models\DetailLevel3;
 use App\Models\PIC;
 use App\Models\Status;
 use App\Models\EvidanceLevel3;
+use App\Models\User;
 
 class MoM3Controller extends Controller
 {
@@ -22,10 +23,12 @@ class MoM3Controller extends Controller
         
         $level3 = MeetingLevel3::all();
         $pic = PIC::all();
+        $user = User::all();
         return view('MOM.MoM3.index',
         [   
             'level3' => $level3,
-            'pic' =>  $pic
+            'pic' =>  $pic,
+            'user' => $user
         ]);
     }
 

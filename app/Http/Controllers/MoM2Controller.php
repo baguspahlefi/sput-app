@@ -9,6 +9,7 @@ use App\Models\DetailLevel2;
 use App\Models\PIC;
 use App\Models\Status;
 use App\Models\EvidanceLevel2;
+use App\Models\User;
 
 class MoM2Controller extends Controller
 {
@@ -21,10 +22,12 @@ class MoM2Controller extends Controller
         // $meetingLevel1Id = 3; // Ganti dengan ID yang sesuai
         $pic = PIC::all();
         $level2 = MeetingLevel2::all();
+        $user = User::all();
         return view('MOM.MoM2.index',
         [   
             'level2' => $level2,
-            'pic' => $pic
+            'pic' => $pic,
+            'user' => $user
         ]);
     }
 

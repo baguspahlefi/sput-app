@@ -159,7 +159,12 @@
                                                                 <p class="fs-5 my-auto mx-auto">Nama</p>
                                                             </div>
                                                             <div class="col-6">
-                                                                <input class="form-control" id="nama" name="nama" type="text" placeholder="Default input" required>
+                                                                <select id="nama" name="nama" class="form-select" aria-label="Default select example">
+                                                                    <option selected>Pilih nama pegawai</option>
+                                                                    @foreach($user as $namaUser)
+                                                                    <option value="{{$namaUser->name}}">{{$namaUser->name}}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="row mt-2">

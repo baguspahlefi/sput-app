@@ -171,7 +171,7 @@ class DetailLvl2Controller extends Controller
         ->where('level2', 1)
         ->get();
         Notification::send($usersWithPic, new GenerateDetailNotification($data,$level,$nama,$pic));
-        return redirect(route('detail1.index', $request->id));
+        return redirect(route('detail2.index', $request->id));
     }
 
     public function store_evidance(Request $request)

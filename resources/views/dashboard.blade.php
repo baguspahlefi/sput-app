@@ -84,8 +84,10 @@
     </main>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> 
+<script src="{{url('js/dashboard/chart.js')}}" crossorigin="anonymous"></script>
+<script src="{{url('js/dashboard/apexcharts')}}"></script> 
+<script src="{{url('js/dashboard/chart.min.js')}}" crossorigin="anonymous"></script>
+
 <script>
     var ctx = document.getElementById("piechartMoM1");
     var data = @json($statusMoM1);
@@ -147,11 +149,9 @@ var myPieChart = new Chart(ctx, {
 <script>
     var statusCountsHCGS1 = {!! json_encode($statusCountsHCGS1) !!};
     var statusCountsFAT1 = {!! json_encode($statusCountsFAT1) !!};
-    var statusCountsEngineeringRoad1 = {!! json_encode($statusCountsEngineeringRoad1) !!};
-    var statusCountsPortOperation1 = {!! json_encode($statusCountsPortOperation1) !!};
-    var statusCountsSM1 = {!! json_encode($statusCountsSM1) !!};
-    var statusCountsPLANT1 = {!! json_encode($statusCountsPLANT1) !!};
+    var statusCountsEPR1 = {!! json_encode($statusCountsEPR1) !!};
     var statusCountsSHE1 = {!! json_encode($statusCountsSHE1) !!};
+    var statusCountsPS1 = {!! json_encode($statusCountsPS1) !!};
     var statusCountsProjectManagement1 = {!! json_encode($statusCountsProjectManagement1) !!};
 
     var options = {
@@ -160,11 +160,9 @@ var myPieChart = new Chart(ctx, {
         data: [
             statusCountsHCGS1.OPEN || 0,
             statusCountsFAT1.OPEN || 0,
-            statusCountsEngineeringRoad1.OPEN || 0,
-            statusCountsPortOperation1.OPEN || 0,
-            statusCountsSM1.OPEN || 0,
-            statusCountsPLANT1.OPEN || 0,
-            statusCountsSHE1.OPEN || 0,
+            statusCountsEPR1.OPEN || 0,
+            statusCountsPS1.OPEN || 0,
+            statusCountsSHE1.OPEN || 0,,
             statusCountsProjectManagement1.OPEN || 0
         ]
     }, {
@@ -172,10 +170,8 @@ var myPieChart = new Chart(ctx, {
         data: [
             statusCountsHCGS1.PROGRESS || 0,
             statusCountsFAT1.PROGRESS || 0,
-            statusCountsEngineeringRoad1.PROGRESS || 0,
-            statusCountsPortOperation1.PROGRESS || 0,
-            statusCountsSM1.PROGRESS || 0,
-            statusCountsPLANT1.PROGRESS || 0,
+            statusCountsEPR1.PROGRESS || 0,
+            statusCountsPS1.PROGRESS || 0,
             statusCountsSHE1.PROGRESS || 0,
             statusCountsProjectManagement1.PROGRESS || 0
         ]
@@ -184,10 +180,8 @@ var myPieChart = new Chart(ctx, {
         data: [
             statusCountsHCGS1.CLOSE || 0,
             statusCountsFAT1.CLOSE || 0,
-            statusCountsEngineeringRoad1.CLOSE || 0,
-            statusCountsPortOperation1.CLOSE || 0,
-            statusCountsSM1.CLOSE || 0,
-            statusCountsPLANT1.CLOSE || 0,
+            statusCountsEPR1.CLOSE || 0,
+            statusCountsPS1.CLOSE || 0,
             statusCountsSHE1.CLOSE || 0,
             statusCountsProjectManagement1.CLOSE || 0
         ]
@@ -212,7 +206,7 @@ var myPieChart = new Chart(ctx, {
         colors: ['transparent']
     },
     xaxis: {
-        categories: ['HCGS', 'FAT', 'Engineering Road', 'Port Operation', 'SM', 'PLANT', 'SHE', 'Project Management'],
+        categories: ['HCGS', 'FAT', 'Eng, Port & Road', 'Plant & SM', 'SHE', 'Project Management'],
     },
     yaxis: {
         title: {
@@ -239,10 +233,8 @@ var myPieChart = new Chart(ctx, {
 <script>
     var statusCountsHCGS2 = {!! json_encode($statusCountsHCGS2) !!};
     var statusCountsFAT2 = {!! json_encode($statusCountsFAT2) !!};
-    var statusCountsEngineeringRoad2 = {!! json_encode($statusCountsEngineeringRoad2) !!};
-    var statusCountsPortOperation2 = {!! json_encode($statusCountsPortOperation2) !!};
-    var statusCountsSM2 = {!! json_encode($statusCountsSM2) !!};
-    var statusCountsPLANT2 = {!! json_encode($statusCountsPLANT2) !!};
+    var statusCountsEPR2 = {!! json_encode($statusCountsEPR2) !!};
+    var statusCountsPS2 = {!! json_encode($statusCountsPS2) !!};
     var statusCountsSHE2 = {!! json_encode($statusCountsSHE2) !!};
     var statusCountsProjectManagement2 = {!! json_encode($statusCountsProjectManagement2) !!};
 
@@ -252,10 +244,8 @@ var myPieChart = new Chart(ctx, {
         data: [
             statusCountsHCGS2.OPEN || 0,
             statusCountsFAT2.OPEN || 0,
-            statusCountsEngineeringRoad2.OPEN || 0,
-            statusCountsPortOperation2.OPEN || 0,
-            statusCountsSM2.OPEN || 0,
-            statusCountsPLANT2.OPEN || 0,
+            statusCountsEPR2.OPEN || 0,
+            statusCountsPS2.OPEN || 0,
             statusCountsSHE2.OPEN || 0,
             statusCountsProjectManagement2.OPEN || 0
         ]
@@ -264,10 +254,8 @@ var myPieChart = new Chart(ctx, {
         data: [
             statusCountsHCGS2.PROGRESS || 0,
             statusCountsFAT2.PROGRESS || 0,
-            statusCountsEngineeringRoad2.PROGRESS || 0,
-            statusCountsPortOperation2.PROGRESS || 0,
-            statusCountsSM2.PROGRESS || 0,
-            statusCountsPLANT2.PROGRESS || 0,
+            statusCountsEPR2.PROGRESS || 0,
+            statusCountsPS2.PROGRESS || 0,
             statusCountsSHE2.PROGRESS || 0,
             statusCountsProjectManagement2.PROGRESS || 0
         ]
@@ -276,10 +264,8 @@ var myPieChart = new Chart(ctx, {
         data: [
             statusCountsHCGS2.CLOSE || 0,
             statusCountsFAT2.CLOSE || 0,
-            statusCountsEngineeringRoad2.CLOSE || 0,
-            statusCountsPortOperation2.CLOSE || 0,
-            statusCountsSM2.CLOSE || 0,
-            statusCountsPLANT2.CLOSE || 0,
+            statusCountsEPR2.CLOSE || 0,
+            statusCountsPS2.CLOSE || 0,
             statusCountsSHE2.CLOSE || 0,
             statusCountsProjectManagement2.CLOSE || 0
         ]
@@ -304,7 +290,7 @@ var myPieChart = new Chart(ctx, {
         colors: ['transparent']
     },
     xaxis: {
-        categories: ['HCGS', 'FAT', 'Engineering Road', 'Port Operation', 'SM', 'PLANT', 'SHE', 'Project Management'],
+        categories: ['HCGS', 'FAT', 'Eng, Port & Road', 'Plant & SM', 'SHE', 'Project Management'],
     },
     yaxis: {
         title: {
@@ -331,10 +317,8 @@ var myPieChart = new Chart(ctx, {
 <script>
     var statusCountsHCGS3 = {!! json_encode($statusCountsHCGS3) !!};
     var statusCountsFAT3 = {!! json_encode($statusCountsFAT3) !!};
-    var statusCountsEngineeringRoad3 = {!! json_encode($statusCountsEngineeringRoad3) !!};
-    var statusCountsPortOperation3 = {!! json_encode($statusCountsPortOperation3) !!};
-    var statusCountsSM3 = {!! json_encode($statusCountsSM3) !!};
-    var statusCountsPLANT3 = {!! json_encode($statusCountsPLANT3) !!};
+    var statusCountsEPR3 = {!! json_encode($statusCountsEPR3) !!};
+    var statusCountsPS3 = {!! json_encode($statusCountsEPR3) !!};
     var statusCountsSHE3 = {!! json_encode($statusCountsSHE3) !!};
     var statusCountsProjectManagement3 = {!! json_encode($statusCountsProjectManagement3) !!};
 
@@ -344,10 +328,8 @@ var myPieChart = new Chart(ctx, {
         data: [
             statusCountsHCGS3.OPEN || 0,
             statusCountsFAT3.OPEN || 0,
-            statusCountsEngineeringRoad3.OPEN || 0,
-            statusCountsPortOperation3.OPEN || 0,
-            statusCountsSM3.OPEN || 0,
-            statusCountsPLANT3.OPEN || 0,
+            statusCountsEPR3.OPEN || 0,
+            statusCountsPS3.OPEN || 0,
             statusCountsSHE3.OPEN || 0,
             statusCountsProjectManagement3.OPEN || 0
         ]
@@ -356,10 +338,8 @@ var myPieChart = new Chart(ctx, {
         data: [
             statusCountsHCGS3.PROGRESS || 0,
             statusCountsFAT3.PROGRESS || 0,
-            statusCountsEngineeringRoad3.PROGRESS || 0,
-            statusCountsPortOperation3.PROGRESS || 0,
-            statusCountsSM3.PROGRESS || 0,
-            statusCountsPLANT3.PROGRESS || 0,
+            statusCountsEPR3.PROGRESS || 0,
+            statusCountsPS3.PROGRESS || 0,
             statusCountsSHE3.PROGRESS || 0,
             statusCountsProjectManagement3.PROGRESS || 0
         ]
@@ -368,10 +348,8 @@ var myPieChart = new Chart(ctx, {
         data: [
             statusCountsHCGS3.CLOSE || 0,
             statusCountsFAT3.CLOSE || 0,
-            statusCountsEngineeringRoad3.CLOSE || 0,
-            statusCountsPortOperation3.CLOSE || 0,
-            statusCountsSM3.CLOSE || 0,
-            statusCountsPLANT3.CLOSE || 0,
+            statusCountsEPR3.CLOSE || 0,
+            statusCountsPS3.CLOSE || 0,
             statusCountsSHE3.CLOSE || 0,
             statusCountsProjectManagement3.CLOSE || 0
         ]
@@ -396,7 +374,7 @@ var myPieChart = new Chart(ctx, {
         colors: ['transparent']
     },
     xaxis: {
-        categories: ['HCGS', 'FAT', 'Engineering Road', 'Port Operation', 'SM', 'PLANT', 'SHE', 'Project Management'],
+        categories: ['HCGS', 'FAT', 'Eng, Port & Road', 'Plant & SM', 'SHE', 'Project Management'],
     },
     yaxis: {
         title: {

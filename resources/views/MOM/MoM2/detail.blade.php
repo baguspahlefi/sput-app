@@ -135,7 +135,7 @@
                                             @foreach($detail->evidance_level_2 as $gambarTabel)
                                             @if($loop->first)
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalEvidance{{$detail->id}}">
-                                                    <img src="{{ Storage::url($gambarTabel->path_gambar) }}" alt="" width="200" class="img-thumbnail">
+                                                    <img src="{{('http://10.13.27.75/sput-app/storage/app/public').'/'.$gambarTabel->path_gambar}}" alt="" width="200" class="img-thumbnail">
                                                 </a>
                                             @endif
                                             @endforeach
@@ -342,7 +342,7 @@
                                                             <p>{{$evidance->nama_gambar}}</p>
                                                         </div>
                                                         <div class="col-4">
-                                                            <img src="{{Storage::url($evidance->path_gambar)}}" class="d-block w-100" alt="...">
+                                                            <img src="{{('http://10.13.27.75/sput-app/storage/app/public').'/'.$evidance->path_gambar}}" class="d-block w-100" alt="...">
                                                         </div>
                                                         <div class="col-4 text-end">
                                                             <form action="{{route('evidance2.destroy',$evidance->id)}}" method="POST">
@@ -380,7 +380,7 @@
                                                             <ul data-slides>
                                                             @foreach($detail->evidance_level_2 as $img)
                                                                 <li class="slide" {{ $key == 0 ? 'data-active' : '' }}>
-                                                                        <img src="{{Storage::url($img->path_gambar)}}" alt="Nature Image #1">
+                                                                        <img src="{{('http://10.13.27.75/sput-app/storage/app/public').'/'.$img->path_gambar}}" alt="Nature Image #1">
                                                                 </li>
                                                             @endforeach
                                                             </ul>

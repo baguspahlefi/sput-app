@@ -15,7 +15,7 @@
 
                
 
-<script>
+<!--  <script>
     $(document).ready( function () {
     $('#tabel').DataTable();
 } );
@@ -26,7 +26,7 @@
     $('.datepicker').datepicker({
     inline: true
     });
-</script>
+</script> -->
 
 <script>
 function editInPlaceNama(element) {

@@ -31,6 +31,8 @@ class DetailLvl3Controller extends Controller
     {
         $user = auth()->user();
         $roles = $user->getRoleNames();
+        $akunPic= $user->pic;
+
         $pic = PIC::all();
         $status = Status::all();
         $item = MeetingLevel3::findOrFail($id);
@@ -39,9 +41,11 @@ class DetailLvl3Controller extends Controller
         if ($roles->intersect($rolesToCheck)->isNotEmpty()) {
             $detail = DetailLevel3::get();
         } else {
-            $detail = DetailLevel3::whereIn('pic', $roles)->get();
-        }      
+            $detail = DetailLevel3::where('pic', $akunPic)->get();
+        }
+
         auth()->user()->unreadNotifications->where('id',request('id'))->first()?->markAsRead();
+        
         return view ('MOM.MoM3.detail',
         [
             'item'=>$item,
@@ -49,6 +53,7 @@ class DetailLvl3Controller extends Controller
             'status' => $status,
             'details' => $detail
         ]);
+
 
 
     }
@@ -150,7 +155,7 @@ class DetailLvl3Controller extends Controller
         $level = 3;
         $nama = $request->user()->name;
         $user = auth()->user();
-        $pic = $user->getRoleNames();
+        $pic = $request->pic;
         $item = [
             'id_meeting' => $request->id,
             'point_of_meeting' => $request->point_of_meeting,
@@ -160,10 +165,10 @@ class DetailLvl3Controller extends Controller
         ];
         $data = DetailLevel3::create($item);
         $roleName = $request->pic; // Ganti dengan peran yang Anda inginkan
-        $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
-            $query->where('name', $roleName);
-        })->where('level3', 1)->get();
-        Notification::send($usersWithRole, new GenerateDetailNotification($data,$level,$nama,$pic));
+        $usersWithPic = User::where('pic', $pic)
+        ->where('level3', 1)
+        ->get();
+        Notification::send($usersWithPic, new GenerateDetailNotification($data,$level,$nama,$pic));
         return redirect(route('detail3.index', $request->id));
     }
 
@@ -215,15 +220,20 @@ class DetailLvl3Controller extends Controller
         $level = 3;
         $nama = $request->user()->name;
         $user = auth()->user();
-        $pic = $user->getRoleNames();
+        $pic = $request->pic;
         $data = DetailLevel3::findOrFail($id);
         $item = $request->all();
 
         $roleName = "ADMIN"; // Ganti dengan nama peran "ADMIN"
-        $usersWithRole = User::whereHas('roles', function ($query) use ($roleName) {
+        $userAdmin = User::whereHas('roles', function ($query) use ($roleName) {
             $query->where('name', $roleName);
         })->get();
-        Notification::send($usersWithRole, new GenerateDetailNotification($data, $level, $nama,$pic));
+        Notification::send($userAdmin, new GenerateDetailNotification($data, $level, $nama,$pic));
+
+        $usersWithPic = User::where('pic', $pic)
+        ->where('level3', 1)
+        ->get();
+        Notification::send($usersWithPic, new GenerateDetailNotification($data, $level, $nama,$pic));
 
         $data->update($item);
         return redirect()->back()->with('success', 'Berhasil edit meeting');

@@ -14,14 +14,11 @@ class MeetingLevel1TableSeeder extends Seeder
      */
     public function run(): void
     {
-        $level1 = MeetingLevel1::create([
-            'judul' => 'Meeting level 1',
-            'tanggal' => '2023-10-06'
-        ]);
-
-        $level2 = MeetingLevel1::create([
-            'judul' => 'Meeting level 2',
-            'tanggal' => '2023-10-06'
-        ]);
+        for ($i = 0; $i < 20; $i++) {
+            MeetingLevel1::create([
+                'judul' => 'Meeting level 1',
+                'tanggal' => '2023-10-06'
+            ]);
+        }
     }
 }

@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\MeetingLevel1;
-use App\Models\DetailLevel1;
 use App\Models\EvidanceLevel1;
 
 class DetailLevel1 extends Model

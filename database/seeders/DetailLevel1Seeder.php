@@ -24,7 +24,7 @@ class DetailLevel1Seeder extends Seeder
  
     	      // insert data ke table pegawai menggunakan Faker
     		DB::table('detail_level1')->insert([
-    			'id_meeting' => $faker->numberBetween(1, 2),
+    			'id_meeting' => $faker->numberBetween(1, 20),
     			'point_of_meeting' => $faker->text(50),
     			'pic' => $faker->randomElement($picList),
     			'due' => $faker->dateTimeThisCentury->format('Y-m-d'),

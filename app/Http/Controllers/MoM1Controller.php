@@ -23,11 +23,17 @@ class MoM1Controller extends Controller
         $pic = PIC::all();
         $user = User::all();
         $level1Array = $level1->toArray();
+
         foreach ($level1Array as &$item) {
             $meeting_detail_id = $item['id'];
-            $meeting_detail1 = DetailLevel1::find($meeting_detail_id);
+            $meeting_detail1 = DetailLevel1::where('id_meeting', $meeting_detail_id)->get();
+
+            $item['meeting_detail'] = [];
+            foreach ($meeting_detail1 as $detail) {
+                $item['meeting_detail'][] = $detail->toArray();
+            }
+
             $item['mom_id'] = "1";
-            $item['meeting_detail'] = $meeting_detail1;
         }
 
         $view = response()->json([

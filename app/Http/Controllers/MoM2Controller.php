@@ -23,6 +23,27 @@ class MoM2Controller extends Controller
         $pic = PIC::all();
         $level2 = MeetingLevel2::all();
         $user = User::all();
+
+        $level2 = MeetingLevel2::all();
+        $level2Array = $level2->toArray();
+
+        foreach ($level2Array as &$item) {
+            $meeting_detail_id = $item['id'];
+            $meeting_detail1 = DetailLevel2::where('id_meeting', $meeting_detail_id)->get();
+
+            $item['meeting_detail'] = [];
+            foreach ($meeting_detail1 as $detail) {
+                $item['meeting_detail'][] = $detail->toArray();
+            }
+
+            $item['mom_id'] = "2";
+        }
+
+        $view = response()->json([
+            'data' => $level2Array
+        ]);
+
+        // dd($view);
         return view('MOM.MoM2.index',
         [   
             'level2' => $level2,

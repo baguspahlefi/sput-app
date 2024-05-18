@@ -24,6 +24,25 @@ class MoM3Controller extends Controller
         $level3 = MeetingLevel3::all();
         $pic = PIC::all();
         $user = User::all();
+        $level3Array = $level3->toArray();
+
+        foreach ($level3Array as &$item) {
+            $meeting_detail_id = $item['id'];
+            $meeting_detail3 = DetailLevel3::where('id_meeting', $meeting_detail_id)->get();
+
+            $item['meeting_detail'] = [];
+            foreach ($meeting_detail3 as $detail) {
+                $item['meeting_detail'][] = $detail->toArray();
+            }
+
+            $item['mom_id'] = "3";
+        }
+
+        $view = response()->json([
+            'data' => $level3Array
+        ]);
+
+        dd($view);
         return view('MOM.MoM3.index',
         [   
             'level3' => $level3,

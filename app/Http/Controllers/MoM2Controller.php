@@ -43,7 +43,7 @@ class MoM2Controller extends Controller
             'data' => $level2Array
         ]);
 
-        // dd($view);
+        dd($view);
         return view('MOM.MoM2.index',
         [   
             'level2' => $level2,
